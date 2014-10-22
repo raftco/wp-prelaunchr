@@ -40,7 +40,12 @@ if ( ! class_exists( 'Prelaunchr' ) ) :
 		/**
 		 * Plugin version
 		 */
-		public $version = '1.0';
+		public $version = '1.0.0';
+
+		/**
+		 * Plugin version
+		 */
+		public $plugin_name = 'prelaunchr';
 
 		/**
 		 * The single instance of the main plugin class
@@ -66,9 +71,19 @@ if ( ! class_exists( 'Prelaunchr' ) ) :
 		public function __construct() {
 
 			/**
-			 * Define Constants
+			 * Define constants
 			 */
 			$this->define_constants();
+
+			/**
+			 * Include Prelaunchr classes
+			 */
+			$this->load_dependencies();
+
+			/**
+			 * Set Prelaunchr locale
+			 */
+			$this->set_locale();
 
 		}
 
@@ -82,6 +97,41 @@ if ( ! class_exists( 'Prelaunchr' ) ) :
 			define( 'PRELAUNCHR_PLUGIN_DIR_URL', plugin_dir_url( __FILE__ ) );
 			define( 'PRELAUNCHR_PLUGIN_FILE', __FILE__ );
 			define( 'PRELAUNCHR_PLUGIN_BASENAME', plugin_basename( __FILE__ ) );
+
+		}
+
+		/**
+		 * Load includes for this plugin.
+		 *
+		 * Include the following files that make up the plugin:
+		 *
+		 * - Plugin_Name_Loader. Orchestrates the hooks of the plugin.
+		 * - Plugin_Name_i18n. Defines internationalization functionality.
+		 *
+		 */
+		public function load_dependencies() {
+
+			/**
+			 * The class responsible for defining internationalization functionality
+			 * of the plugin.
+			 */
+			require_once PRELAUNCHR_PLUGIN_DIR . 'includes/class-prelaunchr-i18n.php';
+
+		}
+
+		/**
+		 * Define the locale for this plugin for internationalization.
+		 *
+		 * Uses the Prelaunchr_i18n class in order to set the domain and to register the hook
+		 * with WordPress.
+		 */
+		public function set_locale() {
+
+			$plugin_i18n = new Prelaunchr_i18n();
+
+			$plugin_i18n->set_domain( $this->plugin_name );
+
+			add_action( 'plugins_loaded', array( $plugin_i18n, 'load_plugin_textdomain' ) );
 
 		}
 
