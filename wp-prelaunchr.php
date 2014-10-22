@@ -38,13 +38,50 @@ if ( ! class_exists( 'Prelaunchr' ) ) :
 	class Prelaunchr {
 
 		/**
+		 * Plugin version
+		 */
+		public $version = '1.0';
+
+		/**
+		 * The single instance of the main plugin class
+		 */
+		protected static $_instance = null;
+
+		/**
+		 * Main plugin instance
+		 */
+		public static function instance() {
+
+			if ( is_null( self::$_instance ) ) {
+				self::$_instance = new self();
+			}
+
+			return self::$_instance;
+
+		}
+
+		/**
 		 * Initialise
 		 */
-		public function Prelaunchr() {
+		public function __construct() {
 
 			/**
-			 * Do Stuff
+			 * Define Constants
 			 */
+			$this->define_constants();
+
+		}
+
+		/**
+		 * Define Prelaunchr constants
+		 */
+		public function define_constants() {
+
+			define( 'PRELAUNCHR_VERSION', $this->version );
+			define( 'PRELAUNCHR_PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
+			define( 'PRELAUNCHR_PLUGIN_DIR_URL', plugin_dir_url( __FILE__ ) );
+			define( 'PRELAUNCHR_PLUGIN_FILE', __FILE__ );
+			define( 'PRELAUNCHR_PLUGIN_BASENAME', plugin_basename( __FILE__ ) );
 
 		}
 
@@ -52,11 +89,4 @@ if ( ! class_exists( 'Prelaunchr' ) ) :
 
 endif;
 
-/**
- * Initialise Prelaunchr after the plugins are loaded.
- */
-function init_prelaunchr() {
-	$Prelaunchr = new Prelaunchr();
-}
-
-add_action( 'plugins_loaded', 'init_prelaunchr');
+Prelaunchr::instance();
