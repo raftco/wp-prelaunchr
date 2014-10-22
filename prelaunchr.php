@@ -92,7 +92,7 @@ if ( ! class_exists( 'Prelaunchr' ) ) :
 		 */
 		public function define_constants() {
 
-			define( 'PRELAUNCHR_VERSION', $this->version );
+			define( 'PRELAUNCHR_VERSION', $this->get_version() );
 			define( 'PRELAUNCHR_PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
 			define( 'PRELAUNCHR_PLUGIN_DIR_URL', plugin_dir_url( __FILE__ ) );
 			define( 'PRELAUNCHR_PLUGIN_FILE', __FILE__ );
@@ -126,13 +126,24 @@ if ( ! class_exists( 'Prelaunchr' ) ) :
 		 * with WordPress.
 		 */
 		public function set_locale() {
-
 			$plugin_i18n = new Prelaunchr_i18n();
-
-			$plugin_i18n->set_domain( $this->plugin_name );
-
+			$plugin_i18n->set_domain( $this->get_plugin_name() );
 			add_action( 'plugins_loaded', array( $plugin_i18n, 'load_plugin_textdomain' ) );
+		}
 
+		/**
+		 * The name of the plugin used to uniquely identify it within the context of
+		 * WordPress and to define internationalization functionality.
+		 */
+		public function get_plugin_name() {
+			return $this->plugin_name;
+		}
+
+		/**
+		 * Retrieve the version number of the plugin.
+		 */
+		public function get_version() {
+			return $this->version;
 		}
 
 	}
