@@ -93,8 +93,9 @@ if ( ! class_exists( 'Prelaunchr' ) ) :
 		public function define_constants() {
 
 			define( 'PRELAUNCHR_VERSION', $this->get_version() );
-			define( 'PRELAUNCHR_PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
-			define( 'PRELAUNCHR_PLUGIN_DIR_URL', plugin_dir_url( __FILE__ ) );
+			define( 'PRELAUNCHR_PLUGIN_PATH', untrailingslashit( plugin_dir_path( __FILE__ ) ) );
+			define( 'PRELAUNCHR_PLUGIN_URL', untrailingslashit( plugin_dir_url( __FILE__ ) ) );
+			define( 'PRELAUNCHR_TEMPLATE_PATH', PRELAUNCHR_PLUGIN_PATH . '/templates/' );
 			define( 'PRELAUNCHR_PLUGIN_FILE', __FILE__ );
 			define( 'PRELAUNCHR_PLUGIN_BASENAME', plugin_basename( __FILE__ ) );
 
@@ -115,7 +116,7 @@ if ( ! class_exists( 'Prelaunchr' ) ) :
 			 * The class responsible for defining internationalization functionality
 			 * of the plugin.
 			 */
-			require_once PRELAUNCHR_PLUGIN_DIR . 'includes/class-prelaunchr-i18n.php';
+			require_once PRELAUNCHR_PLUGIN_PATH . '/includes/class-prelaunchr-i18n.php';
 
 		}
 

@@ -20,7 +20,7 @@ class Prelaunchr_i18n {
 		load_plugin_textdomain(
 			$this->domain,
 			false,
-			PRELAUNCHR_PLUGIN_DIR . 'languages/'
+			PRELAUNCHR_PLUGIN_PATH . '/languages/'
 		);
 
 	}
