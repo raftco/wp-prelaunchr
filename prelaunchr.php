@@ -173,6 +173,13 @@ if ( ! class_exists( 'Prelaunchr' ) ) :
 			 */
 			add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_scripts' ) );
 
+
+			/**
+			 * Handle Form Submission
+			 */
+			add_action( 'wp_ajax_nopriv_prelaunchr-submit', array( $this, 'record_submission' ) );
+			add_action( 'wp_ajax_prelaunchr-submit', array( $this, 'record_submission' ) );
+
 		}
 
 		/**
@@ -259,9 +266,13 @@ if ( ! class_exists( 'Prelaunchr' ) ) :
 
 			if ( self::$add_scripts ) {
 
+				global $post;
+
 				$suffix      = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '' : '.min';
 
 				$assets_path = str_replace( array( 'http:', 'https:' ), '', PRELAUNCHR_PLUGIN_URL . '/assets' );
+
+				wp_enqueue_script("jquery");
 
 				wp_enqueue_style( 'prelaunchr', $assets_path . '/css/prelaunchr.css', array(), $this->get_version() );
 
@@ -271,7 +282,49 @@ if ( ! class_exists( 'Prelaunchr' ) ) :
 
 				wp_enqueue_script( 'prelaunchr', $assets_path . '/js/prelaunchr' . $suffix . '.js', array('jquery','uuid','jquery-cookie'), $this->get_version(), true );
 
+				wp_localize_script( 'prelaunchr', 'PrelaunchrSubmit', array( 
+					'ajaxurl' => admin_url( 'admin-ajax.php' ),
+					'return' => get_page_uri( $post->ID )
+					)
+				);
+
 			}
+
+		}
+
+		public function record_submission() {
+
+			$data = array();
+			$format = array();
+
+			/**
+			 * Time
+			 */
+			$data['time'] = time();
+			$format[] = '%d';
+
+			/**
+			 * UUID
+			 */
+			if ( isset( $_REQUEST['pid'] ) ) {
+				$data['pid'] = mysql_real_escape_string( stripslashes( $_REQUEST['pid'] ) );
+			} else {
+				$data['pid'] = 0;
+			}
+			$format[] = '%s';
+
+			/**
+			 * Email
+			 */
+			$data['email'] = mysql_real_escape_string( stripslashes( $_REQUEST['email'] ) );
+			$format[] = '%s';
+
+			/**
+			 * Insert submission into database.
+			 */
+			global $wpdb;
+
+			//$wpdb->insert( $wpdb->prefix . "prelaunchr" , $data, $format );
 
 		}
 
