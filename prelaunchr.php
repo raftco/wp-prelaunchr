@@ -53,6 +53,16 @@ if ( ! class_exists( 'Prelaunchr' ) ) :
 		protected static $_instance = null;
 
 		/**
+		 * Switch for determining whether to enqueue prelaunchr css and js
+		 */
+		static $add_scripts = false;
+
+		/**
+		 * ID of the post displaying the [prelaunchr] shortcode
+		 */
+		static $shortcode_post_id = 0;
+
+		/**
 		 * Main plugin instance
 		 */
 		public static function instance() {
@@ -86,9 +96,9 @@ if ( ! class_exists( 'Prelaunchr' ) ) :
 			$this->set_locale();
 
 			/**
-			 * Hooks
+			 * Hooks on plugins_loaded
 			 */
-			add_action( 'plugins_loaded', array( $this, 'include_shortcode_functions' ) );
+			add_action( 'plugins_loaded', array( $this, 'setup_hooks' ) );
 
 		}
 
@@ -145,9 +155,23 @@ if ( ! class_exists( 'Prelaunchr' ) ) :
 		/**
 		 * Include shortcode functions
 		 */
-		public function include_shortcode_functions() {
+		public function setup_hooks() {
 
+			/**
+			 * Add the [prelaunchr] shortcode
+			 */
 			add_shortcode( 'prelaunchr', array( $this, 'prelaunchr_shortcode' ) );
+
+			/**
+			 * Checks if a queried post contains the [prelaunchr] shortcode
+			 * needs to happen after the "template_redirect"
+			 */
+			add_action( 'the_posts', array( $this, 'check_for_shortcode' ) );
+
+			/**
+			 * Add our CSS and JS only if the [prelaunchr] shortcode is present
+			 */
+			add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_scripts' ) );
 
 		}
 
@@ -198,6 +222,50 @@ if ( ! class_exists( 'Prelaunchr' ) ) :
 			} else {
 
 				load_template( PRELAUNCHR_TEMPLATE_PATH . $template );
+
+			}
+
+		}
+
+		/**
+		 * Checks if any post about to be displayed contains the one page checkout shortcode.
+		 *
+		 * We need to set @see self::$add_scripts here rather than in the shortcode so we can conditionally
+		 * add the locale to the WooCommerce core script done in @see self::localize_script() hooked to
+		 * 'woocommerce_params' which is run on 'wp_enqueue_script' (i.e. before the shortcode is evaluated).
+		 *
+		 */
+		public function check_for_shortcode( $posts ) {
+
+			if ( empty( $posts ) )
+				return $posts;
+
+			foreach ( $posts as $post ) {
+
+				if ( false !== stripos( $post->post_content, '[prelaunchr' ) ) {
+					self::$add_scripts = true;
+					self::$shortcode_post_id = $post->ID;
+					break;
+				}
+			}
+
+			return $posts;
+		}
+
+		/**
+		 * Enqueue Prelaunchr front end scripts with the shortcode is present.
+		 */
+		public function enqueue_scripts() {
+
+			if ( self::$add_scripts ) {
+
+				$suffix      = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '' : '.min';
+
+				$assets_path = str_replace( array( 'http:', 'https:' ), '', PRELAUNCHR_PLUGIN_URL . '/assets' );
+
+				wp_enqueue_style( 'prelaunchr', $assets_path . '/css/prelaunchr.css', array(), $this->get_version() );
+
+				wp_enqueue_script( 'prelaunchr', $assets_path . '/js/prelaunchr' . $suffix . '.js', array( 'jquery' ), $this->get_version(), true );
 
 			}
 
