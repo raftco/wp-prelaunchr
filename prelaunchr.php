@@ -265,7 +265,11 @@ if ( ! class_exists( 'Prelaunchr' ) ) :
 
 				wp_enqueue_style( 'prelaunchr', $assets_path . '/css/prelaunchr.css', array(), $this->get_version() );
 
-				wp_enqueue_script( 'prelaunchr', $assets_path . '/js/prelaunchr' . $suffix . '.js', array( 'jquery' ), $this->get_version(), true );
+				wp_enqueue_script( 'uuid', $assets_path . '/js/uuid' . $suffix . '.js', array(), '1.4.1', true );
+
+				wp_enqueue_script( 'jquery-cookie', $assets_path . '/js/jquery.cookie' . $suffix . '.js', array('jquery'), '1.4.1', true );
+
+				wp_enqueue_script( 'prelaunchr', $assets_path . '/js/prelaunchr' . $suffix . '.js', array('jquery','uuid','jquery-cookie'), $this->get_version(), true );
 
 			}
 
