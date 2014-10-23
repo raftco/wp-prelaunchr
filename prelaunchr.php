@@ -30,6 +30,18 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly
 }
 
+/**
+ * Require classes responsible for activation & deactivation tasks
+ */
+require_once plugin_dir_path( __FILE__ ) . 'includes/class-prelaunchr-activator.php';
+require_once plugin_dir_path( __FILE__ ) . 'includes/class-prelaunchr-deactivator.php';
+
+/**
+ * Hook activation & deactivate tasks
+ */
+register_activation_hook( __FILE__ , array( 'Prelaunchr_Activator', 'activate' ) );
+register_deactivation_hook( __FILE__ , array( 'Prelaunchr_Deactivator', 'deactivate' ) );
+
 if ( ! class_exists( 'Prelaunchr' ) ) :
 
 	/**
@@ -99,16 +111,6 @@ if ( ! class_exists( 'Prelaunchr' ) ) :
 			 * Hooks on plugins_loaded
 			 */
 			add_action( 'plugins_loaded', array( $this, 'setup_hooks' ) );
-
-			/**
-			 * Activation tasks
-			 */
-			register_activation_hook( PRELAUNCHR_PLUGIN_FILE, array( $this, 'activate' ) );
-
-			/**
-			 * Deactivation tasks
-			 */
-			register_deactivation_hook( PRELAUNCHR_PLUGIN_FILE, array( $this, 'deactivate' ) );
 
 		}
 
@@ -401,24 +403,6 @@ if ( ! class_exists( 'Prelaunchr' ) ) :
 		}
 
 		/**
-		 * Do stuff on activation
-		 */
-		public function activate() {
-
-			flush_rewrite_rules();
-
-		}
-
-		/**
-		 * Do stuff on deactivation
-		 */
-		public function deactivate() {
-
-			flush_rewrite_rules();
-
-		}
-
-		/**
 		 * The name of the plugin used to uniquely identify it within the context of
 		 * WordPress and to define internationalization functionality.
 		 */
@@ -441,4 +425,6 @@ if ( ! class_exists( 'Prelaunchr' ) ) :
 
 endif;
 
-Prelaunchr::instance();
+function Prelaunchr() {
+	return Prelaunchr::instance();
+}

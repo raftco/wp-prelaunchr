@@ -7,7 +7,9 @@ class Prelaunchr_Deactivator {
 	/**
 	 * Do stuff on deactivation
 	 */
-	public static function deactivate() {
+	public function deactivate() {
+
+		flush_rewrite_rules();
 
 	}
 
