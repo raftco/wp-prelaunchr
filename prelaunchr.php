@@ -100,6 +100,16 @@ if ( ! class_exists( 'Prelaunchr' ) ) :
 			 */
 			add_action( 'plugins_loaded', array( $this, 'setup_hooks' ) );
 
+			/**
+			 * Activation tasks
+			 */
+			register_activation_hook( PRELAUNCHR_PLUGIN_FILE, array( $this, 'activate' ) );
+
+			/**
+			 * Deactivation tasks
+			 */
+			register_deactivation_hook( PRELAUNCHR_PLUGIN_FILE, array( $this, 'deactivate' ) );
+
 		}
 
 		/**
@@ -179,6 +189,12 @@ if ( ! class_exists( 'Prelaunchr' ) ) :
 			 */
 			add_action( 'wp_ajax_nopriv_prelaunchr-submit', array( $this, 'record_submission' ) );
 			add_action( 'wp_ajax_prelaunchr-submit', array( $this, 'record_submission' ) );
+
+			/**
+			 * URL / Rewrite rules
+			 */
+			add_action( 'generate_rewrite_rules', array( $this, 'add_rewrite_rules' ) );
+			add_filter( 'query_vars', array( $this, 'add_query_vars' ) );
 
 		}
 
@@ -325,6 +341,78 @@ if ( ! class_exists( 'Prelaunchr' ) ) :
 			global $wpdb;
 
 			//$wpdb->insert( $wpdb->prefix . "prelaunchr" , $data, $format );
+
+		}
+
+		/**
+		 * Creates the rewrite rules for our pids
+		 */
+		public function add_rewrite_rules( $wp_rewrite ) {
+
+			if ( $id = $this->get_post_with_shortcode() ) {
+
+				$path = get_page_uri( $id );
+
+				$new_rules = array (
+					'(' . $path . ')/(.+?)/page/?([0-9]{1,})/?$' => 'index.php?pagename=' . $wp_rewrite->preg_index(1).'&pid=' . $wp_rewrite->preg_index(2) . '&page=' . $wp_rewrite->preg_index(3) ,
+					'(' . $path . ')/(.*?)/?$' => 'index.php?pagename=' . $wp_rewrite->preg_index(1) . '&pid=' . $wp_rewrite->preg_index(2)
+				);
+
+				// Always add your rules to the top, to make sure your rules have priority
+				$wp_rewrite->rules = $new_rules + $wp_rewrite->rules;
+
+			}
+
+		}
+
+
+		/**
+		 * Adds the filter query parameters to the WP_Query object.
+		 */
+		public function add_query_vars( $query_vars ) {
+
+			$query_vars[] = 'pid';
+
+			return $query_vars;
+		}
+
+		/**
+		 * Find the post with the our [prelaunchr] shortcode
+		 */
+		public function get_post_with_shortcode() {
+
+			$args = array( 'posts_per_page' => -1, 'post_type'=> 'any' );	
+			$posts = get_posts( $args );
+			$pattern = get_shortcode_regex();
+
+			foreach ($posts as $post){
+				if (   preg_match_all( '/'. $pattern .'/s', $post->post_content, $matches )
+					&& array_key_exists( 2, $matches )
+					&& in_array( 'prelaunchr', $matches[2] ) )
+				{
+					return $post->ID;
+				}    
+			}
+
+			return false;
+
+		}
+
+		/**
+		 * Do stuff on activation
+		 */
+		public function activate() {
+
+			flush_rewrite_rules();
+
+		}
+
+		/**
+		 * Do stuff on deactivation
+		 */
+		public function deactivate() {
+
+			flush_rewrite_rules();
 
 		}
 
