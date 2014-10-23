@@ -428,3 +428,5 @@ endif;
 function Prelaunchr() {
 	return Prelaunchr::instance();
 }
+
+$Prelaunchr = Prelaunchr();
