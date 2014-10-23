@@ -346,6 +346,8 @@ if ( ! class_exists( 'Prelaunchr' ) ) :
 
 		/**
 		 * Creates the rewrite rules for our pids
+		 *
+		 * Concept based on http://stackoverflow.com/questions/13140182/wordpress-wp-rewrite-rules
 		 */
 		public function add_rewrite_rules( $wp_rewrite ) {
 
