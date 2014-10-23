@@ -85,6 +85,11 @@ if ( ! class_exists( 'Prelaunchr' ) ) :
 			 */
 			$this->set_locale();
 
+			/**
+			 * Hooks
+			 */
+			add_action( 'plugins_loaded', array( $this, 'include_shortcode_functions' ) );
+
 		}
 
 		/**
@@ -127,9 +132,75 @@ if ( ! class_exists( 'Prelaunchr' ) ) :
 		 * with WordPress.
 		 */
 		public function set_locale() {
+
 			$plugin_i18n = new Prelaunchr_i18n();
+
 			$plugin_i18n->set_domain( $this->get_plugin_name() );
+
 			add_action( 'plugins_loaded', array( $plugin_i18n, 'load_plugin_textdomain' ) );
+
+		}
+
+
+		/**
+		 * Include shortcode functions
+		 */
+		public function include_shortcode_functions() {
+
+			add_shortcode( 'prelaunchr', array( $this, 'prelaunchr_shortcode' ) );
+
+		}
+
+		/**
+		 * Prelaunchr Shortcode
+		 */
+		public function prelaunchr_shortcode() {
+
+			ob_start();
+
+			$this->prelaunchr_get_template_part( 'prelaunchr', 'form' );
+
+			return ob_get_clean();
+
+		}
+
+		/**
+		 * Check theme for templates overwise use default plugin templates
+		 */
+		public function prelaunchr_get_template_part( $slug , $name = null ) {
+
+			if ( empty( $slug ) ) {
+				return;
+			}
+
+			$name = (string) $name;
+
+			if ( '' !== $name ) {
+
+				$template = "{$slug}-{$name}.php";
+
+			} else {
+
+				$template = "{$slug}.php";
+
+			}
+
+			/**
+			 * locate_template() returns path to file
+			 *
+			 * if either the child theme or the parent theme have overridden the template
+			 * otherwise we load the template from the plugin 'templates' sub-directory
+			 */
+			if ( $overridden_template = locate_template( $template ) ) {
+
+				load_template( $overridden_template );
+
+			} else {
+
+				load_template( PRELAUNCHR_TEMPLATE_PATH . $template );
+
+			}
+
 		}
 
 		/**
@@ -137,14 +208,18 @@ if ( ! class_exists( 'Prelaunchr' ) ) :
 		 * WordPress and to define internationalization functionality.
 		 */
 		public function get_plugin_name() {
+
 			return $this->plugin_name;
+
 		}
 
 		/**
 		 * Retrieve the version number of the plugin.
 		 */
 		public function get_version() {
+
 			return $this->version;
+
 		}
 
 	}
