@@ -354,8 +354,8 @@ if ( ! class_exists( 'Prelaunchr' ) ) :
 				$path = get_page_uri( $id );
 
 				$new_rules = array (
-					'(' . $path . ')/(.+?)/page/?([0-9]{1,})/?$' => 'index.php?pagename=' . $wp_rewrite->preg_index(1).'&pid=' . $wp_rewrite->preg_index(2) . '&page=' . $wp_rewrite->preg_index(3) ,
-					'(' . $path . ')/(.*?)/?$' => 'index.php?pagename=' . $wp_rewrite->preg_index(1) . '&pid=' . $wp_rewrite->preg_index(2)
+					'(' . $path . ')/([0-9A-Fa-f]{8}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{12})/page/?([0-9]{1,})/?$' => 'index.php?pagename=' . $wp_rewrite->preg_index(1).'&pid=' . $wp_rewrite->preg_index(2) . '&page=' . $wp_rewrite->preg_index(3) ,
+					'(' . $path . ')/([0-9A-Fa-f]{8}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{12})/?$' => 'index.php?pagename=' . $wp_rewrite->preg_index(1) . '&pid=' . $wp_rewrite->preg_index(2)
 				);
 
 				// Always add your rules to the top, to make sure your rules have priority
