@@ -347,7 +347,7 @@ if ( ! class_exists( 'Prelaunchr' ) ) :
 			}
 
 			if ( $this->email_exists( $email ) ) {
-				wp_send_json_error("Thanks we've already recorded your interest");
+				wp_send_json_error("Thanks we've already recorded your interest. Check your referrals <a href='" . $this->get_pid_from_email( $email ) . "'>here</a>");
 			}
 
 			$data['email'] = $email;
@@ -466,6 +466,27 @@ if ( ! class_exists( 'Prelaunchr' ) ) :
 		}
 
 		/**
+		 * Get the a pid from an email address
+		 */
+		public function get_pid_from_email( $email ) {
+
+			global $wpdb;
+
+			$table_name = $wpdb->prefix . "prelaunchr";
+
+			$email = mysql_real_escape_string( stripslashes( $email ) );
+
+			$pid = $wpdb->get_var( "SELECT pid FROM $table_name WHERE email = '$email'" );
+
+			if ( ! empty( $pid ) ) {
+				return $pid;
+			} else {
+				return false;
+			}
+
+		}
+
+		/**
 		 * Get the referrers ID
 		 */
 		public function get_referrer_id( $pid ) {
@@ -473,6 +494,8 @@ if ( ! class_exists( 'Prelaunchr' ) ) :
 			global $wpdb;
 
 			$table_name = $wpdb->prefix . "prelaunchr";
+
+			$pid = mysql_real_escape_string( stripslashes( $pid ) );
 
 			$rid = $wpdb->get_var( "SELECT id FROM $table_name WHERE pid = '$pid'" );
 

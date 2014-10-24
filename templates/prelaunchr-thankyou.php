@@ -21,6 +21,6 @@ if ( ! empty ( $pid ) ) {
 
 <p>Share with your friends using the following link:</p>
 
-<p><a href="<?php the_permalink(); ?>?ref=<?php echo get_query_var('pid'); ?>" ><?php the_permalink(); ?>?ref=<?php echo get_query_var('pid'); ?></a><p>
+<p><textarea rows="2" class="form-control" onclick="this.select();"><?php the_permalink(); ?>?ref=<?php echo get_query_var('pid'); ?></textarea></p>
 
 <?php } ?>
