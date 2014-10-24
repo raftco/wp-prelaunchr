@@ -332,12 +332,16 @@ if ( ! class_exists( 'Prelaunchr' ) ) :
 			 */
 			$email = $this->isValidEmail( mysql_real_escape_string( stripslashes( $_REQUEST['email'] ) ) );
 
-			if ( $email ) {
-				$data['email'] = $email;
-				$format[] = '%s';
-			} else {
-				wp_send_json_error('Invalid Email');
+			if (  ! $email ) {
+				wp_send_json_error('Invalid email');
 			}
+
+			if ( $this->email_exists( $email ) ) {
+				wp_send_json_error("Thanks we've already recorded your interest");
+			}
+
+			$data['email'] = $email;
+			$format[] = '%s';
 
 			/**
 			 * Time
@@ -489,6 +493,28 @@ if ( ! class_exists( 'Prelaunchr' ) ) :
 
 		}
 
+		/**
+		 * Check if an email address already exists in the database
+		 * @param  var $email email address to be checked
+		 * @return bool        returns true if email already exists
+		 */
+		public function email_exists( $email ) {
+
+			global $wpdb;
+
+			$table_name = $wpdb->prefix . "prelaunchr";
+
+			$email = mysql_real_escape_string( stripslashes( $email ) );
+
+			$test = $wpdb->get_var( "SELECT id FROM $table_name WHERE email = '$email'" );
+
+			if ( $test ) {
+				return true;
+			} else {
+				return false;
+			}
+
+		}
 
 	}
 
