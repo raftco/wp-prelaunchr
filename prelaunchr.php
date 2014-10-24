@@ -253,11 +253,10 @@ if ( ! class_exists( 'Prelaunchr' ) ) :
 		}
 
 		/**
-		 * Checks if any post about to be displayed contains the one page checkout shortcode.
+		 * Checks if any post about to be displayed contains the [prelaunchr] shortcode.
 		 *
 		 * We need to set @see self::$add_scripts here rather than in the shortcode so we can conditionally
-		 * add the locale to the WooCommerce core script done in @see self::localize_script() hooked to
-		 * 'woocommerce_params' which is run on 'wp_enqueue_script' (i.e. before the shortcode is evaluated).
+		 * add scripts
 		 *
 		 */
 		public function check_for_shortcode( $posts ) {
