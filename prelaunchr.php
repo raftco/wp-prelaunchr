@@ -206,21 +206,7 @@ if ( ! class_exists( 'Prelaunchr' ) ) :
 		 */
 		public function prelaunchr_shortcode() {
 
-			$pid = get_query_var('pid');
-
-			ob_start();
-
-			if ( empty ( $pid ) ) {
-
-				$this->prelaunchr_get_template_part( 'prelaunchr', 'form' );
-
-			} else {
-
-				$this->prelaunchr_get_template_part( 'prelaunchr', 'thankyou' );
-
-			}
-
-			return ob_get_clean();
+			return $this->display( true );
 
 		}
 
@@ -579,6 +565,33 @@ if ( ! class_exists( 'Prelaunchr' ) ) :
 				return true;
 			} else {
 				return false;
+			}
+
+		}
+
+		/**
+		 * Return the appropriate prelaunchr template
+		 */
+		public function display( $return = false ) {
+
+			$pid = get_query_var('pid');
+
+			if ( $return ) {
+				ob_start();
+			}
+
+			if ( empty ( $pid ) ) {
+
+				$this->prelaunchr_get_template_part( 'prelaunchr', 'form' );
+
+			} else {
+
+				$this->prelaunchr_get_template_part( 'prelaunchr', 'thankyou' );
+
+			}
+
+			if ( $return ) {
+				return ob_get_clean();
 			}
 
 		}
