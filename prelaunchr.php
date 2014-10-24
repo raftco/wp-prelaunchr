@@ -197,6 +197,7 @@ if ( ! class_exists( 'Prelaunchr' ) ) :
 			 */
 			add_action( 'generate_rewrite_rules', array( $this, 'add_rewrite_rules' ) );
 			add_filter( 'query_vars', array( $this, 'add_query_vars' ) );
+			add_action( 'admin_init', array( $this, 'flush_rewrite_rules' ) );
 
 		}
 
@@ -422,6 +423,16 @@ if ( ! class_exists( 'Prelaunchr' ) ) :
 			$query_vars[] = 'pid';
 
 			return $query_vars;
+		}
+
+		/**
+		 * Definitely not ideal (i know i know) - but we need to flush rewrite rules on something other than 
+		 * plugin activation so we can check if the shortcode has been used
+		 */
+		public function flush_rewrite_rules() {
+
+			flush_rewrite_rules();
+
 		}
 
 		/**
