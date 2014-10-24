@@ -346,12 +346,22 @@ if ( ! class_exists( 'Prelaunchr' ) ) :
 			$format[] = '%d';
 
 			/**
-			 * UUID
+			 * PID - Inidividual Prelaunchr ID
 			 */
 			if ( isset( $_REQUEST['pid'] ) ) {
 				$data['pid'] = mysql_real_escape_string( stripslashes( $_REQUEST['pid'] ) );
 			} else {
 				$data['pid'] = 0;
+			}
+			$format[] = '%s';
+
+			/**
+			 * RID - Referrer ID
+			 */
+			if ( isset( $_REQUEST['rid'] ) ) {
+				$data['rid'] = $this->get_referrer_id( mysql_real_escape_string( stripslashes( $_REQUEST['rid'] ) ) );
+			} else {
+				$data['rid'] = 0;
 			}
 			$format[] = '%s';
 
@@ -440,6 +450,45 @@ if ( ! class_exists( 'Prelaunchr' ) ) :
 			return $this->version;
 
 		}
+
+		/**
+		 * Get the referrers ID
+		 */
+		public function get_referrer_id( $pid ) {
+
+			global $wpdb;
+
+			$table_name = $wpdb->prefix . "prelaunchr";
+
+			$rid = $wpdb->get_var( "SELECT id FROM $table_name WHERE pid = '$pid'" );
+
+			if ( ! empty( $rid ) ) {
+				return $rid;
+			} else {
+				return false;
+			}
+
+		}
+
+		/**
+		 * Get number of referrals for a pid
+		 */
+		public function get_referral_count( $pid ) {
+
+			/* global $wpdb;
+
+			$table_name = $wpdb->prefix . "prelaunchr";
+
+			$rid = $wpdb->get_var( "SELECT id FROM $table_name WHERE pid = '$pid'" );
+
+			if ( ! empty( $rid ) ) {
+				return $rid;
+			} else {
+				return false;
+			} */
+
+		}
+
 
 	}
 
