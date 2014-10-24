@@ -30,7 +30,7 @@ class Prelaunchr_Activator {
 			KEY pid (pid),
 			KEY time (time),
 			PRIMARY KEY id (id),
-			UNIQUE (email)
+			UNIQUE (email,pid)
 		);";
 
 		require_once( ABSPATH . 'wp-admin/includes/upgrade.php' );

@@ -350,7 +350,7 @@ if ( ! class_exists( 'Prelaunchr' ) ) :
 			$format[] = '%d';
 
 			/**
-			 * PID - Inidividual Prelaunchr ID
+			 * PID - Inidividual Prelaunchr ID for each email
 			 */
 			if ( isset( $_REQUEST['pid'] ) ) {
 				$data['pid'] = mysql_real_escape_string( stripslashes( $_REQUEST['pid'] ) );
@@ -475,21 +475,44 @@ if ( ! class_exists( 'Prelaunchr' ) ) :
 		}
 
 		/**
-		 * Get number of referrals for a pid
+		 * Get number of referrals from an email
 		 */
-		public function get_referral_count( $pid ) {
+		public function get_referral_count_from_email( $email ) {
 
-			/* global $wpdb;
+			global $wpdb;
 
 			$table_name = $wpdb->prefix . "prelaunchr";
 
-			$rid = $wpdb->get_var( "SELECT id FROM $table_name WHERE pid = '$pid'" );
+			$email = mysql_real_escape_string( stripslashes( $email ) );
 
-			if ( ! empty( $rid ) ) {
-				return $rid;
+			$count = $wpdb->get_var( "SELECT COUNT(rid) FROM $table_name WHERE rid = ( SELECT id FROM $table_name WHERE email = '$email' LIMIT 1)" );
+
+			if ( ! empty( $count ) ) {
+				return $count;
 			} else {
 				return false;
-			} */
+			}
+
+		}
+
+		/**
+		 * Get number of referrals from an email
+		 */
+		public function get_referral_count_from_pid( $pid ) {
+
+			global $wpdb;
+
+			$table_name = $wpdb->prefix . "prelaunchr";
+
+			$pid = mysql_real_escape_string( stripslashes( $pid ) );
+
+			$count = $wpdb->get_var( "SELECT COUNT(rid) FROM $table_name WHERE rid = ( SELECT id FROM $table_name WHERE pid = '$pid' LIMIT 1)" );
+
+			if ( ! empty( $count ) ) {
+				return $count;
+			} else {
+				return false;
+			}
 
 		}
 
