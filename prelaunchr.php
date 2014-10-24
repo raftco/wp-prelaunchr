@@ -310,10 +310,35 @@ if ( ! class_exists( 'Prelaunchr' ) ) :
 
 		}
 
+		/**
+		 * Validate an email http://stackoverflow.com/questions/5855811/how-to-validate-an-email-in-php
+		 *
+		 * Require php 5.2.X and above
+		 */
+		public function isValidEmail($email) {
+
+			//return filter_var($email, FILTER_VALIDATE_EMAIL) && preg_match('/@.+\./', $email);
+
+			return filter_var($email, FILTER_VALIDATE_EMAIL);
+
+		}
+
 		public function record_submission() {
 
 			$data = array();
 			$format = array();
+
+			/**
+			 * Email
+			 */
+			$email = $this->isValidEmail( mysql_real_escape_string( stripslashes( $_REQUEST['email'] ) ) );
+
+			if ( $email ) {
+				$data['email'] = $email;
+				$format[] = '%s';
+			} else {
+				wp_send_json_error('Invalid Email');
+			}
 
 			/**
 			 * Time
@@ -332,17 +357,13 @@ if ( ! class_exists( 'Prelaunchr' ) ) :
 			$format[] = '%s';
 
 			/**
-			 * Email
-			 */
-			$data['email'] = mysql_real_escape_string( stripslashes( $_REQUEST['email'] ) );
-			$format[] = '%s';
-
-			/**
 			 * Insert submission into database.
 			 */
 			global $wpdb;
 
-			//$wpdb->insert( $wpdb->prefix . "prelaunchr" , $data, $format );
+			$wpdb->insert( $wpdb->prefix . "prelaunchr" , $data, $format );
+
+			wp_send_json_success( $data );
 
 		}
 
