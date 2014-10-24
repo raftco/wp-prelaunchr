@@ -205,9 +205,19 @@ if ( ! class_exists( 'Prelaunchr' ) ) :
 		 */
 		public function prelaunchr_shortcode() {
 
+			$pid = get_query_var('pid');
+
 			ob_start();
 
-			$this->prelaunchr_get_template_part( 'prelaunchr', 'form' );
+			if ( empty ( $pid ) ) {
+
+				$this->prelaunchr_get_template_part( 'prelaunchr', 'form' );
+
+			} else {
+
+				$this->prelaunchr_get_template_part( 'prelaunchr', 'thankyou' );
+
+			}
 
 			return ob_get_clean();
 
