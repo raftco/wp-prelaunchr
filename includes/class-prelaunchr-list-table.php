@@ -93,10 +93,15 @@ class Prelaunchr_List_Table extends WP_List_Table {
 		);
 		
 		//Return the title contents
-		return sprintf('%1$s <span style="color:silver">(id:%2$s)</span>%3$s',
+		//return sprintf('%1$s <span style="color:silver">(id:%2$s)</span>%3$s',
+		//	/*$1%s*/ $item->email,
+		//	/*$2%s*/ $item->id,
+		//	/*$3%s*/ $this->row_actions($actions)
+		//);
+		//Return the title contents
+		return sprintf('%1$s %2$s',
 			/*$1%s*/ $item->email,
-			/*$2%s*/ $item->id,
-			/*$3%s*/ $this->row_actions($actions)
+			/*$2%s*/ $this->row_actions($actions)
 		);
 	}
 
