@@ -60,6 +60,7 @@ class Prelaunchr_List_Table extends WP_List_Table {
 		switch($column_name){
 			case 'pid':
 			case 'rid':
+			case 'referrals':
 				return $item->$column_name;
 			default:
 				return print_r($item,true); //Show the whole array for troubleshooting purposes
@@ -136,7 +137,8 @@ class Prelaunchr_List_Table extends WP_List_Table {
 			'cb'		=> '<input type="checkbox" />', //Render a checkbox instead of text
 			'email'		=> 'Email',
 			'pid'		=> 'ID',
-			'rid'		=> 'Referrer'
+			'rid'		=> 'Referrer',
+			'referrals'		=> 'Referrals'
 		);
 		return $columns;
 	}
@@ -232,7 +234,7 @@ class Prelaunchr_List_Table extends WP_List_Table {
    		/**
    		 * Prepare the query
    		 */
-		$query = "SELECT * FROM $table_name";
+		$query = "SELECT id,email,pid,rid,COALESCE(count, 0) as referrals FROM $table_name A LEFT JOIN ( SELECT rid as countid,COUNT(*) as count FROM $table_name GROUP BY rid ORDER BY count DESC ) B ON A.id = B.countid";
 
 		/**
 		 * Ordering
