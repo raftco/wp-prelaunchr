@@ -59,9 +59,10 @@ class Prelaunchr_List_Table extends WP_List_Table {
 	function column_default($item, $column_name){
 		switch($column_name){
 			case 'pid':
-			case 'rid':
 			case 'referrals':
-				return $item->$column_name;
+				return ( $item->$column_name == null ) ? 0 : $item->$column_name;
+			case 'referrer':
+				return ( $item->$column_name == null ) ? '-' : $item->$column_name;
 			default:
 				return print_r($item,true); //Show the whole array for troubleshooting purposes
 		}
@@ -136,9 +137,9 @@ class Prelaunchr_List_Table extends WP_List_Table {
 		$columns = array(
 			'cb'		=> '<input type="checkbox" />', //Render a checkbox instead of text
 			'email'		=> 'Email',
-			'pid'		=> 'ID',
-			'rid'		=> 'Referrer',
-			'referrals'		=> 'Referrals'
+			'referrals'	=> 'Referrals',
+			'referrer'	=> 'Referred By',
+			'pid'		=> 'ID'
 		);
 		return $columns;
 	}
@@ -161,7 +162,7 @@ class Prelaunchr_List_Table extends WP_List_Table {
 	function get_sortable_columns() {
 		$sortable_columns = array(
 			'email'     => array('email',false),     //true means it's already sorted
-			//'rating'    => array('rating',false),
+			'referrals'	=> array('referrals',false),
 			//'director'  => array('director',false)
 		);
 		return $sortable_columns;
@@ -234,7 +235,12 @@ class Prelaunchr_List_Table extends WP_List_Table {
    		/**
    		 * Prepare the query
    		 */
-		$query = "SELECT id,email,pid,rid,COALESCE(count, 0) as referrals FROM $table_name A LEFT JOIN ( SELECT rid as countid,COUNT(*) as count FROM $table_name GROUP BY rid ORDER BY count DESC ) B ON A.id = B.countid";
+		//$query = "SELECT id,email,pid,rid,COALESCE(count, 0) as referrals FROM $table_name A LEFT JOIN ( SELECT rid as countid,COUNT(*) as count FROM $table_name GROUP BY rid ORDER BY count DESC ) B ON A.id = B.countid";
+   		$query = "SELECT id,email,pid,rmail as referrer, count as referrals FROM $table_name A
+LEFT JOIN ( SELECT rid ,COUNT(*) as count FROM $table_name GROUP BY rid ORDER BY count DESC ) B 
+ON A.id = B.rid
+LEFT JOIN ( SELECT id as rid,email as rmail FROM $table_name ) C 
+ON A.rid = C.rid";
 
 		/**
 		 * Ordering
