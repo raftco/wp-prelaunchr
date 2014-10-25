@@ -63,6 +63,8 @@ class Prelaunchr_List_Table extends WP_List_Table {
 				return ( $item->$column_name == null ) ? 0 : $item->$column_name;
 			case 'referrer':
 				return ( $item->$column_name == null ) ? '-' : $item->$column_name;
+			case 'time':
+				return date("F j, Y, g:i a", $item->$column_name );
 			default:
 				return print_r($item,true); //Show the whole array for troubleshooting purposes
 		}
@@ -144,6 +146,7 @@ class Prelaunchr_List_Table extends WP_List_Table {
 			'email'		=> 'Email',
 			'referrals'	=> 'Referrals',
 			'referrer'	=> 'Referred By',
+			'time'		=> 'Time',
 			'pid'		=> 'ID'
 		);
 		return $columns;
@@ -168,6 +171,7 @@ class Prelaunchr_List_Table extends WP_List_Table {
 		$sortable_columns = array(
 			'email'     => array('email',false),     //true means it's already sorted
 			'referrals'	=> array('referrals',false),
+			'time'		=> array('time',false),
 			//'director'  => array('director',false)
 		);
 		return $sortable_columns;
@@ -241,7 +245,7 @@ class Prelaunchr_List_Table extends WP_List_Table {
    		 * Prepare the query
    		 */
 		//$query = "SELECT id,email,pid,rid,COALESCE(count, 0) as referrals FROM $table_name A LEFT JOIN ( SELECT rid as countid,COUNT(*) as count FROM $table_name GROUP BY rid ORDER BY count DESC ) B ON A.id = B.countid";
-   		$query = "SELECT id,email,pid,rmail as referrer, count as referrals FROM $table_name A
+   		$query = "SELECT id,email,pid,rmail as referrer, count as referrals, time FROM $table_name A
 LEFT JOIN ( SELECT rid ,COUNT(*) as count FROM $table_name GROUP BY rid ORDER BY count DESC ) B 
 ON A.id = B.rid
 LEFT JOIN ( SELECT id as rid,email as rmail FROM $table_name ) C 
