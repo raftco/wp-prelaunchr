@@ -108,6 +108,11 @@ if ( ! class_exists( 'Prelaunchr' ) ) :
 			$this->set_locale();
 
 			/**
+			 * Setup Prelaunchr admin
+			 */
+			$this->setup_admin();
+
+			/**
 			 * Hooks on plugins_loaded
 			 */
 			add_action( 'plugins_loaded', array( $this, 'setup_hooks' ) );
@@ -145,6 +150,16 @@ if ( ! class_exists( 'Prelaunchr' ) ) :
 			 */
 			require_once PRELAUNCHR_PLUGIN_PATH . '/includes/class-prelaunchr-i18n.php';
 
+			/**
+			 * The class responsible for defining the admin list table functionality
+			 */
+			require_once PRELAUNCHR_PLUGIN_PATH . '/includes/class-prelaunchr-list-table.php';
+
+			/**
+			 * The class responsible for defining admin functionality
+			 */
+			require_once PRELAUNCHR_PLUGIN_PATH . '/includes/class-prelaunchr-admin.php';
+
 		}
 
 		/**
@@ -160,6 +175,17 @@ if ( ! class_exists( 'Prelaunchr' ) ) :
 			$plugin_i18n->set_domain( $this->get_plugin_name() );
 
 			add_action( 'plugins_loaded', array( $plugin_i18n, 'load_plugin_textdomain' ) );
+
+		}
+
+		/**
+		 * Setup admin
+		 */
+		public function setup_admin() {
+
+			$prelaunchr_admin = new Prelaunchr_Admin();
+
+			add_action( 'admin_menu', array( $prelaunchr_admin, 'add_menu_items' ) );
 
 		}
 
