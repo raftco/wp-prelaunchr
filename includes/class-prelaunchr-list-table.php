@@ -260,7 +260,7 @@ ON A.rid = C.rid";
         /**
          * Set the default number of results to display
          */
-        $per_page = 10;
+        $per_page = 20;
         
         /**
          * Which page is this?
