@@ -156,6 +156,11 @@ if ( ! class_exists( 'Prelaunchr' ) ) :
 			require_once PRELAUNCHR_PLUGIN_PATH . '/includes/class-prelaunchr-list-table.php';
 
 			/**
+			 * PHP CSV Export Class
+			 */
+			require_once PRELAUNCHR_PLUGIN_PATH . '/lib/php-export-data/php-export-data.class.php';
+
+			/**
 			 * The class responsible for defining admin functionality
 			 */
 			require_once PRELAUNCHR_PLUGIN_PATH . '/includes/class-prelaunchr-admin.php';
