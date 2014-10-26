@@ -70,19 +70,19 @@ class Prelaunchr_Admin {
 
 
 	public function download_csv(){
+
+			/**
+			 * parsecsv-for-php library
+			 */
+			require_once PRELAUNCHR_PLUGIN_PATH . '/lib/parsecsv-for-php/parsecsv.lib.php';
+
+
 global $pagenow;
 
       if ($pagenow=='admin.php' &&  
           isset($_GET['page'])  && 
           $_GET['page']=='download') {
-		
-				// 'browser' tells the library to stream the data directly to the browser.
-				// other options are 'file' or 'string'
-				// 'test.xls' is the filename that the browser will use when attempting to 
-				// save the download
-				$exporter = new ExportDataCSV('browser', 'data.csv');
 
-				$exporter->initialize(); // starts streaming data to web browser
 
 		global $wpdb;
 
@@ -103,11 +103,9 @@ ON A.rid = C.rid";
 
 		$results = $wpdb->get_results($query, ARRAY_A);
 
-		foreach ( $results as $result ) {
-			$exporter->addRow($result);
-		}
+		$csv = new parseCSV();
 
-				$exporter->finalize(); // writes the footer, flushes remaining data to browser.
+		$csv->output('data.csv', $results, array('id', 'email', 'pid', 'referrer', 'referrals', 'time'), ',');
 
 				exit(); // all done
 
