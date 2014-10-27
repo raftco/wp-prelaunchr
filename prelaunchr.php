@@ -353,11 +353,27 @@ if ( ! class_exists( 'Prelaunchr' ) ) :
 			/**
 			 * Email
 			 */
-			$email = $this->isValidEmail( mysql_real_escape_string( stripslashes( $_REQUEST['email'] ) ) );
+			$email = $this->isValidEmail( mysql_real_escape_string( stripslashes( $_POST['email'] ) ) );
 
 			if (  ! $email ) {
 				wp_send_json_error('Invalid email');
 			}
+
+			if ( $this->akismet_available() ) {
+
+				$request = 'blog='. urlencode( wp_unslash( (string) site_url() ) ) .
+						   '&user_ip='. urlencode( wp_unslash( (string) $_SERVER['REMOTE_ADDR'] ) ) .
+						   '&user_agent='. urlencode( wp_unslash( (string) $_SERVER['HTTP_USER_AGENT'] ) ) .
+						   '&referrer='. urlencode( wp_unslash( (string) $_SERVER['HTTP_REFERER'] ) ) .
+						   '&comment_type='. urlencode( 'email' ) .
+						   '&comment_author_email='. urlencode( wp_unslash( (string) $email ) );
+
+				if ( $this->akismet_check( $request ) ) {
+					wp_send_json_error("Akismet detected spam - if this is an error please contact us direct.");
+				}
+
+			}
+
 
 			if ( $this->email_exists( $email ) ) {
 				wp_send_json_error("Thanks we've already recorded your interest. Check your referrals <a href='" . $this->get_pid_from_email( $email ) . "'>here</a>");
@@ -375,8 +391,8 @@ if ( ! class_exists( 'Prelaunchr' ) ) :
 			/**
 			 * PID - Inidividual Prelaunchr ID for each email
 			 */
-			if ( isset( $_REQUEST['pid'] ) ) {
-				$data['pid'] = mysql_real_escape_string( stripslashes( $_REQUEST['pid'] ) );
+			if ( isset( $_POST['pid'] ) ) {
+				$data['pid'] = mysql_real_escape_string( stripslashes( $_POST['pid'] ) );
 			} else {
 				$data['pid'] = 0;
 			}
@@ -385,8 +401,8 @@ if ( ! class_exists( 'Prelaunchr' ) ) :
 			/**
 			 * RID - Referrer ID
 			 */
-			if ( isset( $_REQUEST['rid'] ) ) {
-				$data['rid'] = $this->get_referrer_id( mysql_real_escape_string( stripslashes( $_REQUEST['rid'] ) ) );
+			if ( isset( $_POST['rid'] ) ) {
+				$data['rid'] = $this->get_referrer_id( mysql_real_escape_string( stripslashes( $_POST['rid'] ) ) );
 			} else {
 				$data['rid'] = 0;
 			}
@@ -619,6 +635,53 @@ if ( ! class_exists( 'Prelaunchr' ) ) :
 			if ( $return ) {
 				return ob_get_clean();
 			}
+
+		}
+
+		/**
+		 * Check if akismet is available to use
+		 */
+		public function akismet_available() {
+
+			if ( is_callable( array( 'Akismet', 'get_api_key' ) ) ) { // Akismet v3.0+
+				return (bool) Akismet::get_api_key();
+			}
+
+			if ( function_exists( 'akismet_get_key' ) ) {
+				return (bool) akismet_get_key();
+			}
+
+			return false;
+
+		}
+
+		/**
+		 * Check submission against Akismet
+		 *
+		 * Passes back true (it's spam) or false (it's ham)
+		 */
+		public function akismet_check( $query_string ) {
+
+			global $akismet_api_host, $akismet_api_port;
+
+			$spam = false;
+
+			//foreach ( $comment as $key => $data ) {
+			//	$query_string .= $key . '=' . urlencode( wp_unslash( (string) $data ) ) . '&';
+			//}
+
+			if ( is_callable( array( 'Akismet', 'http_post' ) ) ) { // Akismet v3.0+
+				$response = Akismet::http_post( $query_string, 'comment-check' );
+			} else {
+				$response = akismet_http_post( $query_string, $akismet_api_host,
+					'/1.1/comment-check', $akismet_api_port );
+			}	
+
+			if ( 'true' == $response[1] ) {
+				$spam = true;
+			}
+
+			return $spam;
 
 		}
 
