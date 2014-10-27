@@ -361,12 +361,23 @@ if ( ! class_exists( 'Prelaunchr' ) ) :
 
 			if ( $this->akismet_available() ) {
 
-				$request = 'blog='. urlencode( wp_unslash( (string) site_url() ) ) .
-						   '&user_ip='. urlencode( wp_unslash( (string) $_SERVER['REMOTE_ADDR'] ) ) .
-						   '&user_agent='. urlencode( wp_unslash( (string) $_SERVER['HTTP_USER_AGENT'] ) ) .
-						   '&referrer='. urlencode( wp_unslash( (string) $_SERVER['HTTP_REFERER'] ) ) .
-						   '&comment_type='. urlencode( 'email' ) .
-						   '&comment_author_email='. urlencode( wp_unslash( (string) $email ) );
+				$request = 'blog='. urlencode( wp_unslash( (string) site_url() ) );
+
+				if ( ! empty( $_SERVER['REMOTE_ADDR'] ) ) {
+					$request .= '&user_ip='. urlencode( wp_unslash( (string) $_SERVER['REMOTE_ADDR'] ) );
+				}
+
+				if ( ! empty( $_SERVER['HTTP_USER_AGENT'] ) ) {
+					$request .= '&user_agent='. urlencode( wp_unslash( (string) $_SERVER['HTTP_USER_AGENT'] ) );
+				}
+
+				if ( ! empty( $_SERVER['HTTP_REFERER'] ) ) {
+					$request .= '&referrer='. urlencode( wp_unslash( (string) $_SERVER['HTTP_REFERER'] ) );
+				}
+				
+				$request .= '&comment_type='. urlencode( 'email' );
+
+				$request .= '&comment_author_email='. urlencode( wp_unslash( (string) $email ) );
 
 				if ( $this->akismet_check( $request ) ) {
 					wp_send_json_error("Akismet detected spam - if this is an error please contact us direct.");
@@ -666,15 +677,10 @@ if ( ! class_exists( 'Prelaunchr' ) ) :
 
 			$spam = false;
 
-			//foreach ( $comment as $key => $data ) {
-			//	$query_string .= $key . '=' . urlencode( wp_unslash( (string) $data ) ) . '&';
-			//}
-
 			if ( is_callable( array( 'Akismet', 'http_post' ) ) ) { // Akismet v3.0+
 				$response = Akismet::http_post( $query_string, 'comment-check' );
 			} else {
-				$response = akismet_http_post( $query_string, $akismet_api_host,
-					'/1.1/comment-check', $akismet_api_port );
+				$response = akismet_http_post( $query_string, $akismet_api_host, '/1.1/comment-check', $akismet_api_port );
 			}	
 
 			if ( 'true' == $response[1] ) {
