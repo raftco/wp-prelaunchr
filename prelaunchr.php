@@ -361,23 +361,12 @@ if ( ! class_exists( 'Prelaunchr' ) ) :
 
 			if ( $this->akismet_available() ) {
 
-				$request = 'blog='. urlencode( wp_unslash( (string) site_url() ) );
-
-				if ( ! empty( $_SERVER['REMOTE_ADDR'] ) ) {
-					$request .= '&user_ip='. urlencode( wp_unslash( (string) $_SERVER['REMOTE_ADDR'] ) );
-				}
-
-				if ( ! empty( $_SERVER['HTTP_USER_AGENT'] ) ) {
-					$request .= '&user_agent='. urlencode( wp_unslash( (string) $_SERVER['HTTP_USER_AGENT'] ) );
-				}
-
-				if ( ! empty( $_SERVER['HTTP_REFERER'] ) ) {
-					$request .= '&referrer='. urlencode( wp_unslash( (string) $_SERVER['HTTP_REFERER'] ) );
-				}
-				
-				$request .= '&comment_type='. urlencode( 'email' );
-
-				$request .= '&comment_author_email='. urlencode( wp_unslash( (string) $email ) );
+				$request =  'blog='. urlencode( wp_unslash( (string) site_url() ) ) .
+							'&user_ip='. urlencode( wp_unslash( (string) $this->get_ip_address() ) ) .
+							'&user_agent='. urlencode( wp_unslash( (string) $this->get_user_agent ) ) . 
+							'&referrer='. urlencode( wp_unslash( (string) $this->get_referer() ) ) .
+							'&comment_type='. urlencode( 'email' ) . 
+							'&comment_author_email='. urlencode( wp_unslash( (string) $email ) );
 
 				if ( $this->akismet_check( $request ) ) {
 					wp_send_json_error("Akismet detected spam - if this is an error please contact us direct.");
@@ -689,6 +678,27 @@ if ( ! class_exists( 'Prelaunchr' ) ) :
 
 			return $spam;
 
+		}
+
+		/**
+		 * Get User IP (the one that is reported anyway)
+		 */
+		public function get_ip_address() {
+			return isset( $_SERVER['REMOTE_ADDR'] ) ? $_SERVER['REMOTE_ADDR'] : null;
+		}
+
+		/**
+		 * Get User Browser Agent (the one that is reported anyway)
+		 */
+		public function get_user_agent() {
+			return isset( $_SERVER['HTTP_USER_AGENT'] ) ? $_SERVER['HTTP_USER_AGENT'] : null;
+		}
+
+		/**
+		 * Get User Referrer
+		 */
+		public function get_referer() {
+			return isset( $_SERVER['HTTP_REFERER'] ) ? $_SERVER['HTTP_REFERER'] : null;
 		}
 
 	}
