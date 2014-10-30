@@ -27,4 +27,6 @@ if ( ! empty ( $pid ) ) {
 
 <h2>Here hows it works</h2>
 
+<?php Prelaunchr()->prelaunchr_get_template_part( 'prelaunchr', 'referrals' ); ?>
+
 <?php } ?>

@@ -1,0 +1,49 @@
+<?php
+/**
+ * File Security Check
+ */
+if ( ! empty( $_SERVER['SCRIPT_FILENAME'] ) && basename( __FILE__ ) == basename( $_SERVER['SCRIPT_FILENAME'] ) ) {
+	die ( 'You do not have sufficient permissions to access this page!' );
+}
+
+$pid = get_query_var('pid');
+
+if ( ! empty ( $pid ) ) {
+
+	$referrals = Prelaunchr()->get_referral_count_from_pid($pid);
+
+	$referrals = ( empty( $referrals ) ) ? 0 : $referrals;
+
+	$max = Prelaunchr()->get_max_reward_referral_count();
+
+	if ( $referrals > $max ) {
+		$referrals = $max;
+	}
+
+	$percentage = ( $referrals / $max ) * 100;
+
+	$rewards = Prelaunchr()->get_rewards(); ?>
+You currently have <?php echo $referrals; ?> Referrals!
+<ul class="referral-progress">
+	<li>
+		<div class="friends">Friends Joined</div>
+		<div class="rewards">Rewards</div>
+	</li>
+<?php foreach ( $rewards as $post ) : setup_postdata( $post ); ?>
+<?php
+$reward_friends = get_post_meta( $post->ID, '_prelaunchr-referrals-needed', true );
+$reward_percentage = ( $reward_friends / $max ) * 100;
+?>
+	<li class="reward" style="left:<?php echo round($reward_percentage, 2) . '%'; ?>" >
+		<div class="friends"><?php echo $reward_friends; ?></div>
+		<div class="rewards"><?php the_title(); ?></div>
+	</li>
+<?php endforeach; ?>
+</ul>
+<?php wp_reset_postdata(); ?>
+<div class="progress" data-prelaunchr-progress="<?php echo round($percentage, 2); ?>">
+	<div class="progress-bar"></div>
+</div>
+
+
+<?php } ?>

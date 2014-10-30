@@ -1,0 +1,80 @@
+.progress {
+	margin: 0 auto;
+	width: 80%;
+}
+
+.progress {
+	background: #fff;
+	border: 4px solid #f1f1f1;
+}
+
+.progress-bar {
+	width: 0%;
+	background: transparent;
+	position: relative;
+	height: 16px;
+	-webkit-transition: 0.4s linear;
+	-moz-transition: 0.4s linear;
+	-o-transition: 0.4s linear;
+	transition: 0.4s linear;
+	-webkit-transition-property: width, background-color;
+	-moz-transition-property: width, background-color;
+	-o-transition-property: width, background-color;
+	transition-property: width, background-color;
+}
+
+/*
+ * Note: using adjacent or general sibling selectors combined with
+ *       pseudo classes doesn't work in Safari 5.0 and Chrome 12.
+ *       See this article for more info and a potential fix:
+ *       http://css-tricks.com/webkit-sibling-bug/
+ */
+ 
+.progress.progress-5 > .progress-bar {
+	background-color: #f63a0f;
+}
+
+.progress.progress-25 > .progress-bar {
+	background-color: #f27011;
+} 
+
+.progress.progress-50 > .progress-bar {
+	background-color: #f2b01e;
+}
+
+.progress.progress-75 > .progress-bar {
+	background-color: #f2d31b;
+}
+
+.progress.progress-100 > .progress-bar {
+	background-color: #86e01e;
+}
+
+
+.referral-progress {
+	list-style: none;
+	margin: 0 auto;
+	padding: 0;
+	width: 80%;
+	display: block;
+	position: relative;
+	padding-top: 30px;
+}
+
+
+.referral-progress li {
+	list-style: none;
+	margin:0;
+	padding:0;
+	width: 100px;
+	margin-left: -50px;
+	text-align: center;
+	display: block;
+	position: absolute;
+	top: 0;
+	left:0;
+}
+
+.referral-progress li .friends {
+	margin-bottom:30px;
+}

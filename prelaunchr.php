@@ -612,6 +612,44 @@ if ( ! class_exists( 'Prelaunchr' ) ) :
 		}
 
 		/**
+		 * Get the highest number of referrals needed for a prize
+		 */
+		public function get_max_reward_referral_count() {
+
+			$args = array(
+				'post_type' 		=> 'reward',
+				'meta_key' 			=> '_prelaunchr-referrals-needed',
+				'order'				=> 'DESC',
+				'orderby'			=> 'meta_value_num',
+				'posts_per_page'	=> '1'
+				);
+
+			$reward = get_posts( $args );
+
+			return get_post_meta( $reward[0]->ID, '_prelaunchr-referrals-needed', true );
+
+		}
+
+		/**
+		 * Get the highest number of referrals needed for a prize
+		 */
+		public function get_rewards( $order = 'ASC' ) {
+
+			$args = array(
+				'post_type' 		=> 'reward',
+				'meta_key' 			=> '_prelaunchr-referrals-needed',
+				'order'				=> $order,
+				'orderby'			=> 'meta_value_num',
+				'posts_per_page'	=> '-1'
+				);
+
+			$rewards = get_posts( $args );
+
+			return $rewards;
+
+		}
+
+		/**
 		 * Check if an email address already exists in the database
 		 * @param  var $email email address to be checked
 		 * @return bool        returns true if email already exists
