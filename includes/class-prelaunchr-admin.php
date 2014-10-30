@@ -47,7 +47,7 @@ class Prelaunchr_Admin {
 	}
 
 	/**
-	 * Reorder prelaunchr menu items so that viewing entries is the first option - rather than the prize groups cpt
+	 * Reorder prelaunchr menu items so that viewing entries is the first option - rather than the reward cpt
 	 */
 	public function reorder_menu_items() {
 
@@ -66,34 +66,34 @@ class Prelaunchr_Admin {
 	/**
 	 * Register the post type
 	 */
-	public function register_prize_group_cpt() {
+	public function register_reward_cpt() {
 
 		
 		$labels = array(
-			'name'               => __( 'Prize Groups', Prelaunchr()->get_plugin_name() ),
-			'singular_name'      => __( 'Prize Group', Prelaunchr()->get_plugin_name() ),
-			'all_items'          => __( 'Prize Groups', Prelaunchr()->get_plugin_name() ),
-			'add_new_item'       => __( 'Add New Prize Group', Prelaunchr()->get_plugin_name() ),
-			'edit_item'          => __( 'Edit Prize Group', Prelaunchr()->get_plugin_name() ),
-			'new_item'           => __( 'New Prize Group', Prelaunchr()->get_plugin_name() ),
-			'view_item'          => __( 'View Prize Group', Prelaunchr()->get_plugin_name() ),
-			'search_items'       => __( 'Search Prize Groups', Prelaunchr()->get_plugin_name() ),
-			'not_found'          => __( 'No prize groups found', Prelaunchr()->get_plugin_name() ),
-			'not_found_in_trash' => __( 'No prize groups found in trash', Prelaunchr()->get_plugin_name() ),
-			'menu_name'      	 => __( 'Prize Groups', Prelaunchr()->get_plugin_name() ),
+			'name'               => __( 'Rewards', Prelaunchr()->get_plugin_name() ),
+			'singular_name'      => __( 'Reward', Prelaunchr()->get_plugin_name() ),
+			'all_items'          => __( 'Rewards', Prelaunchr()->get_plugin_name() ),
+			'add_new_item'       => __( 'Add New Reward', Prelaunchr()->get_plugin_name() ),
+			'edit_item'          => __( 'Edit Reward', Prelaunchr()->get_plugin_name() ),
+			'new_item'           => __( 'New Reward', Prelaunchr()->get_plugin_name() ),
+			'view_item'          => __( 'View Reward', Prelaunchr()->get_plugin_name() ),
+			'search_items'       => __( 'Search Rewards', Prelaunchr()->get_plugin_name() ),
+			'not_found'          => __( 'No rewards found', Prelaunchr()->get_plugin_name() ),
+			'not_found_in_trash' => __( 'No rewards found in trash', Prelaunchr()->get_plugin_name() ),
+			'menu_name'      	 => __( 'Rewards', Prelaunchr()->get_plugin_name() ),
 		);
 
-		$labels = apply_filters( 'prize_group_cpt_labels' , $labels );		
+		$labels = apply_filters( 'reward_cpt_labels' , $labels );		
 		
 		$args = array(
-			'description' => __( 'Based on the amount of referrals a user has brought to the site, they are put into a different "prize group". The groups, amounts, and prizes are completely up to you to set.', Prelaunchr()->get_plugin_name() ),
+			'description' => __( 'Based on the amount of referrals a user has brought to the site, they are put into a different "reward group". The groups, amounts, and prizes are completely up to you to set.', Prelaunchr()->get_plugin_name() ),
 			'labels' => $labels,
 			'public' => false,
 			'menu_icon' => 'dashicons-groups',
 			'show_ui' => true, 
 			'query_var' => true,
 			'has_archive' => false,
-			'rewrite' => array( 'slug' => 'prize-group', 'with_front' => false ),
+			'rewrite' => array( 'slug' => 'reward', 'with_front' => false ),
 			'capability_type' => 'page',
 			'hierarchical' => false,
 			'taxonomies' => array(''),
@@ -102,33 +102,33 @@ class Prelaunchr_Admin {
 			'supports' => array('title', 'editor', 'thumbnail', 'excerpt' )
 		); 
 		
-		$args = apply_filters( 'prize_group_cpt_args' , $args );
+		$args = apply_filters( 'reward_cpt_args' , $args );
 		
-		register_post_type( 'prize_group' , $args );
+		register_post_type( 'reward' , $args );
 		
 	}
 
 	/**
 	 * Filter the "post updated" messages
 	 */
-	public function prize_group_cpt_messages( $messages ) {
+	public function reward_cpt_messages( $messages ) {
 		global $post;
 
-		$messages[ 'prize_group' ] = array(
+		$messages[ 'reward' ] = array(
 			0 => '', // Unused. Messages start at index 1.
-			1 => sprintf( __('Prize Group updated.', Prelaunchr()->get_plugin_name() ), esc_url( get_permalink($post->ID) ) ),
+			1 => sprintf( __('Reward updated.', Prelaunchr()->get_plugin_name() ), esc_url( get_permalink($post->ID) ) ),
 			2 => __('Custom field updated.', Prelaunchr()->get_plugin_name() ),
 			3 => __('Custom field deleted.', Prelaunchr()->get_plugin_name() ),
-			4 => __('Prize Group updated.', Prelaunchr()->get_plugin_name() ),
+			4 => __('Reward updated.', Prelaunchr()->get_plugin_name() ),
 			/* translators: %s: date and time of the revision */
-			5 => isset($_GET['revision']) ? sprintf( __('Prize Group restored to revision from %s', Prelaunchr()->get_plugin_name() ), wp_post_revision_title( (int) $_GET['revision'], false ) ) : false,
-			6 => sprintf( __('Prize Group published.', Prelaunchr()->get_plugin_name() ), esc_url( get_permalink($post->ID) ) ),
-			7 => __('Prize Group saved.', Prelaunchr()->get_plugin_name() ),
-			8 => sprintf( __('Prize Group submitted.', Prelaunchr()->get_plugin_name() ), esc_url( add_query_arg( 'preview', 'true', get_permalink($post->ID) ) ) ),
-			9 => sprintf( __('Prize Group scheduled for: <strong>%1$s</strong>.', Prelaunchr()->get_plugin_name() ),
+			5 => isset($_GET['revision']) ? sprintf( __('Reward restored to revision from %s', Prelaunchr()->get_plugin_name() ), wp_post_revision_title( (int) $_GET['revision'], false ) ) : false,
+			6 => sprintf( __('Reward published.', Prelaunchr()->get_plugin_name() ), esc_url( get_permalink($post->ID) ) ),
+			7 => __('Reward saved.', Prelaunchr()->get_plugin_name() ),
+			8 => sprintf( __('Reward submitted.', Prelaunchr()->get_plugin_name() ), esc_url( add_query_arg( 'preview', 'true', get_permalink($post->ID) ) ) ),
+			9 => sprintf( __('Reward scheduled for: <strong>%1$s</strong>.', Prelaunchr()->get_plugin_name() ),
 			  // translators: Publish box date format, see http://php.net/date
 			  date_i18n( __( 'M j, Y @ G:i' ), strtotime( $post->post_date ) ), esc_url( get_permalink($post->ID) ) ),
-			10 => sprintf( __('Prize Group draft updated.', Prelaunchr()->get_plugin_name() ), esc_url( add_query_arg( 'preview', 'true', get_permalink($post->ID) ) ) ),
+			10 => sprintf( __('Reward draft updated.', Prelaunchr()->get_plugin_name() ), esc_url( add_query_arg( 'preview', 'true', get_permalink($post->ID) ) ) ),
 		);
 
 		return $messages;
@@ -175,27 +175,27 @@ class Prelaunchr_Admin {
 	}
 
 	/**
-	 * Add the prize group meta box
+	 * Add the reward meta box
 	 */
 	public function add_meta_box() {
 		add_meta_box( 
-			'prize_group_meta', 
+			'reward_meta', 
 			__( 'Additional Information', Prelaunchr()->get_plugin_name()  ), 
-			array(  $this , 'do_prize_group_meta_box' ), 
-			'prize_group' , 
+			array(  $this , 'do_reward_meta_box' ), 
+			'reward' , 
 			'normal', 
 			'high' );
 	}
 
 	/**
-	 * Output the member details meta box HTML
+	 * Output the reward meta box HTML
 	 *
 	 * @param WP_Post $object Current post object
 	 * @param array $box Metabox information
 	 */
-	public function do_prize_group_meta_box( $object, $box ) {
+	public function do_reward_meta_box( $object, $box ) {
 	
-		wp_nonce_field( basename( __FILE__ ), 'prelaunchr-prize-group' );
+		wp_nonce_field( basename( __FILE__ ), 'prelaunchr-reward' );
 
 		?>
 
@@ -218,7 +218,7 @@ class Prelaunchr_Admin {
 	public static function save_meta( $post_id ) {
 
 		/* Verify the nonce before proceeding. */
-		if ( !isset( $_POST['prelaunchr-prize-group'] ) || !wp_verify_nonce( $_POST['prelaunchr-prize-group'], basename( __FILE__ ) ) )
+		if ( !isset( $_POST['prelaunchr-reward'] ) || !wp_verify_nonce( $_POST['prelaunchr-reward'], basename( __FILE__ ) ) )
 			return $post_id;
 
 		$meta = array(

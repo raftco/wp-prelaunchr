@@ -191,22 +191,22 @@ if ( ! class_exists( 'Prelaunchr' ) ) :
 			add_action( 'admin_menu', array( $prelaunchr_admin, 'add_menu_items' ) );
 
 			/**
-			 * Create our prize group cpt
+			 * Create our reward group cpt
 			 */
-			add_action( 'init', array( $prelaunchr_admin, 'register_prize_group_cpt' ) );
+			add_action( 'init', array( $prelaunchr_admin, 'register_reward_cpt' ) );
 
 			/**
-			 * Update admin messages/text for the prize group cpt
+			 * Update admin messages/text for the reward cpt
 			 */
-			add_filter( 'post_updated_messages', array( $prelaunchr_admin, 'prize_group_cpt_messages' ) );
+			add_filter( 'post_updated_messages', array( $prelaunchr_admin, 'reward_cpt_messages' ) );
 
 			/**
-			 * Add custom meta box for the prize group CPT
+			 * Add custom meta box for the reward CPT
 			 */
 			add_action( 'add_meta_boxes', array( $prelaunchr_admin, 'add_meta_box' ) );
 			
 			/**
-			 * Save prize group cpt meta box data
+			 * Save reward cpt meta box data
 			 */
 			add_action( 'save_post', array( $prelaunchr_admin, 'save_meta' ), 10, 1 );
 
