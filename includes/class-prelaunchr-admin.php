@@ -94,7 +94,7 @@ class Prelaunchr_Admin {
 			'query_var' => true,
 			'has_archive' => false,
 			'rewrite' => array( 'slug' => 'prize-group', 'with_front' => false ),
-			'capability_type' => 'post',
+			'capability_type' => 'page',
 			'hierarchical' => false,
 			'taxonomies' => array(''),
 			'show_in_menu' => 'prelaunchr',
