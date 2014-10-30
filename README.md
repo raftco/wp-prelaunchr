@@ -2,7 +2,7 @@
 
 Based on https://github.com/harrystech/prelaunchr and discussed in greater detail on [Tim Ferriss'](http://fourhourworkweek.com/2014/07/21/harrys-prelaunchr-email/) blog - wp-prelaunchr helps you quickly start a viral prelaunch campaign for new companies, products and services. 
 
-The campaign is conducive to social sharing and has prize levels based on the number of people each person refers. 
+The campaign is conducive to social sharing and has prize groups/levels based on the number of people each person refers. 
 
 The groups, amounts, and prizes are completely up to you to set. 
 
@@ -18,9 +18,6 @@ At the end of the campaign export your results to csv for importing into your de
 
 * WordPress 4.0 or newer
 
-### Custom Prize/Levels
-
-Setup custom prize levels to entice users to share your campain amongst their friends.
 
 ### Referral Tracking
 
@@ -28,7 +25,11 @@ Keeps track of who's referred who and how many referrals users have made.
 
 ### View Submissions within the Dashboard
 
-View a list of all your submissions/referrals within the WordPress Dashboard.
+View a list of all your entriess/referrals within the WordPress Dashboard.
+
+### Custom Prize Groups/Levels
+
+Setup custom prize levels to entice users to share your campaign amongst their friends. The more referrals someone gets the better the prize!
 
 ### CSV Exporter
 
