@@ -15,12 +15,16 @@ if ( ! empty ( $pid ) ) {
 	$referrals = ( empty( $referrals ) ) ? 0 : $referrals; 
 
 ?>
-<h1>Thank YOU!</h1>
+<h2>Thank you for signing up!</h2>
 
-<p>You have <?php echo $referrals;?> referrals</p>
+<p>Don't leave your friends out</p>
 
-<p>Share with your friends using the following link:</p>
+<p>Invite your friends &amp; earn rewards</p>
+
+<p>Share your unique link via email, Facebook or Twitter &amp earn rewards for each friend who signs up.</p>
 
 <p><textarea rows="2" class="form-control" onclick="this.select();"><?php the_permalink(); ?>?ref=<?php echo get_query_var('pid'); ?></textarea></p>
+
+<h2>Here hows it works</h2>
 
 <?php } ?>
