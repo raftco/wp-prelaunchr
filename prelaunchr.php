@@ -185,7 +185,20 @@ if ( ! class_exists( 'Prelaunchr' ) ) :
 
 			$prelaunchr_admin = new Prelaunchr_Admin();
 
+			/**
+			 * Add Prelaunchr menu item
+			 */
 			add_action( 'admin_menu', array( $prelaunchr_admin, 'add_menu_items' ) );
+
+			/**
+			 * Create our prize group cpt
+			 */
+			add_action( 'init', array( $prelaunchr_admin, 'register_prize_group_cpt' ) );
+
+			/**
+			 * Update admin messages/text for the prize group cpt
+			 */
+			add_filter( 'post_updated_messages', array( $prelaunchr_admin, 'prize_group_cpt_messages' ) );
 
 		}
 
