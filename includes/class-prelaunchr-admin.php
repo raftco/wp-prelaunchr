@@ -17,16 +17,18 @@ class Prelaunchr_Admin {
 			'Prelaunchr',
 			'activate_plugins',
 			'prelaunchr',
-			array( $this, 'render_list_page' )
+			array( $this, 'render_list_page' ),
+			'dashicons-megaphone',
+			30.9
 		);
 
 		/**
-		 * Add submenu item for viewing submissions
+		 * Add submenu item for viewing entries
 		 */
 		add_submenu_page( 
 			'prelaunchr', 
 			'Prelaunchr', 
-			'View Submissions',
+			'View Entries',
 			'activate_plugins', 
 			'prelaunchr', 
 			array( $this, 'render_list_page' )
@@ -45,7 +47,7 @@ class Prelaunchr_Admin {
 	}
 
 	/**
-	 * Reorder prelaunchr menu items so that viewing submissions is the first option - rather than the prize groups cpt
+	 * Reorder prelaunchr menu items so that viewing entries is the first option - rather than the prize groups cpt
 	 */
 	public function reorder_menu_items() {
 
