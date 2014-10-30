@@ -174,6 +174,77 @@ class Prelaunchr_Admin {
 		<?php
 	}
 
+	/**
+	 * Add the prize group meta box
+	 */
+	public function add_meta_box() {
+		add_meta_box( 
+			'prize_group_meta', 
+			__( 'Additional Information', Prelaunchr()->get_plugin_name()  ), 
+			array(  $this , 'do_prize_group_meta_box' ), 
+			'prize_group' , 
+			'normal', 
+			'high' );
+	}
+
+	/**
+	 * Output the member details meta box HTML
+	 *
+	 * @param WP_Post $object Current post object
+	 * @param array $box Metabox information
+	 */
+	public function do_prize_group_meta_box( $object, $box ) {
+	
+		wp_nonce_field( basename( __FILE__ ), 'prelaunchr-prize-group' );
+
+		?>
+
+		<p>
+			<label for='prelaunchr-referrals-needed'>
+				<?php _e( 'Referrals Needed:', Prelaunchr()->get_plugin_name() ); ?>
+				<input type='number' id='prelaunchr-referrals-needed' name='prelaunchr-referrals-needed' value='<?php echo esc_attr( get_post_meta( $object->ID, '_prelaunchr-referrals-needed', true ) ); ?>' />
+			</label>
+		</p>
+
+<?php
+	}
+
+	/**
+	 * Save the member details metadata
+	 *
+	 * @wp-action save_post
+	 * @param int $post_id The ID of the current post being saved.
+	 */
+	public static function save_meta( $post_id ) {
+
+		/* Verify the nonce before proceeding. */
+		if ( !isset( $_POST['prelaunchr-prize-group'] ) || !wp_verify_nonce( $_POST['prelaunchr-prize-group'], basename( __FILE__ ) ) )
+			return $post_id;
+
+		$meta = array(
+			'prelaunchr-referrals-needed'
+		);
+
+		foreach ( $meta as $meta_key ) {
+			$new_meta_value = $_POST[$meta_key];
+
+			/* Get the meta value of the custom field key. */
+			$meta_value = get_post_meta( $post_id, '_' . $meta_key , true );
+
+			/* If there is no new meta value but an old value exists, delete it. */
+			if ( '' == $new_meta_value && $meta_value )
+				delete_post_meta( $post_id, '_' . $meta_key , $meta_value );
+
+			/* If a new meta value was added and there was no previous value, add it. */
+			elseif ( $new_meta_value && '' == $meta_value )
+				add_post_meta( $post_id, '_' . $meta_key , $new_meta_value, true );
+
+			/* If the new meta value does not match the old value, update it. */
+			elseif ( $new_meta_value && $new_meta_value != $meta_value )
+				update_post_meta( $post_id, '_' . $meta_key , $new_meta_value );
+		}
+	}
+
 
 	/**
 	 * Intercept query and generate csv for download

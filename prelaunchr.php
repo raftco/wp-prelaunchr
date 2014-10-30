@@ -200,6 +200,16 @@ if ( ! class_exists( 'Prelaunchr' ) ) :
 			 */
 			add_filter( 'post_updated_messages', array( $prelaunchr_admin, 'prize_group_cpt_messages' ) );
 
+			/**
+			 * Add custom meta box for the prize group CPT
+			 */
+			add_action( 'add_meta_boxes', array( $prelaunchr_admin, 'add_meta_box' ) );
+			
+			/**
+			 * Save prize group cpt meta box data
+			 */
+			add_action( 'save_post', array( $prelaunchr_admin, 'save_meta' ), 10, 1 );
+
 		}
 
 
