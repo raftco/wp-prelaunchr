@@ -6,15 +6,15 @@ jQuery( document ).ready(function( $ ) {
 		var progress = $('.progress').data('prelaunchr-progress');
 
 		if ( progress <= 5 ) {
-			$('.progress').addClass( 'progress-5' );
+			$('.progress .progress-bar').addClass( 'progress-5' );
 		} else if ( progress > 5 && progress <= 25 ) {
-			$('.progress').addClass( 'progress-25' );
+			$('.progress .progress-bar').addClass( 'progress-25' );
 		} else if ( progress > 25 && progress <= 50 ) {
-			$('.progress').addClass( 'progress-50' );
+			$('.progress .progress-bar').addClass( 'progress-50' );
 		} else if ( progress > 50 && progress <= 75 ) {
-			$('.progress').addClass( 'progress-75' );
+			$('.progress .progress-bar').addClass( 'progress-75' );
 		} else if ( progress > 75 && progress <= 100 ) {
-			$('.progress').addClass( 'progress-100' );
+			$('.progress .progress-bar').addClass( 'progress-100' );
 		}
 
 		$('.progress-bar').css({

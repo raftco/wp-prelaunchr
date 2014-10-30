@@ -42,8 +42,8 @@ $reward_percentage = ( $reward_friends / $max ) * 100;
 </ul>
 <?php wp_reset_postdata(); ?>
 <div class="progress" data-prelaunchr-progress="<?php echo round($percentage, 2); ?>">
-	<div class="progress-bar"></div>
+  <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="<?php echo round($percentage, 2); ?>" aria-valuemin="0" aria-valuemax="100" >
+    <?php echo $referrals; ?>
+  </div>
 </div>
-
-
 <?php } ?>
