@@ -376,7 +376,7 @@ if ( ! class_exists( 'Prelaunchr' ) ) :
 
 				$request =  'blog='. urlencode( wp_unslash( (string) site_url() ) ) .
 							'&user_ip='. urlencode( wp_unslash( (string) $this->get_ip_address() ) ) .
-							'&user_agent='. urlencode( wp_unslash( (string) $this->get_user_agent ) ) . 
+							'&user_agent='. urlencode( wp_unslash( (string) $this->get_user_agent() ) ) . 
 							'&referrer='. urlencode( wp_unslash( (string) $this->get_referer() ) ) .
 							'&comment_type='. urlencode( 'email' ) . 
 							'&comment_author_email='. urlencode( wp_unslash( (string) $email ) );
