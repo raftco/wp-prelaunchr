@@ -1,5 +1,15 @@
 jQuery( document ).ready(function( $ ) {
 
+	/**
+	 * Hide the response/validation div
+	 */
+	$('.prelaunchr .response').hide();
+
+	/**
+	 * Hide spam bot test
+	 */
+	$('.ignore').hide();
+
 	var share_button_top = new Share(".share", {
 		title: "Share Button Multiple Element Test",
 		url: $("#referral-link").html(),
@@ -56,16 +66,17 @@ jQuery( document ).ready(function( $ ) {
 	}
 
 	/**
-	 * Hide the response/validation div
-	 */
-	$('.prelaunchr .response').hide();
-
-	/**
 	 * Handle form submission
 	 */
 	$('.pform').submit(function(e){
 
 		e.preventDefault();
+
+		name = $.trim( $(this).find("#name").val() );
+
+		if ( name ) {
+			return;
+		}
 
 		email = $.trim( $(this).find("input[type='email']").val() );
 
