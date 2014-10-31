@@ -167,7 +167,7 @@ class Prelaunchr_Admin {
 					<input type="submit" name="prelaunchr_download_csv" id="prelaunchr_download_csv" class="button" value="Download CSV File &raquo;"  />
 				</p>
 				<input type="hidden" name="page" value="<?php echo $_REQUEST['page'] ?>" />
-				<?php wp_nonce_field(); ?>
+				<?php wp_nonce_field( basename( __FILE__ ), 'prelaunchr-download' ); ?>
 			</form>
 
 		</div>
@@ -251,7 +251,7 @@ class Prelaunchr_Admin {
 	 */
 	public function download_csv(){
 
-		if ( is_admin() && ! empty( $_POST['prelaunchr_download_csv'] ) && check_admin_referer() && current_user_can('manage_options') ) {
+		if ( is_admin() && ! empty( $_POST['prelaunchr_download_csv'] ) && check_admin_referer( basename( __FILE__ ), 'prelaunchr-download' ) && current_user_can('manage_options') ) {
 
 			/**
 			 * parsecsv-for-php library
