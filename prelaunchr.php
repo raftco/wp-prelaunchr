@@ -348,7 +348,9 @@ if ( ! class_exists( 'Prelaunchr' ) ) :
 
 				wp_enqueue_script( 'jquery-cookie', $assets_path . '/js/jquery.cookie' . $suffix . '.js', array('jquery'), '1.4.1', true );
 
-				wp_enqueue_script( 'prelaunchr', $assets_path . '/js/prelaunchr' . $suffix . '.js', array('jquery','uuid','jquery-cookie'), $this->get_version(), true );
+				wp_enqueue_script( 'share', $assets_path . '/js/share' . $suffix . '.js', array(), '0.5.0', true );
+
+				wp_enqueue_script( 'prelaunchr', $assets_path . '/js/prelaunchr' . $suffix . '.js', array('jquery','uuid','jquery-cookie','share'), $this->get_version(), true );
 
 				wp_localize_script( 'prelaunchr', 'PrelaunchrSubmit', array( 
 					'ajaxurl' => admin_url( 'admin-ajax.php' ),

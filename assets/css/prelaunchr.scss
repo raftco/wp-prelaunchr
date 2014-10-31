@@ -179,9 +179,25 @@ $progress-color-100: #86e01e !default;
 	}
 }
 
-textarea.referral-link {
+#referral-link {
 	text-align: center;
 	line-height: 1;
-	padding-top: 10px;
-	padding-bottom: 0;
+	padding: 15px;
+	border: 3px solid $progress-bg;
+	margin-bottom: 20px;
+}
+
+
+.social ul li {
+	line-height: 22px;
+}
+
+.share.sharer-0 {
+	width: 100px !important;
+	margin: 0 auto;
+}
+
+// Main button, icon, and text styles
+.share.sharer-0 label {
+  background: none !important;
 }

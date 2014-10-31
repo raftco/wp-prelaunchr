@@ -1,5 +1,21 @@
 jQuery( document ).ready(function( $ ) {
 
+	var share_button_top = new Share(".share", {
+		title: "Share Button Multiple Element Test",
+		url: $("#referral-link").html(),
+		ui: {
+			flyout: "top center",
+			button_text: "Share"
+		},
+		networks: {
+			google_plus:  {
+				enabled: false,
+			},
+			pinterest:  {
+				enabled: false,
+			}
+		}
+	});
 
 	setTimeout( function() {
 
@@ -99,6 +115,15 @@ jQuery( document ).ready(function( $ ) {
 		}
 
 	});
+	
+	/**
+	 * Selecet referral link on click
+	 */
+	$('#referral-link').on('click', function() {
+
+		selectElementContents(document.getElementById('referral-link'));
+
+	});
 
 });
 
@@ -123,6 +148,27 @@ function getUrlParameter(sParam) {
 
 		}
 
+	}
+
+}
+
+/**
+ * Selecet the contents of a div
+ */
+function selectElementContents( el ) {
+
+	if (window.getSelection && document.createRange) {
+		// IE 9 and non-IE
+		var range = document.createRange();
+		range.selectNodeContents(el);
+		var sel = window.getSelection();
+		sel.removeAllRanges();
+		sel.addRange(range);
+	} else if (document.body.createTextRange) {
+		// IE < 9
+		var textRange = document.body.createTextRange();
+		textRange.moveToElementText(el);
+		textRange.select();
 	}
 
 }
