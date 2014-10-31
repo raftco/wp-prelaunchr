@@ -24,7 +24,7 @@ if ( ! empty ( $pid ) ) {
 
 	$rewards = Prelaunchr()->get_rewards(); ?>
 
-<h2>Here hows it works</h2>
+<h2>Here's how it works</h2>
 
 <div class="referrals">
 	<ul class="labels">
