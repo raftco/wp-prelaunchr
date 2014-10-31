@@ -248,6 +248,11 @@ if ( ! class_exists( 'Prelaunchr' ) ) :
 			add_filter( 'query_vars', array( $this, 'add_query_vars' ) );
 			add_action( 'admin_init', array( $this, 'flush_rewrite_rules' ) );
 
+			/**
+			 * Add a meta robot noindex tag to our referrer urls above
+			 */
+			add_action( 'pre_get_posts', array( $this, 'add_noindex' ) );
+
 		}
 
 		/**
@@ -738,6 +743,21 @@ if ( ! class_exists( 'Prelaunchr' ) ) :
 			}
 
 			return $spam;
+
+		}
+
+		/**
+		* Use core wp function to add noindex to page head
+		*/
+		public function add_noindex() {
+
+			$pid = get_query_var('pid');
+
+			if ( empty ( $pid ) ) {
+				return;
+			}
+
+			add_action( 'wp_head', 'wp_no_robots' );
 
 		}
 
