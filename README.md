@@ -66,3 +66,17 @@ To overide the templateparts simply create a file with the same name as the abov
 
 * `/wp-content/themes/{your-theme}/prelaunchr-form.php`
 * `/wp-content/themes/{your-theme}/prelaunchr-thankyou.php` 
+
+## Other Notes
+
+Some other interesting/misc notes about the plugin and its functionality.
+
+### Robots Noindex
+
+The plugin adds a robots meta noindex tag e.g.
+
+```
+<meta name='robots' content='noindex,follow' />
+```
+
+to the head of the referrer thankyou/list pages.
