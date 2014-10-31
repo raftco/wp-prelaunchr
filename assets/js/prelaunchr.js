@@ -5,7 +5,9 @@ jQuery( document ).ready(function( $ ) {
 
 		var progress = $('.progress').data('prelaunchr-progress');
 
-		if ( progress <= 5 ) {
+		if ( progress < 1 ) {
+			$('.progress .progress-bar').addClass( 'progress-0' );
+		} else if ( progress >= 1 && progress <= 5 ) {
 			$('.progress .progress-bar').addClass( 'progress-5' );
 		} else if ( progress > 5 && progress <= 25 ) {
 			$('.progress .progress-bar').addClass( 'progress-25' );

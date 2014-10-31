@@ -23,9 +23,7 @@ if ( ! empty ( $pid ) ) {
 
 <p>Share your unique link via email, Facebook or Twitter &amp earn rewards for each friend who signs up.</p>
 
-<p><textarea rows="2" class="form-control" onclick="this.select();"><?php the_permalink(); ?>?ref=<?php echo get_query_var('pid'); ?></textarea></p>
-
-<h2>Here hows it works</h2>
+<p><textarea cols="100" rows="1" class="form-control referral-link" onclick="this.select();"><?php the_permalink(); ?>?ref=<?php echo get_query_var('pid'); ?></textarea></p>
 
 <?php Prelaunchr()->prelaunchr_get_template_part( 'prelaunchr', 'referrals' ); ?>
 
