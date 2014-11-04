@@ -2,9 +2,9 @@
 
 Based on https://github.com/harrystech/prelaunchr and discussed in greater detail on [Tim Ferriss'](http://fourhourworkweek.com/2014/07/21/harrys-prelaunchr-email/) blog - wp-prelaunchr helps you quickly start a viral prelaunch campaign for new companies, products and services. 
 
-The campaign is conducive to social sharing and has prize groups/levels based on the number of people each person refers. 
+The campaign is conducive to social sharing and has reward groups/levels based on the number of people each person refers. 
 
-The groups, amounts, and prizes are completely up to you to set. 
+The groups, amounts, and rewards are completely up to you to set. 
 
 Manually add a shortcode `[prelaunchr]` to any page or post to insert the prelaunchr email sign up form.
 
@@ -27,9 +27,9 @@ Keeps track of who's referred who and how many referrals users have made.
 
 View a list of all your entriess/referrals within the WordPress Dashboard.
 
-### Custom Prize Groups/Levels
+### Custom Reward Groups/Levels
 
-Setup custom prize levels to entice users to share your campaign amongst their friends. The more referrals someone gets the better the prize!
+Setup custom reward  groups/levels to entice users to share your campaign amongst their friends. The more referrals someone gets the better the reward!
 
 ### CSV Exporter
 
@@ -56,7 +56,13 @@ The default sign up form / template displayed to users output by the `[prelaunch
 
 ### prelaunchr-thankyou.php
 
-The template displayed upon successfully submitting an email address. When revisiting the site this is template that is used to display how many referrals a user has and to get links they can use to refer your company/product/service to others.
+The template displayed upon successfully submitting an email address.
+
+Includes the link users can use to refer your company/product/service to others as well as social integration.
+
+### prelaunchr-referrals.php
+
+This is the default template used to display how many referrals a user has.
 
 ### Overridding template parts
 
@@ -65,7 +71,8 @@ Each of prelaunchr template parts can be overridden within your themes/child-the
 To overide the templateparts simply create a file with the same name as the above within your theme/child themes root directory e.g.
 
 * `/wp-content/themes/{your-theme}/prelaunchr-form.php`
-* `/wp-content/themes/{your-theme}/prelaunchr-thankyou.php` 
+* `/wp-content/themes/{your-theme}/prelaunchr-thankyou.php`
+* `/wp-content/themes/{your-theme}/prelaunchr-referrals.php` 
 
 ## Other Notes
 
