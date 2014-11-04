@@ -16,9 +16,6 @@ At the end of the campaign export your results to csv for importing into your de
 
 ## Features:
 
-* WordPress 4.0 or newer
-
-
 ### Referral Tracking
 
 Keeps track of who's referred who and how many referrals users have made.
