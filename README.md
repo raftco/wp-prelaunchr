@@ -42,7 +42,7 @@ If you have Akismet enabled with a valid key, Prelaunchr will automatically chec
 
 ## Shortcode Attributes
 
-None. Nada. Nothing. Simple insert the `[prelaunchr]` shortcode and you are done.
+None. Nada. Nothing. Simply insert the `[prelaunchr]` shortcode and you are done.
 
 The campaign is conducive to social sharing and has prize levels based on the number of people each person refers. 
 
@@ -80,3 +80,11 @@ The plugin adds a robots meta noindex tag e.g.
 ```
 
 to the head of the referrer thankyou/list pages.
+
+### Honeypot field
+
+The plugin adds a hidden "name" field to the form to assist with catching out spam bots as a [honeypot](http://en.wikipedia.org/wiki/Honeypot_%28computing%29).
+
+If the field is filled out the submission won't work.
+
+The field is hidden using javascript.
