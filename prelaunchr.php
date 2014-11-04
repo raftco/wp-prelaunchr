@@ -7,6 +7,7 @@ Version: 1.0
 Author: Raft Co
 Author URI: http://raft.co
 License: GPL2
+Text Domain: prelaunchr
 */
 /*
 Copyright 2014 Raft Co (email : plugins@raft.co)
@@ -55,7 +56,7 @@ if ( ! class_exists( 'Prelaunchr' ) ) :
 		public $version = '1.0.0';
 
 		/**
-		 * Plugin version
+		 * Plugin name / textdomain
 		 */
 		public $plugin_name = 'prelaunchr';
 
@@ -386,7 +387,7 @@ if ( ! class_exists( 'Prelaunchr' ) ) :
 			$email = $this->isValidEmail( mysql_real_escape_string( stripslashes( $_POST['email'] ) ) );
 
 			if (  ! $email ) {
-				wp_send_json_error('Invalid email');
+				wp_send_json_error( __( 'Invalid Email', Prelaunchr()->get_plugin_name() ) );
 			}
 
 			if ( $this->akismet_available() ) {
@@ -399,14 +400,14 @@ if ( ! class_exists( 'Prelaunchr' ) ) :
 							'&comment_author_email='. urlencode( wp_unslash( (string) $email ) );
 
 				if ( $this->akismet_check( $request ) ) {
-					wp_send_json_error("Akismet detected spam - if this is an error please contact us direct.");
+					wp_send_json_error( __( 'Spam detected - If this is an error please contact us directly', Prelaunchr()->get_plugin_name() ) );
 				}
 
 			}
 
 
 			if ( $this->email_exists( $email ) ) {
-				wp_send_json_error("Thanks we've already recorded your interest. Check your referrals <a href='" . $this->get_pid_from_email( $email ) . "'>here</a>");
+				wp_send_json_error( sprintf( __( 'Thanks we have already recorded your interest. Check your referrals <a href="%s">here</a>.', Prelaunchr()->get_plugin_name() ), esc_url( $this->get_pid_from_email( $email ) ) ) );
 			}
 
 			$data['email'] = $email;

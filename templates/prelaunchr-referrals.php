@@ -24,12 +24,12 @@ if ( ! empty ( $pid ) ) {
 
 	$rewards = Prelaunchr()->get_rewards(); ?>
 
-<h2>Here's how it works</h2>
+<h2><?php _e( "Here's how it works", Prelaunchr()->get_plugin_name() ); ?></h2>
 
 <div class="referrals">
 	<ul class="labels">
-		<li class="referrals">Referrals</li>
-		<li class="rewards">Rewards</li>
+		<li class="referrals"><?php _e( "Referrals", Prelaunchr()->get_plugin_name() ); ?></li>
+		<li class="rewards"><?php _e( "Rewards", Prelaunchr()->get_plugin_name() ); ?></li>
 	</ul>
 	<ul class="referral-progress">
 		<li class="reward">
@@ -53,5 +53,5 @@ if ( ! empty ( $pid ) ) {
 	  </div>
 	</div>
 </div>
-<p>You currently have <?php echo $referrals; ?> Referrals!</p>
+<p><?php printf( __( 'You currently have %d Referrals!', Prelaunchr()->get_plugin_name() ), $referrals ); ?></p>
 <?php } ?>

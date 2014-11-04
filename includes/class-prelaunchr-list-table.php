@@ -143,11 +143,11 @@ class Prelaunchr_List_Table extends WP_List_Table {
 	function get_columns(){
 		$columns = array(
 			'cb'		=> '<input type="checkbox" />', //Render a checkbox instead of text
-			'email'		=> 'Email',
-			'referrals'	=> 'Referrals',
-			'referrer'	=> 'Referred By',
-			'time'		=> 'Time',
-			'pid'		=> 'ID'
+			'email'		=> __( 'Email', Prelaunchr()->get_plugin_name() ),
+			'referrals'	=> __( 'Referrals', Prelaunchr()->get_plugin_name() ),
+			'referrer'	=> __( 'Referred By', Prelaunchr()->get_plugin_name() ),
+			'time'		=> __( 'Time', Prelaunchr()->get_plugin_name() ),
+			'pid'		=> __( 'ID', Prelaunchr()->get_plugin_name() )
 		);
 		return $columns;
 	}

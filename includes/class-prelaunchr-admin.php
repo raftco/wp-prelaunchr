@@ -13,8 +13,8 @@ class Prelaunchr_Admin {
 		 * Add top level menu item for Prelaunchr
 		 */
 		add_menu_page(
-			'Prelaunchr',
-			'Prelaunchr',
+			__( 'Prelaunchr', Prelaunchr()->get_plugin_name()  ),
+			__( 'Prelaunchr', Prelaunchr()->get_plugin_name()  ),
 			'activate_plugins',
 			'prelaunchr',
 			array( $this, 'render_list_page' ),
@@ -27,8 +27,8 @@ class Prelaunchr_Admin {
 		 */
 		add_submenu_page( 
 			'prelaunchr', 
-			'Prelaunchr', 
-			'View Entries',
+			__( 'Prelaunchr', Prelaunchr()->get_plugin_name()  ), 
+			__( 'View Entries', Prelaunchr()->get_plugin_name()  ),
 			'activate_plugins', 
 			'prelaunchr', 
 			array( $this, 'render_list_page' )
@@ -152,19 +152,19 @@ class Prelaunchr_Admin {
 		?>
 		<div class="wrap">
 
-			<h2>Prelaunchr</h2>
+			<h2><?php _e( 'Rewards', Prelaunchr()->get_plugin_name() ); ?></h2>
 			
 			<form id="prelaunchr-filter" method="get">
 				<input type="hidden" name="page" value="<?php echo $_REQUEST['page'] ?>" />
 				<?php $Prelaunchr_List_Table->display() ?>
 			</form>
 
-			<h2>CSV Export</h2>
+			<h2><?php _e( 'CSV Export', Prelaunchr()->get_plugin_name() ); ?></h2>
 
 			<form method="post" action="">
-				<p>The Download button below generates a CSV file containing the email addresses, number of referrals, time of signup etc. which an be used to import into a mailing system of your choice.</p>
+				<p><?php _e( 'The Download button below generates a CSV file containing the email addresses, number of referrals, time of signup etc. which an be used to import into a mailing system of your choice.', Prelaunchr()->get_plugin_name() ); ?></p>
 				<p class="submit">
-					<input type="submit" name="prelaunchr_download_csv" id="prelaunchr_download_csv" class="button" value="Download CSV File &raquo;"  />
+					<input type="submit" name="prelaunchr_download_csv" id="prelaunchr_download_csv" class="button" value="<?php _e( 'Download CSV File &raquo;', Prelaunchr()->get_plugin_name() ); ?>"  />
 				</p>
 				<input type="hidden" name="page" value="<?php echo $_REQUEST['page'] ?>" />
 				<?php wp_nonce_field( basename( __FILE__ ), 'prelaunchr-download' ); ?>
@@ -180,7 +180,7 @@ class Prelaunchr_Admin {
 	public function add_meta_box() {
 		add_meta_box( 
 			'reward_meta', 
-			__( 'Additional Information', Prelaunchr()->get_plugin_name()  ), 
+			__( 'Additional Information', Prelaunchr()->get_plugin_name() ), 
 			array(  $this , 'do_reward_meta_box' ), 
 			'reward' , 
 			'normal', 

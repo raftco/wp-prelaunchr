@@ -15,13 +15,13 @@ if ( ! empty ( $pid ) ) {
 	$referrals = ( empty( $referrals ) ) ? 0 : $referrals; 
 
 ?>
-<h2>Thank you for signing up!</h2>
+<h2><?php _e( "Thank you for signing up!", Prelaunchr()->get_plugin_name() ); ?></h2>
 
-<p>Don't leave your friends out</p>
+<p><?php _e( "Don't leave your friends out", Prelaunchr()->get_plugin_name() ); ?></p>
 
-<p>Invite your friends &amp; earn rewards</p>
+<p> <?php _e( "Invite your friends &amp; earn rewards", Prelaunchr()->get_plugin_name() ); ?></p>
 
-<p>Share your unique link via email, Facebook or Twitter &amp earn rewards for each friend who signs up.</p>
+<p><?php _e( "Share your unique link via email, Facebook or Twitter &amp earn rewards for each friend who signs up.", Prelaunchr()->get_plugin_name() ); ?></p>
 
 <div id="referral-link" ><?php the_permalink(); ?>?ref=<?php echo get_query_var('pid'); ?></div>
 

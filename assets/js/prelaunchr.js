@@ -11,7 +11,6 @@ jQuery( document ).ready(function( $ ) {
 	$('.ignore').hide();
 
 	var share_button_top = new Share(".share", {
-		title: "Share Button Multiple Element Test",
 		url: $("#referral-link").html(),
 		ui: {
 			flyout: "top center",
