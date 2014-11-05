@@ -544,9 +544,7 @@ if ( ! class_exists( 'Prelaunchr' ) ) :
 
 			$table_name = $wpdb->prefix . "prelaunchr";
 
-			$email = mysql_real_escape_string( stripslashes( $email ) );
-
-			$pid = $wpdb->get_var( "SELECT pid FROM $table_name WHERE email = '$email'" );
+			$pid = $wpdb->get_var( $wpdb->prepare( "SELECT pid FROM $table_name WHERE email = '%s'", $email ) );
 
 			if ( ! empty( $pid ) ) {
 				return $pid;
@@ -565,9 +563,7 @@ if ( ! class_exists( 'Prelaunchr' ) ) :
 
 			$table_name = $wpdb->prefix . "prelaunchr";
 
-			$pid = mysql_real_escape_string( stripslashes( $pid ) );
-
-			$rid = $wpdb->get_var( "SELECT id FROM $table_name WHERE pid = '$pid'" );
+			$rid = $wpdb->get_var( $wpdb->prepare( "SELECT id FROM $table_name WHERE pid = '%s'", $pid ) );
 
 			if ( ! empty( $rid ) ) {
 				return $rid;
@@ -586,9 +582,7 @@ if ( ! class_exists( 'Prelaunchr' ) ) :
 
 			$table_name = $wpdb->prefix . "prelaunchr";
 
-			$email = mysql_real_escape_string( stripslashes( $email ) );
-
-			$count = $wpdb->get_var( "SELECT COUNT(rid) FROM $table_name WHERE rid = ( SELECT id FROM $table_name WHERE email = '$email' LIMIT 1)" );
+			$count = $wpdb->get_var( $wpdb->prepare( "SELECT COUNT(rid) FROM $table_name WHERE rid = ( SELECT id FROM $table_name WHERE email = '%s' LIMIT 1)", $email ) );
 
 			if ( ! empty( $count ) ) {
 				return $count;
@@ -607,9 +601,7 @@ if ( ! class_exists( 'Prelaunchr' ) ) :
 
 			$table_name = $wpdb->prefix . "prelaunchr";
 
-			$pid = mysql_real_escape_string( stripslashes( $pid ) );
-
-			$count = $wpdb->get_var( "SELECT COUNT(rid) FROM $table_name WHERE rid = ( SELECT id FROM $table_name WHERE pid = '$pid' LIMIT 1)" );
+			$count = $wpdb->get_var( $wpdb->prepare( "SELECT COUNT(rid) FROM $table_name WHERE rid = ( SELECT id FROM $table_name WHERE pid = '%s' LIMIT 1)", $pid ) );
 
 			if ( ! empty( $count ) ) {
 				return $count;
@@ -668,9 +660,7 @@ if ( ! class_exists( 'Prelaunchr' ) ) :
 
 			$table_name = $wpdb->prefix . "prelaunchr";
 
-			$email = mysql_real_escape_string( stripslashes( $email ) );
-
-			$test = $wpdb->get_var( "SELECT id FROM $table_name WHERE email = '$email'" );
+			$test = $wpdb->get_var( $wpdb->prepare( "SELECT id FROM $table_name WHERE email = '%s'", $email ) );
 
 			if ( $test ) {
 				return true;

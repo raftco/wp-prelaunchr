@@ -244,7 +244,6 @@ class Prelaunchr_List_Table extends WP_List_Table {
    		/**
    		 * Prepare the query
    		 */
-		//$query = "SELECT id,email,pid,rid,COALESCE(count, 0) as referrals FROM $table_name A LEFT JOIN ( SELECT rid as countid,COUNT(*) as count FROM $table_name GROUP BY rid ORDER BY count DESC ) B ON A.id = B.countid";
    		$query = "SELECT id,email,pid,rmail as referrer, count as referrals, time FROM $table_name A
 LEFT JOIN ( SELECT rid ,COUNT(*) as count FROM $table_name GROUP BY rid ORDER BY count DESC ) B 
 ON A.id = B.rid
@@ -274,11 +273,6 @@ ON A.rid = C.rid";
         /**
          * Which page is this?
          */
-        //$paged = ( ! empty( $_GET[ "paged" ] ) ) ? mysql_real_escape_string( $_GET[ "paged" ] ) : '';
-
-        //if ( empty( $paged ) || !is_numeric( $paged ) || $paged <= 0 ){
-        //	$paged = 1 ;
-        //}
         $paged = $this->get_pagenum();
         
         /**
