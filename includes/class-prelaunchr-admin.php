@@ -152,7 +152,7 @@ class Prelaunchr_Admin {
     	$message = '';
 
 	    if ('delete' === $Prelaunchr_List_Table->current_action() ) {
-	        $message = '<div class="updated below-h2" id="message"><p>' . sprintf(__('Items deleted: %d', 'custom_table_example'), count( $_GET['id'] ) ) . '</p></div>';
+	        $message = '<div class="updated below-h2" id="message"><p>' . sprintf(__('Items deleted: %d', 'custom_table_example'), count( $_GET['did'] ) ) . '</p></div>';
 	    }
 		
 		?>

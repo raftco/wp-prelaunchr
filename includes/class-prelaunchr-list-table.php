@@ -91,7 +91,7 @@ class Prelaunchr_List_Table extends WP_List_Table {
 		
 		//Build row actions
 		$actions = array(
-			'delete'    => sprintf('<a href="?page=%s&action=%s&id=%s">Delete</a>',$_REQUEST['page'],'delete',$item->id ),
+			'delete'    => sprintf('<a href="?page=%s&action=%s&did=%s">Delete</a>',$_REQUEST['page'],'delete',$item->id ),
 		);
 		
 		//Return the title contents
@@ -120,7 +120,7 @@ class Prelaunchr_List_Table extends WP_List_Table {
 	function column_cb($item){
 
 		return sprintf(
-			'<input type="checkbox" name="id[]" value="%1$s" />',
+			'<input type="checkbox" name="did[]" value="%1$s" />',
 			/*$1%s*/ $item->id                //The value of the checkbox should be the record's id
 		);
 	}
@@ -215,7 +215,10 @@ class Prelaunchr_List_Table extends WP_List_Table {
 
 			$table_name = $wpdb->prefix . 'prelaunchr';
 
-			$ids = isset( $_GET['id'] ) ? $_GET['id'] : array();
+			/**
+			 * Note - using did (delete id) to avoid weird conflict with gravity forms
+			 */
+			$ids = isset( $_GET['did'] ) ? $_GET['did'] : array();
 
 			if ( is_array( $ids ) ) {
 				$ids = implode( ',', $ids );
