@@ -148,11 +148,19 @@ class Prelaunchr_Admin {
 		 * Fetch, prepare, sort, and filter our data...
 		 */
 		$Prelaunchr_List_Table->prepare_items();
+
+    	$message = '';
+
+	    if ('delete' === $Prelaunchr_List_Table->current_action() ) {
+	        $message = '<div class="updated below-h2" id="message"><p>' . sprintf(__('Items deleted: %d', 'custom_table_example'), count( $_GET['id'] ) ) . '</p></div>';
+	    }
 		
 		?>
 		<div class="wrap">
 
 			<h2><?php _e( 'Rewards', Prelaunchr()->get_plugin_name() ); ?></h2>
+
+			<?php echo $message; ?>
 			
 			<form id="prelaunchr-filter" method="get">
 				<input type="hidden" name="page" value="<?php echo $_REQUEST['page'] ?>" />

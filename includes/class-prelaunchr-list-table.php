@@ -85,13 +85,13 @@ class Prelaunchr_List_Table extends WP_List_Table {
 	 * 
 	 * @see WP_List_Table::::single_row_columns()
 	 * @param array $item A singular item (one full row's worth of data)
-	 * @return string Text to be placed inside the column <td> (movie title only)
+	 * @return string Text to be placed inside the column <td>
 	 **************************************************************************/
 	function column_email($item){
 		
 		//Build row actions
 		$actions = array(
-			'delete'    => sprintf('<a href="?page=%s&action=%s&movie=%s">Delete</a>',$_REQUEST['page'],'delete',$item->id ),
+			'delete'    => sprintf('<a href="?page=%s&action=%s&id=%s">Delete</a>',$_REQUEST['page'],'delete',$item->id ),
 		);
 		
 		//Return the title contents
@@ -115,14 +115,13 @@ class Prelaunchr_List_Table extends WP_List_Table {
 	 * 
 	 * @see WP_List_Table::::single_row_columns()
 	 * @param array $item A singular item (one full row's worth of data)
-	 * @return string Text to be placed inside the column <td> (movie title only)
+	 * @return string Text to be placed inside the column <td>
 	 **************************************************************************/
 	function column_cb($item){
 
 		return sprintf(
-			'<input type="checkbox" name="%1$s[]" value="%2$s" />',
-			/*$1%s*/ $this->_args['singular'],  //Let's simply repurpose the table's singular label ("movie")
-			/*$2%s*/ $item->id                //The value of the checkbox should be the record's id
+			'<input type="checkbox" name="id[]" value="%1$s" />',
+			/*$1%s*/ $item->id                //The value of the checkbox should be the record's id
 		);
 	}
 
@@ -208,10 +207,28 @@ class Prelaunchr_List_Table extends WP_List_Table {
 	 * @see $this->prepare_items()
 	 **************************************************************************/
 	function process_bulk_action() {
-		
+
 		//Detect when a bulk action is being triggered...
-		if( 'delete'===$this->current_action() ) {
-			wp_die('Items deleted (or they would be if we had items to delete)!');
+		if( 'delete' === $this->current_action() ) {
+
+			global $wpdb;
+
+			$table_name = $wpdb->prefix . 'prelaunchr';
+
+			$ids = isset( $_GET['id'] ) ? $_GET['id'] : array();
+
+			if ( is_array( $ids ) ) {
+				$ids = implode( ',', $ids );
+			}
+
+			if ( ! empty( $ids ) ) {
+				/**
+				 * IN statement doesn't play nice with prepare - it adds '' around the comma separated list
+				 */
+				$ids = mysql_real_escape_string( $ids );
+
+				$wpdb->query( "DELETE FROM $table_name WHERE id IN( $ids )" );
+			}
 		}
 		
 	}
@@ -241,10 +258,10 @@ class Prelaunchr_List_Table extends WP_List_Table {
 		 */
 		$table_name = $wpdb->prefix . "prelaunchr";
 
-   		/**
-   		 * Prepare the query
-   		 */
-   		$query = "SELECT id,email,pid,rmail as referrer, count as referrals, time FROM $table_name A
+		/**
+		 * Prepare the query
+		 */
+		$query = "SELECT id,email,pid,rmail as referrer, count as referrals, time FROM $table_name A
 LEFT JOIN ( SELECT rid ,COUNT(*) as count FROM $table_name GROUP BY rid ORDER BY count DESC ) B 
 ON A.id = B.rid
 LEFT JOIN ( SELECT id as rid,email as rmail FROM $table_name ) C 
@@ -260,32 +277,32 @@ ON A.rid = C.rid";
 			$query .= ' ORDER BY ' . $orderby . ' ' . $order ;
 		}
 
-        /**
-         * Get total Number of results
-         */
-        $total_items = $wpdb->query( $query );
+		/**
+		 * Get total Number of results
+		 */
+		$total_items = $wpdb->query( $query );
 
-        /**
-         * Set the default number of results to display
-         */
-        $per_page = 20;
-        
-        /**
-         * Which page is this?
-         */
-        $paged = $this->get_pagenum();
-        
-        /**
-         * How many pages do we have in total?
-         */
-        $total_pages = ceil ( $total_items / $per_page );
+		/**
+		 * Set the default number of results to display
+		 */
+		$per_page = 20;
+		
+		/**
+		 * Which page is this?
+		 */
+		$paged = $this->get_pagenum();
+		
+		/**
+		 * How many pages do we have in total?
+		 */
+		$total_pages = ceil ( $total_items / $per_page );
 
-        /**
-         * Adjust the query to take pagination into account
-         */
+		/**
+		 * Adjust the query to take pagination into account
+		 */
 		if ( ! empty( $paged ) && ! empty( $per_page ) ) {
 			$offset = ( $paged - 1 ) * $per_page ;
-         	$query .= ' LIMIT ' . (int) $offset . ',' . (int) $per_page;
+			$query .= ' LIMIT ' . (int) $offset . ',' . (int) $per_page;
 		}
 
 		/**
