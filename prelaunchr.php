@@ -640,7 +640,8 @@ if ( ! class_exists( 'Prelaunchr' ) ) :
 				'meta_key' 			=> '_prelaunchr-referrals-needed',
 				'order'				=> $order,
 				'orderby'			=> 'meta_value_num',
-				'posts_per_page'	=> '-1'
+				'posts_per_page'	=> '500',
+				'no_found_rows' 	=> true,
 				);
 
 			$rewards = get_posts( $args );
