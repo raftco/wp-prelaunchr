@@ -80,6 +80,13 @@ We've included some hooks and filters for devs to use to further customise/exten
 * `prelaunchr_record_submission` action - located at the beggining of the record submission method with access to the email address and data and format arrays.
 * `prelaunchr_record_submission` filter - allows devs to filter the data to be stored before it is recorded within the database. 
 
+There are also some jQuery events triggered upon form submission and receipt of ajax responses e.g.
+
+* `prelaunchr_form_submit` - triggered upon a successful form submission
+* `prelaunchr_response_success` - triggered after the submitted data has passed validation and been successfully stored.
+* `prelaunchr_response_fail` - triggered when the submitted data is invalid or the has not been stored
+
+
 ## Other Notes
 
 Some other interesting/misc notes about the plugin and its functionality.
