@@ -77,6 +77,8 @@ jQuery( document ).ready(function( $ ) {
 			return;
 		}
 
+		$('body').trigger('prelaunchr_form_submit');
+
 		email = $.trim( $(this).find("input[type='email']").val() );
 
 		rid = getUrlParameter('ref');
