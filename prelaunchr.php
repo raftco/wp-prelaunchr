@@ -337,11 +337,11 @@ if ( ! class_exists( 'Prelaunchr' ) ) :
 
 				global $post;
 
-				$suffix      = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '' : '.min';
+				$suffix = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '' : '.min';
 
 				$assets_path = str_replace( array( 'http:', 'https:' ), '', PRELAUNCHR_PLUGIN_URL . '/assets' );
 
-				wp_enqueue_script("jquery");
+				wp_enqueue_script( 'jquery' );
 
 				wp_enqueue_style( 'prelaunchr', $assets_path . '/css/prelaunchr.css', array(), $this->get_version() );
 
@@ -368,11 +368,12 @@ if ( ! class_exists( 'Prelaunchr' ) ) :
 		 *
 		 * Require php 5.2.X and above
 		 */
-		public function isValidEmail($email) {
+		public function is_valid_email( $email ) {
 
-			//return filter_var($email, FILTER_VALIDATE_EMAIL) && preg_match('/@.+\./', $email);
-
-			return filter_var($email, FILTER_VALIDATE_EMAIL);
+			/**
+			 * Validate email and allow devs to filter the results
+			 */
+			return apply_filters( 'prelaunchr_is_valid_email', filter_var( $email, FILTER_VALIDATE_EMAIL ) );
 
 		}
 
@@ -380,16 +381,25 @@ if ( ! class_exists( 'Prelaunchr' ) ) :
 
 			$data = array();
 			$format = array();
+			$email = mysql_real_escape_string( stripslashes( $_POST['email'] ) );
 
 			/**
-			 * Email
+			 * Allow devs to hook in
 			 */
-			$email = $this->isValidEmail( mysql_real_escape_string( stripslashes( $_POST['email'] ) ) );
+			do_action( 'prelaunchr_record_submission', $email, $data, $format );
+
+			/**
+			 * Check if email is valid
+			 */
+			$email = $this->is_valid_email( $email );
 
 			if (  ! $email ) {
 				wp_send_json_error( __( 'Invalid Email', Prelaunchr()->get_plugin_name() ) );
 			}
 
+			/**
+			 * If akismet is installed check the email against akismet
+			 */
 			if ( $this->akismet_available() ) {
 
 				$request =  'blog='. urlencode( wp_unslash( (string) site_url() ) ) .
@@ -405,7 +415,9 @@ if ( ! class_exists( 'Prelaunchr' ) ) :
 
 			}
 
-
+			/**
+			 * Check if the email already exists in our list
+			 */
 			if ( $this->email_exists( $email ) ) {
 				wp_send_json_error( sprintf( __( 'Thanks we have already recorded your interest. Check your referrals <a href="%s">here</a>.', Prelaunchr()->get_plugin_name() ), esc_url( $this->get_pid_from_email( $email ) ) ) );
 			}
@@ -414,13 +426,13 @@ if ( ! class_exists( 'Prelaunchr' ) ) :
 			$format[] = '%s';
 
 			/**
-			 * Time
+			 * Get the time of the submission
 			 */
 			$data['time'] = time();
 			$format[] = '%d';
 
 			/**
-			 * PID - Inidividual Prelaunchr ID for each email
+			 * PID - Inidividual Prelaunchr ID (PID) for each email
 			 */
 			if ( isset( $_POST['pid'] ) ) {
 				$data['pid'] = mysql_real_escape_string( stripslashes( $_POST['pid'] ) );
@@ -430,7 +442,7 @@ if ( ! class_exists( 'Prelaunchr' ) ) :
 			$format[] = '%s';
 
 			/**
-			 * RID - Referrer ID
+			 * RID - Referrer ID (RID)
 			 */
 			if ( isset( $_POST['rid'] ) ) {
 				$data['rid'] = $this->get_referrer_id( mysql_real_escape_string( stripslashes( $_POST['rid'] ) ) );
@@ -438,6 +450,11 @@ if ( ! class_exists( 'Prelaunchr' ) ) :
 				$data['rid'] = 0;
 			}
 			$format[] = '%s';
+
+			/**
+			 * Allow devs to filter the data before storing
+			 */
+			apply_filters( 'prelaunchr_record_submission', $data, $format );
 
 			/**
 			 * Insert submission into database.
