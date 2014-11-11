@@ -1,9 +1,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Prelaunchr for WordPress\n"
-"POT-Creation-Date: 2014-11-04 19:21+1000\n"
-"PO-Revision-Date: 2014-11-04 19:21+1000\n"
-"Last-Translator: \n"
+"POT-Creation-Date: 2014-11-11 16:46+1000\n"
+"PO-Revision-Date: 2014-11-11 16:46+1000\n"
+"Last-Translator: Jason Conroy <jason@findingsimple.com>\n"
 "Language-Team: \n"
 "Language: en\n"
 "MIME-Version: 1.0\n"
@@ -22,51 +22,51 @@ msgstr ""
 #: includes/class-prelaunchr-admin.php:17
 #: includes/class-prelaunchr-admin.php:30
 msgid "Prelaunchr"
-msgstr "Prelaunchr"
+msgstr ""
 
 #: includes/class-prelaunchr-admin.php:31
 msgid "View Entries"
-msgstr "View Entries"
+msgstr ""
 
 #: includes/class-prelaunchr-admin.php:73
 #: includes/class-prelaunchr-admin.php:75
 #: includes/class-prelaunchr-admin.php:83
-#: includes/class-prelaunchr-admin.php:155
+#: includes/class-prelaunchr-admin.php:161
 #: templates/prelaunchr-referrals.php:32
 msgid "Rewards"
-msgstr "Rewards"
+msgstr ""
 
 #: includes/class-prelaunchr-admin.php:74
 msgid "Reward"
-msgstr "Reward"
+msgstr ""
 
 #: includes/class-prelaunchr-admin.php:76
 msgid "Add New Reward"
-msgstr "Add New Reward"
+msgstr ""
 
 #: includes/class-prelaunchr-admin.php:77
 msgid "Edit Reward"
-msgstr "Edit Reward"
+msgstr ""
 
 #: includes/class-prelaunchr-admin.php:78
 msgid "New Reward"
-msgstr "New Reward"
+msgstr ""
 
 #: includes/class-prelaunchr-admin.php:79
 msgid "View Reward"
-msgstr "View Reward"
+msgstr ""
 
 #: includes/class-prelaunchr-admin.php:80
 msgid "Search Rewards"
-msgstr "Search Rewards"
+msgstr ""
 
 #: includes/class-prelaunchr-admin.php:81
 msgid "No rewards found"
-msgstr "No rewards found"
+msgstr ""
 
 #: includes/class-prelaunchr-admin.php:82
 msgid "No rewards found in trash"
-msgstr "No rewards found in trash"
+msgstr ""
 
 #: includes/class-prelaunchr-admin.php:89
 msgid ""
@@ -74,109 +74,108 @@ msgid ""
 "put into a different \"reward group\". The groups, amounts, and prizes are "
 "completely up to you to set."
 msgstr ""
-"Based on the amount of referrals a user has brought to the site, they are "
-"put into a different \"reward group\". The groups, amounts, and prizes are "
-"completely up to you to set."
 
 #: includes/class-prelaunchr-admin.php:119
 #: includes/class-prelaunchr-admin.php:122
 msgid "Reward updated."
-msgstr "Reward updated."
+msgstr ""
 
 #: includes/class-prelaunchr-admin.php:120
 msgid "Custom field updated."
-msgstr "Custom field updated."
+msgstr ""
 
 #: includes/class-prelaunchr-admin.php:121
 msgid "Custom field deleted."
-msgstr "Custom field deleted."
+msgstr ""
 
 #. translators: %s: date and time of the revision
 #: includes/class-prelaunchr-admin.php:124
 #, php-format
 msgid "Reward restored to revision from %s"
-msgstr "Reward restored to revision from %s"
+msgstr ""
 
 #: includes/class-prelaunchr-admin.php:125
 msgid "Reward published."
-msgstr "Reward published."
+msgstr ""
 
 #: includes/class-prelaunchr-admin.php:126
 msgid "Reward saved."
-msgstr "Reward saved."
+msgstr ""
 
 #: includes/class-prelaunchr-admin.php:127
 msgid "Reward submitted."
-msgstr "Reward submitted."
+msgstr ""
 
 #: includes/class-prelaunchr-admin.php:128
 #, php-format
 msgid "Reward scheduled for: <strong>%1$s</strong>."
-msgstr "Reward scheduled for: <strong>%1$s</strong>."
+msgstr ""
 
 #. translators: Publish box date format, see http://php.net/date
 #: includes/class-prelaunchr-admin.php:130
 msgid "M j, Y @ G:i"
-msgstr "M j, Y @ G:i"
+msgstr ""
 
 #: includes/class-prelaunchr-admin.php:131
 msgid "Reward draft updated."
-msgstr "Reward draft updated."
+msgstr ""
 
-#: includes/class-prelaunchr-admin.php:162
+#: includes/class-prelaunchr-admin.php:155
+#, php-format
+msgid "Items deleted: %d"
+msgstr ""
+
+#: includes/class-prelaunchr-admin.php:170
 msgid "CSV Export"
-msgstr "CSV Export"
+msgstr ""
 
-#: includes/class-prelaunchr-admin.php:165
+#: includes/class-prelaunchr-admin.php:173
 msgid ""
 "The Download button below generates a CSV file containing the email "
 "addresses, number of referrals, time of signup etc. which an be used to "
 "import into a mailing system of your choice."
 msgstr ""
-"The Download button below generates a CSV file containing the email "
-"addresses, number of referrals, time of signup etc. which an be used to "
-"import into a mailing system of your choice."
 
-#: includes/class-prelaunchr-admin.php:167
+#: includes/class-prelaunchr-admin.php:175
 msgid "Download CSV File &raquo;"
-msgstr "Download CSV File &raquo;"
+msgstr ""
 
-#: includes/class-prelaunchr-admin.php:183
+#: includes/class-prelaunchr-admin.php:191
 msgid "Additional Information"
-msgstr "Additional Information"
+msgstr ""
 
-#: includes/class-prelaunchr-admin.php:204
+#: includes/class-prelaunchr-admin.php:212
 msgid "Referrals Needed:"
-msgstr "Referrals Needed:"
+msgstr ""
+
+#: includes/class-prelaunchr-list-table.php:145
+msgid "Email"
+msgstr ""
 
 #: includes/class-prelaunchr-list-table.php:146
-msgid "Email"
-msgstr "Email"
-
-#: includes/class-prelaunchr-list-table.php:147
 #: templates/prelaunchr-referrals.php:31
 msgid "Referrals"
-msgstr "Referrals"
+msgstr ""
+
+#: includes/class-prelaunchr-list-table.php:147
+msgid "Referred By"
+msgstr ""
 
 #: includes/class-prelaunchr-list-table.php:148
-msgid "Referred By"
-msgstr "Referred By"
+msgid "Time"
+msgstr ""
 
 #: includes/class-prelaunchr-list-table.php:149
-msgid "Time"
-msgstr "Time"
-
-#: includes/class-prelaunchr-list-table.php:150
 msgid "ID"
-msgstr "ID"
+msgstr ""
 
 #: prelaunchr.php:390
 msgid "Invalid Email"
-msgstr "Invalid Email"
+msgstr ""
 
 #: prelaunchr.php:403
 msgid "Spam detected - If this is an error please contact us directly"
-msgstr "Spam detected - If this is an error please contact us directly"
+msgstr ""
 
 #: prelaunchr.php:410
 #, php-format
@@ -184,50 +183,46 @@ msgid ""
 "Thanks we have already recorded your interest. Check your referrals <a href="
 "\"%s\">here</a>."
 msgstr ""
-"Thanks we have already recorded your interest. Check your referrals <a href="
-"\"%s\">here</a>."
 
 #: templates/prelaunchr-form.php:14
 msgid "Name:"
-msgstr "Name:"
+msgstr ""
 
 #: templates/prelaunchr-form.php:16
 msgid "Email Address:"
-msgstr "Email Address:"
+msgstr ""
 
 #: templates/prelaunchr-form.php:17
 msgid "your@email.com"
-msgstr "your@email.com"
+msgstr ""
 
 #: templates/prelaunchr-form.php:18
 msgid "Submit"
-msgstr "Submit"
+msgstr ""
 
 #: templates/prelaunchr-referrals.php:27
 msgid "Here's how it works"
-msgstr "Here's how it works"
+msgstr ""
 
 #: templates/prelaunchr-referrals.php:56
 #, php-format
 msgid "You currently have %d Referrals!"
-msgstr "You currently have %d Referrals!"
+msgstr ""
 
 #: templates/prelaunchr-thankyou.php:18
 msgid "Thank you for signing up!"
-msgstr "Thank you for signing up!"
+msgstr ""
 
 #: templates/prelaunchr-thankyou.php:20
 msgid "Don't leave your friends out"
-msgstr "Don't leave your friends out"
+msgstr ""
 
 #: templates/prelaunchr-thankyou.php:22
 msgid "Invite your friends &amp; earn rewards"
-msgstr "Invite your friends &amp; earn rewards"
+msgstr ""
 
 #: templates/prelaunchr-thankyou.php:24
 msgid ""
 "Share your unique link via email, Facebook or Twitter &amp earn rewards for "
 "each friend who signs up."
 msgstr ""
-"Share your unique link via email, Facebook or Twitter &amp earn rewards for "
-"each friend who signs up."
