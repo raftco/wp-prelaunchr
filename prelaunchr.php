@@ -355,6 +355,7 @@ if ( ! class_exists( 'Prelaunchr' ) ) :
 
 				wp_localize_script( 'prelaunchr', 'PrelaunchrSubmit', array( 
 					'ajaxurl' => admin_url( 'admin-ajax.php' ),
+					'nonce' => wp_create_nonce( __FILE__ ),
 					'return' => get_page_uri( $post->ID )
 					)
 				);
@@ -378,6 +379,8 @@ if ( ! class_exists( 'Prelaunchr' ) ) :
 		}
 
 		public function record_submission() {
+
+			check_ajax_referer( __FILE__, 'nonce' );
 
 			$data = array();
 			$format = array();

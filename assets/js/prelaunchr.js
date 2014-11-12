@@ -94,7 +94,8 @@ jQuery( document ).ready(function( $ ) {
 					'pid'			: pid,
 					'cookie_pid'	: cookie_pid,
 					'email'			: email,
-					'rid'			: rid
+					'rid'			: rid,
+					'nonce'			: PrelaunchrSubmit.nonce
 				},
 				dataType: 'JSON',
 				success: function( response, textStatus, XMLHttpRequest ) {
