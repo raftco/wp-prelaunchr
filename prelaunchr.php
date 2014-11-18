@@ -466,6 +466,11 @@ if ( ! class_exists( 'Prelaunchr' ) ) :
 
 			$result = $wpdb->insert( $wpdb->prefix . "prelaunchr" , $data, $format );
 
+			/**
+			 * Allow devs to hook in
+			 */
+			do_action( 'prelaunchr_after_record_submission', $result, $data, $format );
+
 			if ( $result === false ) {
 				wp_send_json_error( __( 'Oops there was an error updating our records, please contact us directly (1)', Prelaunchr()->get_plugin_name() ) );
 			} else if ( $result === 0 ) {

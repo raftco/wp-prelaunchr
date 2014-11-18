@@ -79,6 +79,8 @@ We've included some hooks and filters for devs to use to further customise/exten
 * `prelaunchr_is_valid_email` filter - filters the results of whether the email is valid on not. Accepts/returns the email address if valid.
 * `prelaunchr_record_submission` action - located at the beggining of the record submission method with access to the email address and data and format arrays.
 * `prelaunchr_record_submission` filter - allows devs to filter the data to be stored before it is recorded within the database. 
+* `prelaunchr_after_record_submission` action - located at the end of the record submission method with access to the database insert results, data and format arrays.
+* `prelaunchr_delete_entries` action - located at the end of the list table process_bulk_action method with access to the database delete results and the ids to be deleted.
 
 There are also some jQuery events triggered upon form submission and receipt of ajax responses e.g.
 

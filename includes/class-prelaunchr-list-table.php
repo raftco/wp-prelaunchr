@@ -230,7 +230,13 @@ class Prelaunchr_List_Table extends WP_List_Table {
 				 */
 				$ids = mysql_real_escape_string( $ids );
 
-				$wpdb->query( "DELETE FROM $table_name WHERE id IN( $ids )" );
+				$result = $wpdb->query( "DELETE FROM $table_name WHERE id IN( $ids )" );
+
+				/**
+			 	* Allow devs to hook in
+			 	*/
+				do_action( 'prelaunchr_delete_entries', $result, $ids );
+
 			}
 		}
 		
