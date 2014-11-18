@@ -23,6 +23,18 @@ class Prelaunchr_Admin {
 		);
 
 		/**
+		 * Add submenu item for exporting entries
+		 */
+		add_submenu_page( 
+			'prelaunchr', 
+			__( 'Prelaunchr', Prelaunchr()->get_plugin_name()  ), 
+			__( 'Export Entries', Prelaunchr()->get_plugin_name()  ),
+			'activate_plugins', 
+			'export', 
+			array( $this, 'render_export_page' )
+		);  
+
+		/**
 		 * Add submenu item for viewing entries
 		 */
 		add_submenu_page( 
@@ -33,6 +45,7 @@ class Prelaunchr_Admin {
 			'prelaunchr', 
 			array( $this, 'render_list_page' )
 		);  
+
 
 		/**
 		 * Reorder menu items
@@ -167,10 +180,22 @@ class Prelaunchr_Admin {
 				<?php $Prelaunchr_List_Table->display() ?>
 			</form>
 
-			<h2><?php _e( 'CSV Export', Prelaunchr()->get_plugin_name() ); ?></h2>
+		</div>
+		<?php
+	}
+
+	/**
+	 * Build and render the prelaunchr export page / menu item
+	 */
+	public function render_export_page(){
+		?>
+		<div class="wrap">
+
+			<h2><?php _e( 'Export to CSV', Prelaunchr()->get_plugin_name() ); ?></h2>
+
+			<p><?php _e( 'The Download button below generates a CSV file containing the email addresses, number of referrals, time of signup etc. which an be used to import into a mailing system of your choice.', Prelaunchr()->get_plugin_name() ); ?></p>
 
 			<form method="post" action="">
-				<p><?php _e( 'The Download button below generates a CSV file containing the email addresses, number of referrals, time of signup etc. which an be used to import into a mailing system of your choice.', Prelaunchr()->get_plugin_name() ); ?></p>
 				<p class="submit">
 					<input type="submit" name="prelaunchr_download_csv" id="prelaunchr_download_csv" class="button" value="<?php _e( 'Download CSV File &raquo;', Prelaunchr()->get_plugin_name() ); ?>"  />
 				</p>
