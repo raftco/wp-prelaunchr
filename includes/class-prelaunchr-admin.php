@@ -158,7 +158,7 @@ class Prelaunchr_Admin {
 		?>
 		<div class="wrap">
 
-			<h2><?php _e( 'Rewards', Prelaunchr()->get_plugin_name() ); ?></h2>
+			<h2><?php _e( 'Prelaunchr Entries', Prelaunchr()->get_plugin_name() ); ?></h2>
 
 			<?php echo $message; ?>
 			
