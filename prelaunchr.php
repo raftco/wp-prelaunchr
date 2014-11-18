@@ -464,9 +464,15 @@ if ( ! class_exists( 'Prelaunchr' ) ) :
 			 */
 			global $wpdb;
 
-			$wpdb->insert( $wpdb->prefix . "prelaunchr" , $data, $format );
+			$result = $wpdb->insert( $wpdb->prefix . "prelaunchr" , $data, $format );
 
-			wp_send_json_success( $data );
+			if ( $result === false ) {
+				wp_send_json_error( __( 'Oops there was an error updating our records, please contact us directly (1)', Prelaunchr()->get_plugin_name() ) );
+			} else if ( $result === 0 ) {
+				wp_send_json_error( __( 'Oops there was an error updating our records, please contact us directly (2)', Prelaunchr()->get_plugin_name() ) );
+			} else if ( $result > 0) {
+				wp_send_json_success( $data );
+			}
 
 		}
 
