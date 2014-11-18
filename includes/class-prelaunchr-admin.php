@@ -28,7 +28,7 @@ class Prelaunchr_Admin {
 		add_submenu_page( 
 			'prelaunchr', 
 			__( 'Prelaunchr', Prelaunchr()->get_plugin_name()  ), 
-			__( 'Export Entries', Prelaunchr()->get_plugin_name()  ),
+			__( 'Export', Prelaunchr()->get_plugin_name()  ),
 			'activate_plugins', 
 			'export', 
 			array( $this, 'render_export_page' )
@@ -40,7 +40,7 @@ class Prelaunchr_Admin {
 		add_submenu_page( 
 			'prelaunchr', 
 			__( 'Prelaunchr', Prelaunchr()->get_plugin_name()  ), 
-			__( 'View Entries', Prelaunchr()->get_plugin_name()  ),
+			__( 'Entries', Prelaunchr()->get_plugin_name()  ),
 			'activate_plugins', 
 			'prelaunchr', 
 			array( $this, 'render_list_page' )
