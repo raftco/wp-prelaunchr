@@ -30,7 +30,7 @@ class Prelaunchr_Admin {
 			__( 'Prelaunchr', Prelaunchr()->get_plugin_name()  ), 
 			__( 'Export', Prelaunchr()->get_plugin_name()  ),
 			'activate_plugins', 
-			'export', 
+			'prelaunchr-export', 
 			array( $this, 'render_export_page' )
 		);  
 
