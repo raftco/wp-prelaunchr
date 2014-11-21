@@ -136,12 +136,6 @@ if ( ! class_exists( 'Prelaunchr' ) ) :
 
 		/**
 		 * Load includes for this plugin.
-		 *
-		 * Include the following files that make up the plugin:
-		 *
-		 * - Plugin_Name_Loader. Orchestrates the hooks of the plugin.
-		 * - Plugin_Name_i18n. Defines internationalization functionality.
-		 *
 		 */
 		public function load_dependencies() {
 
@@ -220,7 +214,7 @@ if ( ! class_exists( 'Prelaunchr' ) ) :
 
 
 		/**
-		 * Include shortcode functions
+		 * Make appropriate hooks
 		 */
 		public function setup_hooks() {
 
