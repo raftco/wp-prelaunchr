@@ -5,28 +5,40 @@
 if ( ! empty( $_SERVER['SCRIPT_FILENAME'] ) && basename( __FILE__ ) == basename( $_SERVER['SCRIPT_FILENAME'] ) ) {
 	die ( 'You do not have sufficient permissions to access this page!' );
 }
-
-$pid = get_query_var('pid');
-
-if ( ! empty ( $pid ) ) {
-
-	$referrals = Prelaunchr()->get_referral_count_from_pid($pid);
-
-	$referrals = ( empty( $referrals ) ) ? 0 : $referrals; 
-
 ?>
-<h2><?php _e( "Thank you for signing up!", Prelaunchr()->get_plugin_name() ); ?></h2>
 
-<p><?php _e( "Don't leave your friends out", Prelaunchr()->get_plugin_name() ); ?></p>
+<?php 
+/**
+ * prelaunchr_before_thankyou hook
+ *
+ * @hooked prelaunchr_wrapper_start - 10 (outputs prelaunchr wrapper div)
+ * 
+ */
+do_action( 'prelaunchr_before_thankyou'); ?>
 
-<p> <?php _e( "Invite your friends &amp; earn rewards", Prelaunchr()->get_plugin_name() ); ?></p>
+	<div class="pthanks">
 
-<p><?php _e( "Share your unique link via email, Facebook or Twitter &amp earn rewards for each friend who signs up.", Prelaunchr()->get_plugin_name() ); ?></p>
+		<?php 
+		/**
+		 * prelaunchr_thankyou hook
+		 *
+		 * @hooked prelaunchr_thankyou_intro - 10 (outputs .prelaunchr wrapper)
+		 * @hooked prelaunchr_referral_link - 20 (outputs the users referral link)
+		 * @hooked prelaunchr_social_share - 30 (outputs the social share buttons)
+		 * @hooked prelaunchr_referral_stats - 40 (outputs the users referral stats)
+		 * 
+		 */
+		do_action( 'prelaunchr_thankyou');
+		?>
 
-<div id="referral-link" ><?php the_permalink(); ?>?ref=<?php echo get_query_var('pid'); ?></div>
+	</div>
 
-<div class="share"></div>
-
-<?php Prelaunchr()->prelaunchr_get_template_part( 'prelaunchr', 'referrals' ); ?>
-
-<?php } ?>
+<?php 
+/**
+ * prelaunchr_after_thankyou hook
+ *
+ * @hooked prelaunchr_wrapper_end - 10 (closes the prelaunchr wrapper div)
+ * 
+ */
+do_action( 'prelaunchr_after_thankyou');
+?>

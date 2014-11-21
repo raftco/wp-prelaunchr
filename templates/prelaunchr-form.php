@@ -5,16 +5,36 @@
 if ( ! empty( $_SERVER['SCRIPT_FILENAME'] ) && basename( __FILE__ ) == basename( $_SERVER['SCRIPT_FILENAME'] ) ) {
 	die ( 'You do not have sufficient permissions to access this page!' );
 }
+ 
+/**
+ * prelaunchr_before_form hook
+ *
+ * @hooked prelaunchr_wrapper_start - 10 (outputs prelaunchr wrapper div)
+ * @hooked prelaunchr_response - 20 (outputs response div for form feedback/validation messages)
+ * 
+ */
+do_action( 'prelaunchr_before_form'); ?>
 
-?>
-<div class="prelaunchr">
-	<div class="response"></div>
 	<form class="pform" action="" novalidate>
-		<?php do_action( 'prelaunchr_form'); ?>
-		<label for="name" class="ignore"><?php _e('Name:', 'prelaunchr'); ?></label>
-		<input type="text" class="ignore" id="name" name="name" value="" />
-		<label for="email"><?php _e('Email Address:', 'prelaunchr'); ?> <span class="required">*</span></label>
-		<input type="email" id="email" name="email" value="" placeholder="<?php _e('your@email.com', 'prelaunchr'); ?>" required="required" />
-		<input type="submit" value="<?php _e('Submit', 'prelaunchr'); ?>" />
+		<?php 
+		/**
+		 * prelaunchr_form hook
+		 *
+		 * @hooked prelaunchr_input_honeypot - 10 (outputs honeypot name field)
+		 * @hooked prelaunchr_input_email - 20 (outputs email field)
+		 * @hooked prelaunchr_button_submit - 30 (outputs submit button)
+		 * 
+		 */
+		do_action( 'prelaunchr_form');
+		?>
 	</form><!-- end .pform -->
-</div><!-- end .prelaunchr -->
+
+<?php 
+/**
+ * prelaunchr_after_form hook
+ *
+ * @hooked prelaunchr_wrapper_end - 10 (closes the prelaunchr wrapper div)
+ * 
+ */
+do_action( 'prelaunchr_after_form');
+?>

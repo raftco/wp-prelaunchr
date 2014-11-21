@@ -161,6 +161,11 @@ if ( ! class_exists( 'Prelaunchr' ) ) :
 			 */
 			require_once PRELAUNCHR_PLUGIN_PATH . '/includes/class-prelaunchr-admin.php';
 
+			/**
+			 * Templating functionlity
+			 */
+			require_once PRELAUNCHR_PLUGIN_PATH . '/includes/prelaunchr-template-functions.php';
+
 		}
 
 		/**
@@ -235,7 +240,6 @@ if ( ! class_exists( 'Prelaunchr' ) ) :
 			 */
 			add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_scripts' ) );
 
-
 			/**
 			 * Handle Form Submission
 			 */
@@ -292,7 +296,7 @@ if ( ! class_exists( 'Prelaunchr' ) ) :
 			 * if either the child theme or the parent theme have overridden the template
 			 * otherwise we load the template from the plugin 'templates' sub-directory
 			 */
-			if ( $overridden_template = locate_template( $template ) ) {
+			if ( $overridden_template = locate_template( 'prelaunchr/' . $template ) ) {
 
 				load_template( $overridden_template );
 
