@@ -45,7 +45,7 @@ The campaign is conducive to social sharing and has prize levels based on the nu
 
 ## Template Parts
 
-We've included some initial template parts within the plugin to help with customising the look and feel.
+We've included some initial templates/template parts within the plugin to help with customising the look and feel.
 
 ### prelaunchr-form.php
 
@@ -57,23 +57,18 @@ The template displayed upon successfully submitting an email address.
 
 Includes the link users can use to refer your company/product/service to others as well as social integration.
 
-### prelaunchr-referrals.php
-
-This is the default template used to display how many referrals a user has.
-
 ### Overridding template parts
 
-Each of prelaunchr template parts can be overridden within your themes/child-themes.
+Each of prelaunchr templates/template parts can be overridden within your themes/child-themes.
 
-To overide the templateparts simply create a file with the same name as the above within your theme/child themes root directory e.g.
+To override the template parts simply create a prelaunchr folder within yout theme place your modified versions of our templates within being sure to keep the keep same directoy structure and file names.
 
-* `/wp-content/themes/{your-theme}/prelaunchr-form.php`
-* `/wp-content/themes/{your-theme}/prelaunchr-thankyou.php`
-* `/wp-content/themes/{your-theme}/prelaunchr-referrals.php` 
+* `/wp-content/themes/{your-theme}/prelaunchr/prelaunchr-form.php`
+* `/wp-content/themes/{your-theme}/prelaunchr/prelaunchr-thankyou.php`
 
 ## Hooks and Filters
 
-We've included some hooks and filters for devs to use to further customise/extend some of the plugins functionality. Quickly, these include:
+We've included some hooks and filters for devs to use to further customise/extend some of the plugins functionality.
 
 * `prelaunchr_form` action - located at the beginning of the default prelaunchr form
 * `prelaunchr_is_valid_email` filter - filters the results of whether the email is valid on not. Accepts/returns the email address if valid.
