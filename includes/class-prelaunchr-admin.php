@@ -23,30 +23,6 @@ class Prelaunchr_Admin {
 		);
 
 		/**
-		 * Add submenu item for settings
-		 */
-		add_submenu_page( 
-			'prelaunchr', 
-			__( 'Prelaunchr', Prelaunchr()->get_plugin_name()  ), 
-			__( 'Settings', Prelaunchr()->get_plugin_name()  ),
-			'activate_plugins', 
-			'prelaunchr-settings', 
-			array( $this, 'render_settings_page' )
-		); 
-
-		/**
-		 * Add submenu item for exporting entries
-		 */
-		add_submenu_page( 
-			'prelaunchr', 
-			__( 'Prelaunchr', Prelaunchr()->get_plugin_name()  ), 
-			__( 'Export', Prelaunchr()->get_plugin_name()  ),
-			'activate_plugins', 
-			'prelaunchr-export', 
-			array( $this, 'render_export_page' )
-		);  
-
-		/**
 		 * Add submenu item for viewing entries
 		 */
 		add_submenu_page( 
@@ -58,6 +34,29 @@ class Prelaunchr_Admin {
 			array( $this, 'render_list_page' )
 		);  
 
+		/**
+		 * Add submenu item for exporting entries
+		 */
+		add_submenu_page( 
+			'prelaunchr', 
+			__( 'Prelaunchr', Prelaunchr()->get_plugin_name()  ), 
+			__( 'Export', Prelaunchr()->get_plugin_name()  ),
+			'activate_plugins', 
+			'prelaunchr-export', 
+			array( $this, 'render_export_page' )
+		);
+
+		/**
+		 * Add submenu item for settings
+		 */
+		add_submenu_page( 
+			'prelaunchr', 
+			__( 'Prelaunchr', Prelaunchr()->get_plugin_name()  ), 
+			__( 'Settings', Prelaunchr()->get_plugin_name()  ),
+			'activate_plugins', 
+			'prelaunchr-settings', 
+			array( $this, 'render_settings_page' )
+		);
 
 		/**
 		 * Reorder menu items
@@ -81,13 +80,21 @@ class Prelaunchr_Admin {
 	 */
 	public function reorder_menu_items() {
 
-		global $submenu, $menu;
+		global $submenu;
 
 		if ( $submenu['prelaunchr'] ) {
 
-			$temp = array_reverse( $submenu['prelaunchr'] );
+			/**
+			 * get rewards and entries menu items
+			 */
+			$rewards = $submenu['prelaunchr'][0];
+			$entries = $submenu['prelaunchr'][1];
 
-			$submenu['prelaunchr'] = $temp;
+			/**
+			 * now swap them around
+			 */
+			$submenu['prelaunchr'][0] = $entries;
+			$submenu['prelaunchr'][1] = $rewards;
 
 		}
 
