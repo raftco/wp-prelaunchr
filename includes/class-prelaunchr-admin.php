@@ -265,14 +265,14 @@ class Prelaunchr_Admin {
 		 */
 		add_settings_section(
 			'section-one', 
-			'Section One', 
+			__( 'Section One', Prelaunchr()->get_plugin_name() ), 
 			array( $this , 'section_one_callback' ), 
 			'prelaunchr-settings'
 		);
 
 		add_settings_field(
 			'field-one',
-			'Field One',
+			__( 'Field One', Prelaunchr()->get_plugin_name() ),
 			array( $this , 'field_one_callback'),
 			'prelaunchr-settings',
 			'section-one'
@@ -284,7 +284,7 @@ class Prelaunchr_Admin {
 	 * Describe the section
 	 */
 	public function section_one_callback() {
-		echo 'Some help text goes here.';
+		_e( 'Section description', Prelaunchr()->get_plugin_name() );
 	}
 
 	/**
