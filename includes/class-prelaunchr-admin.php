@@ -23,6 +23,18 @@ class Prelaunchr_Admin {
 		);
 
 		/**
+		 * Add submenu item for settings
+		 */
+		add_submenu_page( 
+			'prelaunchr', 
+			__( 'Prelaunchr', Prelaunchr()->get_plugin_name()  ), 
+			__( 'Settings', Prelaunchr()->get_plugin_name()  ),
+			'activate_plugins', 
+			'prelaunchr-settings', 
+			array( $this, 'render_settings_page' )
+		); 
+
+		/**
 		 * Add submenu item for exporting entries
 		 */
 		add_submenu_page( 
@@ -56,6 +68,11 @@ class Prelaunchr_Admin {
 		 * Intercept query and generate csv for downloading
 		 */
 		add_action( 'admin_init' , array( $this , 'download_csv' ) );
+
+		/**
+		 * Register settings
+		 */
+		add_action( 'admin_init', array( $this , 'setup_prelaunchr_settings' ) );
 
 	}
 
@@ -162,11 +179,11 @@ class Prelaunchr_Admin {
 		 */
 		$Prelaunchr_List_Table->prepare_items();
 
-    	$message = '';
+		$message = '';
 
-	    if ('delete' === $Prelaunchr_List_Table->current_action() ) {
-	        $message = '<div class="updated below-h2" id="message"><p>' . sprintf(__('Items deleted: %d', 'custom_table_example'), count( $_GET['did'] ) ) . '</p></div>';
-	    }
+		if ('delete' === $Prelaunchr_List_Table->current_action() ) {
+			$message = '<div class="updated below-h2" id="message"><p>' . sprintf(__('Items deleted: %d', 'custom_table_example'), count( $_GET['did'] ) ) . '</p></div>';
+		}
 		
 		?>
 		<div class="wrap">
@@ -205,6 +222,70 @@ class Prelaunchr_Admin {
 
 		</div>
 		<?php
+	}
+
+	/**
+	 * Build and render the prelaunchr settings page / menu item
+	 */
+	public function render_settings_page() {
+		?>
+		<div class="wrap">
+
+			<h2><?php _e( 'Settings', Prelaunchr()->get_plugin_name() ); ?></h2>
+
+			<form method="POST" action="options.php">
+				<?php settings_fields( 'prelaunchr-settings' ); ?>
+				<?php do_settings_sections( 'prelaunchr-settings' );?>
+				<?php submit_button(); ?>
+			</form>
+
+		</div>
+		<?php
+	}
+
+	/**
+	 * Setup prelaunchr default settings and setting sections
+	 */
+	public function setup_prelaunchr_settings() {
+
+		/**
+		 * Register Settings
+		 */
+		register_setting( 'prelaunchr-settings', 'my-setting' );
+
+		/**
+		 * Add sections and fields
+		 */
+		add_settings_section(
+			'section-one', 
+			'Section One', 
+			array( $this , 'section_one_callback' ), 
+			'prelaunchr-settings'
+		);
+
+		add_settings_field(
+			'field-one',
+			'Field One',
+			array( $this , 'field_one_callback'),
+			'prelaunchr-settings',
+			'section-one'
+		);
+	
+	}
+
+	/**
+	 * Describe the section
+	 */
+	public function section_one_callback() {
+		echo 'Some help text goes here.';
+	}
+
+	/**
+	 * Output the setting field
+	 */
+	public function field_one_callback() {
+		$setting = esc_attr( get_option( 'my-setting' ) );
+		echo "<input type='text' name='my-setting' value='$setting' />";
 	}
 
 	/**
