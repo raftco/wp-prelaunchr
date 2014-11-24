@@ -105,3 +105,19 @@ The plugin adds a hidden "name" field to the form to assist with catching out sp
 If the field is filled out the submission won't work.
 
 The field is hidden using javascript.
+
+### Register theme support
+
+If a theme registers that it has 'prelaunchr' support using
+
+```
+add_theme_support('prelaunchr');
+```
+and if a static front page has been configured (under Settings -> Reading), the plugin assumes that the front page is showing the prelaunchr form/templates using something like:
+
+```
+if ( class_exists( 'Prelaunchr' ) ) {
+	Prelaunchr()->display();
+}
+```
+and it automatically enqueues the prelaunchr styles and javascript.
