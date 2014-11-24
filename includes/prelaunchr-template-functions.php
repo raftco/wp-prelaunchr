@@ -115,3 +115,15 @@ if ( ! function_exists( 'prelaunchr_referral_progress' ) ) {
 	}
 
 }
+
+if ( ! function_exists( 'prelaunchr_thankyou_text' ) ) {
+
+	function prelaunchr_thankyou_text() {
+
+		$text = apply_filters( 'the_content', get_option( 'prelaunchr-core-thankyou-text' ) );
+
+		echo $text;
+
+	}
+
+}

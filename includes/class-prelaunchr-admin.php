@@ -258,41 +258,42 @@ class Prelaunchr_Admin {
 		/**
 		 * Register Settings
 		 */
-		register_setting( 'prelaunchr-settings', 'prelaunchr-core-my-setting' );
+		register_setting( 'prelaunchr-settings', 'prelaunchr-core-thankyou-text' );
 
 		/**
 		 * Add sections and fields
 		 */
 		add_settings_section(
-			'section-one', 
-			__( 'Section One', Prelaunchr()->get_plugin_name() ), 
-			array( $this , 'section_one_callback' ), 
+			'prelaunchr-core-thankyou', 
+			__( 'Thankyou Template', Prelaunchr()->get_plugin_name() ), 
+			array( $this , 'thankyou_settings_callback' ), 
 			'prelaunchr-settings'
 		);
 
 		add_settings_field(
-			'field-one',
-			__( 'Field One', Prelaunchr()->get_plugin_name() ),
-			array( $this , 'field_one_callback'),
+			'prelaunchr-thankyou-text',
+			__( 'Thankyou Text', Prelaunchr()->get_plugin_name() ),
+			array( $this , 'thankyou_text_callback'),
 			'prelaunchr-settings',
-			'section-one'
+			'prelaunchr-core-thankyou'
 		);
 	
 	}
 
 	/**
-	 * Describe the section
+	 * Thankyou settings section
 	 */
-	public function section_one_callback() {
-		_e( 'Section description', Prelaunchr()->get_plugin_name() );
+	public function thankyou_settings_callback() {
+		_e( 'Display configuration for the thankyou template.', Prelaunchr()->get_plugin_name() );
 	}
 
 	/**
-	 * Output the setting field
+	 * Thankyou text textarea
 	 */
-	public function field_one_callback() {
-		$setting = esc_attr( get_option( 'prelaunchr-core-my-setting' ) );
-		echo "<input type='text' name='prelaunchr-core-my-setting' value='$setting' />";
+	public function thankyou_text_callback() {
+		$setting = get_option( 'prelaunchr-core-thankyou-text' );
+		$args = array("textarea_name" => "prelaunchr-core-thankyou-text");
+		wp_editor( $setting, "prelaunchr-core-thankyou-text", $args );
 	}
 
 	/**
