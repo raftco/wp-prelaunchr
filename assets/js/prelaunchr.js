@@ -107,7 +107,7 @@ jQuery( document ).ready(function( $ ) {
 					 */
 					if ( response.success ) {
 						$('body').trigger('prelaunchr_response_success');
-						window.location.href = '/'+PrelaunchrSubmit.return+'/'+response.data.pid;
+						window.location.href = PrelaunchrSubmit.return+response.data.pid;
 						return;
 					} else {
 						$('body').trigger('prelaunchr_response_fail');

@@ -252,6 +252,11 @@ if ( ! class_exists( 'Prelaunchr' ) ) :
 			 */
 			add_action( 'pre_get_posts', array( $this, 'add_noindex' ) );
 
+			/**
+			 * Check for theme support
+			 */
+			add_action( 'init', array ( $this, 'check_theme_support') );
+
 		}
 
 		/**
@@ -354,7 +359,7 @@ if ( ! class_exists( 'Prelaunchr' ) ) :
 				wp_localize_script( 'prelaunchr', 'PrelaunchrSubmit', array( 
 					'ajaxurl' => admin_url( 'admin-ajax.php' ),
 					'nonce' => wp_create_nonce( __FILE__ ),
-					'return' => get_page_uri( $post->ID )
+					'return' => trailingslashit( get_permalink() )
 					)
 				);
 
@@ -486,6 +491,9 @@ if ( ! class_exists( 'Prelaunchr' ) ) :
 		 */
 		public function add_rewrite_rules( $wp_rewrite ) {
 
+			$new_rules = array();
+
+			// Rules for posts with the shortcode
 			if ( $id = $this->get_post_with_shortcode() ) {
 
 				$path = get_page_uri( $id );
@@ -495,10 +503,16 @@ if ( ! class_exists( 'Prelaunchr' ) ) :
 					'(' . $path . ')/([0-9A-Fa-f]{8}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{12})/?$' => 'index.php?pagename=' . $wp_rewrite->preg_index(1) . '&pid=' . $wp_rewrite->preg_index(2)
 				);
 
-				// Always add your rules to the top, to make sure your rules have priority
-				$wp_rewrite->rules = $new_rules + $wp_rewrite->rules;
-
 			}
+
+			// Rules for the front apge
+			if ( $front_page = get_option('page_on_front') ) {
+				$new_rules['([0-9A-Fa-f]{8}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{12})/?$'] = 'index.php?page_id=' . $front_page . '&pid=' . $wp_rewrite->preg_index(1);
+			}
+
+
+			// Always add your rules to the top, to make sure your rules have priority
+			$wp_rewrite->rules = $new_rules + $wp_rewrite->rules;
 
 		}
 
@@ -781,6 +795,22 @@ if ( ! class_exists( 'Prelaunchr' ) ) :
 			}
 
 			add_action( 'wp_head', 'wp_no_robots' );
+
+		}
+
+		/**
+		 * Check for theme support
+		 */
+		public function check_theme_support() {
+
+			/**
+			 * If theme supports prelaunchr and front page is manually set then add our scripts
+			 *
+			 * Saves theme devs having to do it
+			 */
+			if ( current_theme_supports('prelaunchr') && get_option('page_on_front') ) {
+				$this->add_scripts = true;
+			}
 
 		}
 
