@@ -17,6 +17,11 @@ global $wpdb;
 $wpdb->query( "DROP TABLE IF EXISTS " . $wpdb->prefix . "prelaunchr" );
 
 /**
+ * Delete options
+ */
+$wpdb->query("DELETE FROM $wpdb->options WHERE option_name LIKE 'prelaunchr-core-%';");
+
+/**
  * Delete rewards CPT posts and post meta
  */
 $wpdb->query( "DELETE FROM {$wpdb->posts} WHERE post_type IN ( 'reward' );" );

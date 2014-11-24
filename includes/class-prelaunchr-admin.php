@@ -258,7 +258,7 @@ class Prelaunchr_Admin {
 		/**
 		 * Register Settings
 		 */
-		register_setting( 'prelaunchr-settings', 'my-setting' );
+		register_setting( 'prelaunchr-settings', 'prelaunchr-core-my-setting' );
 
 		/**
 		 * Add sections and fields
@@ -291,8 +291,8 @@ class Prelaunchr_Admin {
 	 * Output the setting field
 	 */
 	public function field_one_callback() {
-		$setting = esc_attr( get_option( 'my-setting' ) );
-		echo "<input type='text' name='my-setting' value='$setting' />";
+		$setting = esc_attr( get_option( 'prelaunchr-core-my-setting' ) );
+		echo "<input type='text' name='prelaunchr-core-my-setting' value='$setting' />";
 	}
 
 	/**
