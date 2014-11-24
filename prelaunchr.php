@@ -68,12 +68,12 @@ if ( ! class_exists( 'Prelaunchr' ) ) :
 		/**
 		 * Switch for determining whether to enqueue prelaunchr css and js
 		 */
-		static $add_scripts = false;
+		public $add_scripts = false;
 
 		/**
 		 * ID of the post displaying the [prelaunchr] shortcode
 		 */
-		static $shortcode_post_id = 0;
+		public $shortcode_post_id = 0;
 
 		/**
 		 * Main plugin instance
@@ -305,7 +305,7 @@ if ( ! class_exists( 'Prelaunchr' ) ) :
 		/**
 		 * Checks if any post about to be displayed contains the [prelaunchr] shortcode.
 		 *
-		 * We need to set @see self::$add_scripts here rather than in the shortcode so we can conditionally
+		 * We need to set @see $add_scripts here rather than in the shortcode so we can conditionally
 		 * add scripts
 		 *
 		 */
@@ -317,8 +317,8 @@ if ( ! class_exists( 'Prelaunchr' ) ) :
 			foreach ( $posts as $post ) {
 
 				if ( false !== stripos( $post->post_content, '[prelaunchr' ) ) {
-					self::$add_scripts = true;
-					self::$shortcode_post_id = $post->ID;
+					$this->add_scripts = true;
+					$this->shortcode_post_id = $post->ID;
 					break;
 				}
 			}
@@ -331,7 +331,7 @@ if ( ! class_exists( 'Prelaunchr' ) ) :
 		 */
 		public function enqueue_scripts() {
 
-			if ( self::$add_scripts ) {
+			if ( $this->add_scripts ) {
 
 				global $post;
 
