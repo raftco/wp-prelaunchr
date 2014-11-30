@@ -8,6 +8,7 @@ Author: Raft Co
 Author URI: http://raft.co
 License: GPL2
 Text Domain: prelaunchr
+Domain Path: languages
 */
 /*
 Copyright 2014 Raft Co (email : plugins@raft.co)
