@@ -16,16 +16,24 @@ if ( ! empty ( $pid ) ) {
 
 	$max = Prelaunchr()->get_max_reward_referral_count();
 
-	if ( $referrals > $max ) {
-		$referrals = $max;
+	if ( ! empty( $max ) ) {
+
+		if ( $referrals > $max ) {
+			$referrals = $max;
+		}
+
+		$percentage = ( $referrals / $max ) * 100;
+
 	}
 
-	$percentage = ( $referrals / $max ) * 100;
+	$rewards = Prelaunchr()->get_rewards();
 
-	$rewards = Prelaunchr()->get_rewards(); ?>
+	if ( ! empty( $rewards ) ) {
+
+	?>
 
 <h2><?php _e( "Here's how it works", Prelaunchr()->get_plugin_name() ); ?></h2>
-
+<p><?php printf( __( 'You currently have %d Referrals!', Prelaunchr()->get_plugin_name() ), $referrals ); ?></p>
 <div class="referrals">
 	<ul class="labels">
 		<li class="referrals"><?php _e( "Referrals", Prelaunchr()->get_plugin_name() ); ?></li>
@@ -53,5 +61,5 @@ if ( ! empty ( $pid ) ) {
 	  </div>
 	</div>
 </div>
-<p><?php printf( __( 'You currently have %d Referrals!', Prelaunchr()->get_plugin_name() ), $referrals ); ?></p>
+<?php } ?>
 <?php } ?>
