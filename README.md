@@ -87,16 +87,6 @@ There are also some jQuery events triggered upon form submission and receipt of 
 
 Some other interesting/misc notes about the plugin and its functionality.
 
-### Robots Noindex
-
-The plugin adds a robots meta noindex tag e.g.
-
-```
-<meta name='robots' content='noindex,follow' />
-```
-
-to the head of the referrer thankyou/list pages.
-
 ### Honeypot field
 
 The plugin adds a hidden "name" field to the form to assist with catching out spam bots as a [honeypot](http://en.wikipedia.org/wiki/Honeypot_%28computing%29).
