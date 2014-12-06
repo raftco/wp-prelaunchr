@@ -106,7 +106,7 @@ jQuery( document ).ready(function( $ ) {
 					 * If email passes server validation and is stored
 					 */
 					if ( response.success ) {
-						window.location.href = PrelaunchrSubmit.return+response.data.pid;
+						window.location.href = PrelaunchrSubmit.return+'?pid='+response.data.pid;
 						return;
 					} else {
 						$('.prelaunchr .response').html(response.data).fadeIn();

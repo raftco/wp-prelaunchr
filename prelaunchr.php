@@ -242,18 +242,6 @@ if ( ! class_exists( 'Prelaunchr' ) ) :
 			add_action( 'wp_ajax_prelaunchr-submit', array( $this, 'record_submission' ) );
 
 			/**
-			 * URL / Rewrite rules
-			 */
-			add_action( 'generate_rewrite_rules', array( $this, 'add_rewrite_rules' ) );
-			add_filter( 'query_vars', array( $this, 'add_query_vars' ) );
-			add_action( 'admin_init', array( $this, 'flush_rewrite_rules' ) );
-
-			/**
-			 * Add a meta robot noindex tag to our referrer urls above
-			 */
-			add_action( 'pre_get_posts', array( $this, 'add_noindex' ) );
-
-			/**
 			 * Check for theme support
 			 */
 			add_action( 'init', array ( $this, 'check_theme_support') );
@@ -442,7 +430,7 @@ if ( ! class_exists( 'Prelaunchr' ) ) :
 			 * PID - Inidividual Prelaunchr ID (PID) for each email
 			 */
 			if ( isset( $_POST['pid'] ) ) {
-				$data['pid'] = mysql_real_escape_string( stripslashes( $_POST['pid'] ) );
+				$data['pid'] = $this->valid_uuid( $_POST['pid'] );
 			} else {
 				$data['pid'] = 0;
 			}
@@ -452,7 +440,7 @@ if ( ! class_exists( 'Prelaunchr' ) ) :
 			 * RID - Referrer ID (RID)
 			 */
 			if ( isset( $_POST['rid'] ) ) {
-				$data['rid'] = $this->get_referrer_id( mysql_real_escape_string( stripslashes( $_POST['rid'] ) ) );
+				$data['rid'] = $this->get_referrer_id( $this->valid_uuid( $_POST['rid'] ) );
 			} else {
 				$data['rid'] = 0;
 			}
@@ -482,59 +470,6 @@ if ( ! class_exists( 'Prelaunchr' ) ) :
 			} else if ( $result > 0) {
 				wp_send_json_success( $data );
 			}
-
-		}
-
-		/**
-		 * Creates the rewrite rules for our pids
-		 *
-		 * Concept based on http://stackoverflow.com/questions/13140182/wordpress-wp-rewrite-rules
-		 */
-		public function add_rewrite_rules( $wp_rewrite ) {
-
-			$new_rules = array();
-
-			// Rules for posts with the shortcode
-			if ( $id = $this->get_post_with_shortcode() ) {
-
-				$path = get_page_uri( $id );
-
-				$new_rules = array (
-					'(' . $path . ')/([0-9A-Fa-f]{8}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{12})/page/?([0-9]{1,})/?$' => 'index.php?pagename=' . $wp_rewrite->preg_index(1).'&pid=' . $wp_rewrite->preg_index(2) . '&page=' . $wp_rewrite->preg_index(3) ,
-					'(' . $path . ')/([0-9A-Fa-f]{8}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{12})/?$' => 'index.php?pagename=' . $wp_rewrite->preg_index(1) . '&pid=' . $wp_rewrite->preg_index(2)
-				);
-
-			}
-
-			// Rules for the front apge
-			if ( $front_page = get_option('page_on_front') ) {
-				$new_rules['([0-9A-Fa-f]{8}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{12})/?$'] = 'index.php?page_id=' . $front_page . '&pid=' . $wp_rewrite->preg_index(1);
-			}
-
-
-			// Always add your rules to the top, to make sure your rules have priority
-			$wp_rewrite->rules = $new_rules + $wp_rewrite->rules;
-
-		}
-
-
-		/**
-		 * Adds the filter query parameters to the WP_Query object.
-		 */
-		public function add_query_vars( $query_vars ) {
-
-			$query_vars[] = 'pid';
-
-			return $query_vars;
-		}
-
-		/**
-		 * Definitely not ideal (i know i know) - but we need to flush rewrite rules on something other than 
-		 * plugin activation so we can check if the shortcode has been used
-		 */
-		public function flush_rewrite_rules() {
-
-			flush_rewrite_rules();
 
 		}
 
@@ -720,7 +655,7 @@ if ( ! class_exists( 'Prelaunchr' ) ) :
 		 */
 		public function display( $return = false ) {
 
-			$pid = get_query_var('pid');
+			$pid = $this->valid_uuid( $_GET['pid'] );
 
 			if ( $return ) {
 				ob_start();
@@ -789,13 +724,30 @@ if ( ! class_exists( 'Prelaunchr' ) ) :
 		*/
 		public function add_noindex() {
 
-			$pid = get_query_var('pid');
+			$pid = $this->valid_uuid( $_GET['pid'] );
 
 			if ( empty ( $pid ) ) {
 				return;
 			}
 
 			add_action( 'wp_head', 'wp_no_robots' );
+
+		}
+
+		/**
+		 * Ensure pid is a valid UUID
+		 */
+		public function valid_uuid( $pid ) {
+
+			if ( empty( $pid ) ) {
+				return false;
+			}
+
+			if ( preg_match('/^\{?[0-9A-Fa-f]{8}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{12}\}?$/', $pid ) ) {
+				return $pid;
+			} 
+
+			return false;
 
 		}
 

@@ -9,7 +9,9 @@ class Prelaunchr_Deactivator {
 	 */
 	public function deactivate() {
 
-		flush_rewrite_rules();
+		/**
+		 * Nothing to do... yet
+		 */
 
 	}
 

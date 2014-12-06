@@ -9,8 +9,6 @@ class Prelaunchr_Activator {
 	 */
 	public function activate() {
 
-		flush_rewrite_rules();
-
 		Prelaunchr_Activator::add_db_table();
 
 	}

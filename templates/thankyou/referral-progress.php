@@ -6,7 +6,7 @@ if ( ! empty( $_SERVER['SCRIPT_FILENAME'] ) && basename( __FILE__ ) == basename(
 	die ( 'You do not have sufficient permissions to access this page!' );
 }
 
-$pid = get_query_var('pid');
+$pid = Prelaunchr()->valid_uuid( $_GET['pid'] );
 
 if ( ! empty ( $pid ) ) {
 
