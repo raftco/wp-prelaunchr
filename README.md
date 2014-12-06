@@ -80,8 +80,7 @@ We've included some hooks and filters for devs to use to further customise/exten
 There are also some jQuery events triggered upon form submission and receipt of ajax responses e.g.
 
 * `prelaunchr_form_submit` - triggered upon a successful form submission
-* `prelaunchr_response_success` - triggered after the submitted data has passed validation and been successfully stored.
-* `prelaunchr_response_fail` - triggered when the submitted data is invalid or the has not been stored
+* `prelaunchr_response` - triggered after submission along with response data (success or fail)
 
 
 ## Other Notes

@@ -100,17 +100,15 @@ jQuery( document ).ready(function( $ ) {
 				dataType: 'JSON',
 				success: function( response, textStatus, XMLHttpRequest ) {
 
-					//console.log( response );
+					$('body').trigger('prelaunchr_response', response );
 
 					/**
 					 * If email passes server validation and is stored
 					 */
 					if ( response.success ) {
-						$('body').trigger('prelaunchr_response_success');
 						window.location.href = PrelaunchrSubmit.return+response.data.pid;
 						return;
 					} else {
-						$('body').trigger('prelaunchr_response_fail');
 						$('.prelaunchr .response').html(response.data).fadeIn();
 						return;
 					}
