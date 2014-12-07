@@ -6,11 +6,12 @@ Description: Useful plugin for pre launching sites. Based on https://github.com/
 Version: 1.0
 Author: Raft Co
 Author URI: http://raft.co
-License: GPL2
+License: GPL3
+License URI: https://www.gnu.org/licenses/gpl.html
 Text Domain: prelaunchr
 Domain Path: languages
-*/
-/*
+GitHub Plugin URI: https://github.com/FindingSimple/wp-prelaunchr
+
 Copyright 2014 Raft Co (email : plugins@raft.co)
 
 This program is free software; you can redistribute it and/or modify
@@ -24,8 +25,7 @@ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 GNU General Public License for more details.
 
 You should have received a copy of the GNU General Public License
-along with this program; if not, write to the Free Software
-Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  1-1301  USA
+along with this program; If not, see <http://www.gnu.org/licenses/>
 */
 
 if ( ! defined( 'ABSPATH' ) ) {
