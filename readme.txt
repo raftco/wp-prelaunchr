@@ -21,15 +21,18 @@ At the end of the campaign export your results to csv for importing into your de
 
 = Features =
 
-* Referral Tracking
-* View Submissions within the Dashboard
-* Custom Reward Groups/Levels
-* CSV Exporter
+* Referral tracking
+* Set and manage referral rewards / prizes
+* View submissions within the WP dashboard
+* Export submission to CSV
+* Anti Spam honeypot field
 * Akismet Integration
+* Developer Friendly
+* Theme integration - with templates that can be overridden
 
 = Add-ons =
 
-Paid Support, themes and dd-ons, such as the __mailchimp__  can be [found here](http://wp-prelaunchr.com). Take a look!
+Paid Support, themes and add-ons, such as the __mailchimp addon__ can be [found here](http://wp-prelaunchr.com). Take a look!
 
 = Contributing and reporting bugs =
 
@@ -39,7 +42,9 @@ Contributions like translations/localizations are extremely grateful.
 
 = Support =
 
-Use the WordPress.org forums for community support (note we do not monitor these forums) - We cannot offer support directly for free but if you'd like to pay or donate for support we may be able to help you. 
+Use the WordPress.org forums for community support (note we do not personally monitor these forums).
+
+We cannot offer support directly for free but if you'd like paid support or to provide a donation we can work something out. 
 
 If you spot a bug or want to contribute some code, you can of course log it on [Github](https://github.com/FindingSimple/wp-prelaunchr) instead where I can act upon it more efficiently.
 
@@ -64,7 +69,7 @@ The manual installation method involves downloading the plugin and uploading it 
 
 = Can we add additional fields beside email address? =
 
-No - not by default and we don't plan on adding support for more in the near future.
+No, sorry not by default and we don't plan on adding default support for more in the near future.
 
 It's be proven elsewhere that more fields dramatically kills conversion rate. Causing people to stop and think will not allow your giveaway to become viral.
 
@@ -75,14 +80,6 @@ We don’t create new pages, just add a parameter to your URLS.
 Advanced users can reduce the risk of duplicate content erros by:
 * Making sure you have canonical URLs setup on your WordPress website. Many SEO plugin tools will have this available out of the box, with the popular tool being Yoast’s WordPress SEO Plugin. More details on canonical URLs usage scenarios can be found at the Google documentation [here](https://support.google.com/webmasters/answer/139066?hl=en).
 * Utilize Google's [Paramter Tool](https://www.google.com/webmasters/tools/crawl-url-parameters) to give Google information about how to handle URLs containing the Prelauncher parameters.
-
-== Screenshots ==
-
-1. This screen shot description corresponds to screenshot-1.(png|jpg|jpeg|gif). Note that the screenshot is taken from
-the /assets directory or the directory that contains the stable readme.txt (tags or trunk). Screenshots in the /assets 
-directory take precedence. For example, `/assets/screenshot-1.png` would win over `/tags/4.3/screenshot-1.png` 
-(or jpg, jpeg, gif).
-2. This is the second screen shot
 
 == Changelog ==
 
