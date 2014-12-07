@@ -19,6 +19,14 @@ Manually add a shortcode `[prelaunchr]` to any page or post to insert the prelau
 
 At the end of the campaign export your results to csv for importing into your desired marketing/sales platform such as MailChimp, Campaign Monitor or Salesforce.
 
+= Features =
+
+* Referral Tracking
+* View Submissions within the Dashboard
+* Custom Reward Groups/Levels
+* CSV Exporter
+* Akismet Integration
+
 = Add-ons =
 
 Paid Support, themes and dd-ons, such as the __mailchimp__  can be [found here](http://wp-prelaunchr.com). Take a look!
@@ -54,13 +62,19 @@ The manual installation method involves downloading the plugin and uploading it 
 
 == Frequently Asked Questions ==
 
-= A question that someone might have =
+= Can we add additional fields beside email address? =
 
-An answer to that question.
+No - not by default and we don't plan on adding support for more in the near future.
 
-= What about foo bar? =
+It's be proven elsewhere that more fields dramatically kills conversion rate. Causing people to stop and think will not allow your giveaway to become viral.
 
-Answer to foo bar dilemma.
+= I’m concerned about duplicate pages for SEO =
+
+We don’t create new pages, just add a parameter to your URLS. 
+
+Advanced users can reduce the risk of duplicate content erros by:
+* Making sure you have canonical URLs setup on your WordPress website. Many SEO plugin tools will have this available out of the box, with the popular tool being Yoast’s WordPress SEO Plugin. More details on canonical URLs usage scenarios can be found at the Google documentation [here](https://support.google.com/webmasters/answer/139066?hl=en).
+* Utilize Google's [Paramter Tool](https://www.google.com/webmasters/tools/crawl-url-parameters) to give Google information about how to handle URLs containing the Prelauncher parameters.
 
 == Screenshots ==
 
