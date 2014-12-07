@@ -414,7 +414,7 @@ if ( ! class_exists( 'Prelaunchr' ) ) :
 			 * Check if the email already exists in our list
 			 */
 			if ( $this->email_exists( $email ) ) {
-				$url = ( parse_url( untrailingslashit( get_permalink( $this->get_post_with_shortcode() ) ) , PHP_URL_QUERY) ? '&' : '?' );
+				$url = get_permalink( $this->get_post_with_shortcode() ) . ( parse_url( untrailingslashit( get_permalink( $this->get_post_with_shortcode() ) ) , PHP_URL_QUERY ) ? '&' : '?' );
 				wp_send_json_error( sprintf( __( 'Thanks we have already recorded your interest. Check your referrals <a href="%s">here</a>.', Prelaunchr()->get_plugin_name() ), esc_url( $url . 'pid=' . $this->get_pid_from_email( $email ) ) ) );
 			}
 
