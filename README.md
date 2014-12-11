@@ -82,6 +82,25 @@ There are also some jQuery events triggered upon form submission and receipt of 
 * `prelaunchr_form_submit` - triggered upon a successful form submission
 * `prelaunchr_response` - triggered after submission along with response data (success or fail)
 
+## FAQ
+
+Stuff people have asked, you might also like to know:
+
+### Can we add additional fields beside email address?
+
+No, sorry not by default and we don't plan on adding default support for more in the near future.
+
+It's been general accepted (and I believe proven)that more fields dramatically kills conversion rate. Causing people to stop and think will not allow your campaign to become viral.
+
+### I’m concerned about duplicate pages for SEO
+
+We don’t create new pages, just add a parameter to your URLS.
+
+Advanced users can reduce the risk of duplicate content erros by:
+
+* Making sure you have canonical URLs setup on your WordPress website. Many SEO plugin tools will have this available out of the box, with the popular tool being Yoast’s WordPress SEO Plugin. More details on canonical URLs usage scenarios can be found at the Google documentation [here](https://support.google.com/webmasters/answer/139066?hl=en).
+* Utilize Google's [Paramter Tool](https://www.google.com/webmasters/tools/crawl-url-parameters) to give Google information about how to handle URLs containing the Prelauncher parameters.
+
 
 ## Other Notes
 
