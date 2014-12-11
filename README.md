@@ -36,6 +36,30 @@ Download your data as a csv ready for importing into your desired marketing/sale
 
 If you have Akismet enabled with a valid key, Prelaunchr will automatically check submissions against the Akismet service to help protect your from spam entries.
 
+## Installation
+
+### Automatic installation
+
+Automatic installation is the easiest option as WordPress handles the file transfers itself and you don't even need to leave your web browser. To do an automatic install, log in to your WordPress admin panel, navigate to the Plugins menu and click Add New.
+
+In the search field type "Prelaunchr" and click Search Plugins. Once you've found the plugin you can view details about it such as the the point release, rating and description. Most importantly of course, you can install it by clicking _Install Now_.
+
+### Manual installation
+The manual installation method involves downloading the plugin and uploading it to your webserver via your favourite FTP application.
+
+* Download the plugin file to your computer and unzip it
+* Using an FTP program, or your hosting control panel, upload the unzipped plugin folder to your WordPress installation's `wp-content/plugins/` directory.
+* Activate the plugin from the Plugins menu within the WordPress admin.
+
+## Usage
+
+Simply insert the `[prelaunchr]` shortcode into a page (or post) and you are done.
+
+In most situations site managers will use the short code on a static front page. 
+
+Details about creating a static front page can be found in [the codex](http://codex.wordpress.org/Creating_a_Static_Front_Page)
+
+
 ## Shortcode Attributes
 
 None. Nada. Nothing. Simply insert the `[prelaunchr]` shortcode and you are done.
@@ -91,7 +115,7 @@ You can contribute code to this plugin via GitHub: [https://github.com/FindingSi
 
 Contributions like translations/localizations are extremely grateful.
 
-## Support
+## Prelaunchr Support
 
 Use the WordPress.org forums for community support (note we do not personally monitor these forums).
 
@@ -138,6 +162,12 @@ Stuff people have asked, you might also like to know:
 No, sorry not by default and we don't plan on adding default support for more in the near future.
 
 It's been general accepted (and I believe proven)that more fields dramatically kills conversion rate. Causing people to stop and think will not help your campaign be shared.
+
+### Can we make the rest of the site members only?
+
+We have purposely not included any members only functionality within this plugin as there are plenty of existing plugins with this functionality available and we are trying to keep the core functionality as succinct as possible.
+
+We'd recommend trying something like [Members](https://wordpress.org/plugins/members/).
 
 ### I’m concerned about duplicate pages for SEO
 

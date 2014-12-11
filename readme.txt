@@ -73,6 +73,12 @@ No, sorry not by default and we don't plan on adding default support for more in
 
 It's be proven elsewhere that more fields dramatically kills conversion rate. Causing people to stop and think will not help your giveaway to be shared.
 
+= Can we make the rest of the site members only? =
+
+We have purposely not included any members only functionality within this plugin as there are plenty of existing plugins with this functionality available and we are trying to keep the core functionality as succinct as possible.
+
+We'd recommend trying something like [Members](https://wordpress.org/plugins/members/).
+
 = I’m concerned about duplicate pages for SEO =
 
 We don’t create new pages, just add a parameter to your URLS. 
