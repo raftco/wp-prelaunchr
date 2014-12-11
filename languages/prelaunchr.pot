@@ -1,15 +1,15 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Prelaunchr for WordPress\n"
-"POT-Creation-Date: 2014-11-24 13:10+1000\n"
-"PO-Revision-Date: 2014-11-24 13:10+1000\n"
+"POT-Creation-Date: 2014-12-11 21:48+1000\n"
+"PO-Revision-Date: 2014-12-11 21:49+1000\n"
 "Last-Translator: Jason Conroy <jason@findingsimple.com>\n"
 "Language-Team: Jason Conroy <jason@findingsimple.com>\n"
 "Language: en\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.6.10\n"
+"X-Generator: Poedit 1.7.1\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;"
@@ -42,7 +42,7 @@ msgstr ""
 #: includes/class-prelaunchr-admin.php:110
 #: includes/class-prelaunchr-admin.php:112
 #: includes/class-prelaunchr-admin.php:120
-#: templates/thankyou/referral-progress.php:32
+#: templates/thankyou/referral-progress.php:40
 msgid "Rewards"
 msgstr ""
 
@@ -179,7 +179,7 @@ msgid "Email"
 msgstr ""
 
 #: includes/class-prelaunchr-list-table.php:146
-#: templates/thankyou/referral-progress.php:31
+#: templates/thankyou/referral-progress.php:39
 msgid "Referrals"
 msgstr ""
 
@@ -195,27 +195,27 @@ msgstr ""
 msgid "ID"
 msgstr ""
 
-#: prelaunchr.php:398
+#: prelaunchr.php:392
 msgid "Invalid Email"
 msgstr ""
 
-#: prelaunchr.php:414
+#: prelaunchr.php:408
 msgid "Spam detected - If this is an error please contact us directly"
 msgstr ""
 
-#: prelaunchr.php:423
+#: prelaunchr.php:418
 #, php-format
 msgid ""
 "Thanks we have already recorded your interest. Check your referrals <a href="
 "\"%s\">here</a>."
 msgstr ""
 
-#: prelaunchr.php:473
+#: prelaunchr.php:468
 msgid ""
 "Oops there was an error updating our records, please contact us directly (1)"
 msgstr ""
 
-#: prelaunchr.php:475
+#: prelaunchr.php:470
 msgid ""
 "Oops there was an error updating our records, please contact us directly (2)"
 msgstr ""
@@ -236,11 +236,11 @@ msgstr ""
 msgid "Submit"
 msgstr ""
 
-#: templates/thankyou/referral-progress.php:27
+#: templates/thankyou/referral-progress.php:35
 msgid "Here's how it works"
 msgstr ""
 
-#: templates/thankyou/referral-progress.php:56
+#: templates/thankyou/referral-progress.php:36
 #, php-format
 msgid "You currently have %d Referrals!"
 msgstr ""
