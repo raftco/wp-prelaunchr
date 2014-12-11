@@ -11,7 +11,7 @@ Useful plugin for setting up a pre-launch site.
 
 == Description ==
 
-Based on [Harry's Prelaunchr](https://github.com/harrystech/prelaunchr) and discussed in greater detail on [Tim Ferriss' blog](http://fourhourworkweek.com/2014/07/21/harrys-prelaunchr-email/) Prelaunchr for WordPress helps you quickly start a viral pre-launch campaign for new companies, products and services. 
+Based on [Harry's Prelaunchr](https://github.com/harrystech/prelaunchr) and discussed in greater detail on [Tim Ferriss' blog](http://fourhourworkweek.com/2014/07/21/harrys-prelaunchr-email/) Prelaunchr for WordPress helps you quickly start a pre-launch campaign for new companies, products and services. 
 
 Campaigns are conducive to social sharing and rewards / prize groups can be set based on the number of people each person refers. The groups, amounts, and rewards are completely up to you to set. 
 
@@ -71,7 +71,7 @@ The manual installation method involves downloading the plugin and uploading it 
 
 No, sorry not by default and we don't plan on adding default support for more in the near future.
 
-It's be proven elsewhere that more fields dramatically kills conversion rate. Causing people to stop and think will not allow your giveaway to become viral.
+It's be proven elsewhere that more fields dramatically kills conversion rate. Causing people to stop and think will not help your giveaway to be shared.
 
 = I’m concerned about duplicate pages for SEO =
 

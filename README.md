@@ -1,6 +1,6 @@
 # Prelaunchr for WordPress
 
-Based on https://github.com/harrystech/prelaunchr and discussed in greater detail on [Tim Ferriss'](http://fourhourworkweek.com/2014/07/21/harrys-prelaunchr-email/) blog - Prelaunchr for WordPress helps you quickly start a viral prelaunch campaign for new companies, products and services. 
+Based on https://github.com/harrystech/prelaunchr and discussed in greater detail on [Tim Ferriss'](http://fourhourworkweek.com/2014/07/21/harrys-prelaunchr-email/) blog - Prelaunchr for WordPress helps you quickly start a prelaunch campaign for new companies, products and services. 
 
 The campaign is conducive to social sharing and has reward groups/levels based on the number of people each person refers. 
 
@@ -137,7 +137,7 @@ Stuff people have asked, you might also like to know:
 
 No, sorry not by default and we don't plan on adding default support for more in the near future.
 
-It's been general accepted (and I believe proven)that more fields dramatically kills conversion rate. Causing people to stop and think will not allow your campaign to become viral.
+It's been general accepted (and I believe proven)that more fields dramatically kills conversion rate. Causing people to stop and think will not help your campaign be shared.
 
 ### I’m concerned about duplicate pages for SEO
 
