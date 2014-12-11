@@ -87,6 +87,10 @@ Advanced users can reduce the risk of duplicate content erros by:
 * Making sure you have canonical URLs setup on your WordPress website. Many SEO plugin tools will have this available out of the box, with the popular tool being Yoast’s WordPress SEO Plugin. More details on canonical URLs usage scenarios can be found at the Google documentation [here](https://support.google.com/webmasters/answer/139066?hl=en).
 * Utilize Google's [Paramter Tool](https://www.google.com/webmasters/tools/crawl-url-parameters) to give Google information about how to handle URLs containing the Prelauncher parameters.
 
+== Requires ==
+
+* PHP 5.2.X+
+
 == Changelog ==
 
 = 1.0 =
