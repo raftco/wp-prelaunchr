@@ -161,7 +161,7 @@ Stuff people have asked, you might also like to know:
 
 No, sorry not by default and we don't plan on adding default support for more in the near future.
 
-It's been general accepted (and I believe proven)that more fields dramatically kills conversion rate. Causing people to stop and think will not help your campaign be shared.
+It's generally accepted that more fields dramatically kills conversion rate. Causing people to stop and think will not help your campaign be shared.
 
 ### Can we make the rest of the site members only?
 

@@ -71,7 +71,7 @@ The manual installation method involves downloading the plugin and uploading it 
 
 No, sorry not by default and we don't plan on adding default support for more in the near future.
 
-It's be proven elsewhere that more fields dramatically kills conversion rate. Causing people to stop and think will not help your giveaway to be shared.
+It's generally accepted that more fields dramatically kills conversion rate. Causing people to stop and think will not help your campaign be shared.
 
 = Can we make the rest of the site members only? =
 
