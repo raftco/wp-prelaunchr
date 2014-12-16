@@ -13,6 +13,7 @@ At the end of the campaign export your results to csv for importing into your de
 ## Requirements:
 
 * WordPress 4.0 or newer
+* PHP 5.2.X or newer
 
 ## Features:
 
