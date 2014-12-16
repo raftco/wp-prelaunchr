@@ -10,7 +10,7 @@ License: GPL3
 License URI: https://www.gnu.org/licenses/gpl.html
 Text Domain: prelaunchr
 Domain Path: languages
-GitHub Plugin URI: https://github.com/FindingSimple/wp-prelaunchr
+GitHub Plugin URI: https://github.com/raftco/wp-prelaunchr
 
 Copyright 2014 Raft Co (email : plugins@raft.co)
 
