@@ -112,7 +112,7 @@ Paid Support, themes and add-ons, such as the __mailchimp addon__ can be [found 
 
 ## Contributing and reporting bugs
 
-You can contribute code to this plugin via GitHub: [https://github.com/FindingSimple/wp-prelaunchr](https://github.com/FindingSimple/wp-prelaunchr)
+You can contribute code to this plugin via GitHub: [https://github.com/raftco/wp-prelaunchr](https://github.com/raftco/wp-prelaunchr)
 
 Contributions like translations/localizations are extremely grateful.
 
@@ -122,7 +122,7 @@ Use the WordPress.org forums for community support (note we do not personally mo
 
 We cannot offer support directly for free but if you'd like paid support or to provide a donation we can work something out. 
 
-If you spot a bug or want to contribute some code, you can of course log it on [Github](https://github.com/FindingSimple/wp-prelaunchr) instead where I can act upon it more efficiently.
+If you spot a bug or want to contribute some code, you can of course log it on [Github](https://github.com/raftco/wp-prelaunchr) instead where I can act upon it more efficiently.
 
 If you want help with a customisation, please hire a developer!
 
