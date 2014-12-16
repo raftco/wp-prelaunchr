@@ -35,7 +35,7 @@ Download your data as a csv ready for importing into your desired marketing/sale
 
 ### Akismet Integration
 
-If you have Akismet enabled with a valid key, Prelaunchr will automatically check submissions against the Akismet service to help protect your from spam entries.
+If you have Akismet enabled with a valid key, Prelaunchr will automatically check submissions against the Akismet service to help protect you from spam entries.
 
 ## Installation
 
