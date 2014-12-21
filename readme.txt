@@ -57,6 +57,7 @@ In the search field type "Prelaunchr" and click Search Plugins. Once you've foun
 = Manual installation =
 
 The manual installation method involves downloading the plugin and uploading it to your webserver via your favourite FTP application.
+
 * Download the plugin file to your computer and unzip it
 * Using an FTP program, or your hosting control panel, upload the unzipped plugin folder to your WordPress installation's `wp-content/plugins/` directory.
 * Activate the plugin from the Plugins menu within the WordPress admin.
@@ -75,12 +76,13 @@ We have purposely not included any members only functionality within this plugin
 
 We'd recommend trying something like [Members](https://wordpress.org/plugins/members/).
 
-= I’m concerned about duplicate pages for SEO =
+= I'm concerned about duplicate pages for SEO =
 
-We don’t create new pages, just add a parameter to your URLS. 
+We don't create new pages, just add a parameter to your URLS. 
 
 Advanced users can reduce the risk of duplicate content erros by:
-* Making sure you have canonical URLs setup on your WordPress website. Many SEO plugin tools will have this available out of the box, with the popular tool being Yoast’s WordPress SEO Plugin. More details on canonical URLs usage scenarios can be found at the Google documentation [here](https://support.google.com/webmasters/answer/139066?hl=en).
+
+* Making sure you have canonical URLs setup on your WordPress website. Many SEO plugin tools will have this available out of the box, with the popular tool being Yoast's WordPress SEO Plugin. More details on canonical URLs usage scenarios can be found at the Google documentation [here](https://support.google.com/webmasters/answer/139066?hl=en).
 * Utilize Google's [Paramter Tool](https://www.google.com/webmasters/tools/crawl-url-parameters) to give Google information about how to handle URLs containing the Prelauncher parameters.
 
 = Why not just use one of the existing 'Coming Soon' or 'Maintenance Mode' plugins? =
