@@ -1,7 +1,7 @@
 <?php
 /*
 Plugin Name: Prelaunchr for WordPress
-Plugin URI: https://github.com/raftco/wp-prelaunchr
+Plugin URI: http://wordpress.org/extend/plugins/wp-prelaunchr/
 Description: Useful plugin for pre launching sites. Based on https://github.com/harrystech/prelaunchr
 Version: 1.0
 Author: Raft Co
