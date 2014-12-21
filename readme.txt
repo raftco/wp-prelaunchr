@@ -87,6 +87,12 @@ Advanced users can reduce the risk of duplicate content erros by:
 * Making sure you have canonical URLs setup on your WordPress website. Many SEO plugin tools will have this available out of the box, with the popular tool being Yoast’s WordPress SEO Plugin. More details on canonical URLs usage scenarios can be found at the Google documentation [here](https://support.google.com/webmasters/answer/139066?hl=en).
 * Utilize Google's [Paramter Tool](https://www.google.com/webmasters/tools/crawl-url-parameters) to give Google information about how to handle URLs containing the Prelauncher parameters.
 
+= Why not just use one of the existing 'Coming Soon' or 'Maintenance Mode' plugins? =
+
+We like plugins that follow the [WordPress Philosophy](https://wordpress.org/about/philosophy/) of __Decisions, not Options__ and want to create something that sets a good, solid baseline without all the bloat of 1000 different options for users. 
+
+At the same time we still want it to be flexibile enough for devs (theme & plugin) to be able to use and customise for their specific needs which is why we've added ability for template elements to be overriden and lots of actions to hook into and extend functionality.
+
 == Requires ==
 
 * PHP 5.2.X+
