@@ -54,150 +54,151 @@ $progress-color-100: #86e01e !default;
 	to    { background-position: 0 0; }
 }
 
+.prelaunchr {
 
-// Bar itself
-// -------------------------
+	// Progress bar
+	// -------------------------
 
-// Outer container
-.progress {
-	overflow: hidden;
-	margin: 0 auto $line-height auto;
-	width: $progress-bar-width;
-	height: $line-height;
-	background-color: $progress-bg;
-	border-radius: $progress-border-radius;
-	@include box-shadow(inset 0 1px 2px rgba(0,0,0,.1));
-}
-
-// Bar of progress
-.progress-bar {
-	float: left;
-	width: 0%;
-	height: 100%;
-	font-size: $font-size;
-	line-height: $line-height;
-	color: $progress-bar-color;
-	text-align: center;
-	background-color: $progress-bar-bg;
-	@include box-shadow(inset 0 -1px 0 rgba(0,0,0,.15));
-	@include transition(width .6s ease);
-}
-
-// Striped bars
-.progress-striped .progress-bar,
-.progress-bar-striped {
-	@include gradient-striped;
-	background-size: 40px 40px;
-}
-
-// Call animation for the active one
-.progress.active .progress-bar,
-.progress-bar.active {
-	@include animation(progress-bar-stripes 2s linear infinite);
-}
-
-
-// Variations
-// -------------------------
-
-.progress-0 {
-	@include progress-bar-variant($progress-color-5);
-	width: 20px !important;
-}
-
-.progress-5 {
-	@include progress-bar-variant($progress-color-5);
-}
-
-.progress-25 {
-	@include progress-bar-variant($progress-color-25);
-}
-
-.progress-50 {
-	@include progress-bar-variant($progress-color-50);
-}
-
-.progress-75 {
-	@include progress-bar-variant($progress-color-75);
-}
-
-.progress-100 {
-	@include progress-bar-variant($progress-color-100);
-}
-
-
-.referrals {
-	&:before,
-	&:after {
-		content: " "; // 1
-		display: table; // 2
-	}
-	&:after {
-		clear: both;
-	}
-	clear: both;
-	margin-bottom: 30px;
-	width: 100%;
-
-	.labels {
-		float: left;
-		width: 100% - $progress-bar-width;
-		list-style: none;
-		margin: 0;
-		padding: 0;
-		color: #b1b1b1;
-	}
-
-	.referral-progress {
-		float: left;
-		list-style: none;
-		margin: 0 auto;
-		padding: 0;
+	// Outer container
+	.progress {
+		overflow: hidden;
+		margin: 0 auto $line-height auto;
 		width: $progress-bar-width;
-		display: block;
-		position: relative;
-		padding-top: 30px;
+		height: $line-height;
+		background-color: $progress-bg;
+		border-radius: $progress-border-radius;
+		@include box-shadow(inset 0 1px 2px rgba(0,0,0,.1));
+	}
+
+	// Bar of progress
+	.progress-bar {
+		float: left;
+		width: 0%;
+		height: 100%;
+		font-size: $font-size;
+		line-height: $line-height;
+		color: $progress-bar-color;
 		text-align: center;
+		background-color: $progress-bar-bg;
+		@include box-shadow(inset 0 -1px 0 rgba(0,0,0,.15));
+		@include transition(width .6s ease);
+	}
 
-		& li {
+	// Striped bars
+	.progress-striped .progress-bar,
+	.progress-bar-striped {
+		@include gradient-striped;
+		background-size: 40px 40px;
+	}
+
+	// Call animation for the active one
+	.progress.active .progress-bar,
+	.progress-bar.active {
+		@include animation(progress-bar-stripes 2s linear infinite);
+	}
+
+
+	// Variations
+	// -------------------------
+	.progress-0 {
+		@include progress-bar-variant($progress-color-5);
+		width: 20px !important;
+	}
+
+	.progress-5 {
+		@include progress-bar-variant($progress-color-5);
+	}
+
+	.progress-25 {
+		@include progress-bar-variant($progress-color-25);
+	}
+
+	.progress-50 {
+		@include progress-bar-variant($progress-color-50);
+	}
+
+	.progress-75 {
+		@include progress-bar-variant($progress-color-75);
+	}
+
+	.progress-100 {
+		@include progress-bar-variant($progress-color-100);
+	}
+
+	.referrals {
+		&:before,
+		&:after {
+			content: " "; // 1
+			display: table; // 2
+		}
+		&:after {
+			clear: both;
+		}
+		clear: both;
+		margin-bottom: 30px;
+		width: 100%;
+
+		.labels {
+			float: left;
+			width: 100% - $progress-bar-width;
 			list-style: none;
-			margin:0;
-			padding:0;
-			width: 100px;
-			margin-left: -50px;
-			display: block;
-			position: absolute;
-			top: 0;
-			left:0;
-			text-align: center;
-
-			& .referrals {
-				margin-bottom: 30px;
-			}
+			margin: 0;
+			padding: 0;
+			color: #b1b1b1;
 		}
 
+		.referral-progress {
+			float: left;
+			list-style: none;
+			margin: 0 auto;
+			padding: 0;
+			width: $progress-bar-width;
+			display: block;
+			position: relative;
+			padding-top: 30px;
+			text-align: center;
+
+			& li {
+				list-style: none;
+				margin:0;
+				padding:0;
+				width: 100px;
+				margin-left: -50px;
+				display: block;
+				position: absolute;
+				top: 0;
+				left:0;
+				text-align: center;
+
+				& .referrals {
+					margin-bottom: 30px;
+				}
+			}
+
+		}
 	}
-}
 
-#referral-link {
-	text-align: center;
-	line-height: 1;
-	padding: 15px;
-	border: 3px solid $progress-bg;
-	margin-bottom: 20px;
-}
+	#referral-link {
+		text-align: center;
+		line-height: 1;
+		padding: 15px;
+		border: 3px solid $progress-bg;
+		margin-bottom: 20px;
+	}
 
 
-.social ul li {
-	line-height: 22px;
-}
+	.social ul li {
+		line-height: 22px;
+	}
 
-.share.sharer-0 {
-	width: 100px !important;
-	margin: 0 auto;
-}
+	.share.sharer-0 {
+		width: 100px !important;
+		margin: 0 auto;
+	}
 
-// Main button, icon, and text styles
-.share.sharer-0 label {
-  background: none !important;
+	// Main button, icon, and text styles
+	.share.sharer-0 label {
+		background: none !important;
+	}
+
 }
