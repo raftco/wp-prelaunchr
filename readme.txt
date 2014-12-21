@@ -30,10 +30,6 @@ At the end of the campaign export your results to csv for importing into your de
 * Developer Friendly
 * Theme integration - with templates that can be overridden
 
-= Add-ons =
-
-Paid Support, themes and add-ons, such as the __mailchimp addon__ can be [found here](http://wp-prelaunchr.com). Take a look!
-
 = Contributing and reporting bugs =
 
 You can contribute code to this plugin via GitHub: [https://github.com/raftco/wp-prelaunchr](https://github.com/raftco/wp-prelaunchr)
