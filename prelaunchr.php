@@ -1,11 +1,11 @@
 <?php
 /*
 Plugin Name: Prelaunchr for WordPress
-Plugin URI: http://raft.co
+Plugin URI: https://github.com/raftco/wp-prelaunchr
 Description: Useful plugin for pre launching sites. Based on https://github.com/harrystech/prelaunchr
 Version: 1.0
 Author: Raft Co
-Author URI: http://raft.co
+Author URI: https://github.com/raftco/
 License: GPL3
 License URI: https://www.gnu.org/licenses/gpl.html
 Text Domain: prelaunchr
