@@ -95,5 +95,8 @@ At the same time we still want it to be flexibile enough for devs (theme & plugi
 
 == Changelog ==
 
+= 1.0.1 =
+* Tweak - Very minor readme edits.
+
 = 1.0 =
 * Initial release.
