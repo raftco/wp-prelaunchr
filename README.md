@@ -106,7 +106,7 @@ There are also some jQuery events triggered upon form submission and receipt of 
 * `prelaunchr_form_submit` - triggered upon a successful form submission
 * `prelaunchr_response` - triggered after submission along with response data (success or fail)
 
-## Add-ons
+## Add-ons (COMING SOON)
 
 Paid Support, themes and add-ons, such as the __mailchimp addon__ can be [found here](http://wp-prelaunchr.com). Take a look!
 
@@ -178,3 +178,12 @@ Advanced users can reduce the risk of duplicate content erros by:
 
 * Making sure you have canonical URLs setup on your WordPress website. Many SEO plugin tools will have this available out of the box, with the popular tool being Yoast’s WordPress SEO Plugin. More details on canonical URLs usage scenarios can be found at the Google documentation [here](https://support.google.com/webmasters/answer/139066?hl=en).
 * Utilize Google's [Paramter Tool](https://www.google.com/webmasters/tools/crawl-url-parameters) to give Google information about how to handle URLs containing the Prelauncher parameters.
+
+## Credits
+
+Credit also needs to go to the following (used within this plugin):
+
+* __[jQuery Cookie](https://github.com/carhartl/jquery-cookie)__
+* __[Node UUID](https://github.com/broofa/node-uuid)__
+* __[parseCSV](https://github.com/parsecsv/parsecsv-for-php)__
+* __[Share Button](http://sharebutton.co/)__
