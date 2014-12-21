@@ -3,7 +3,7 @@
  * Plugin Name:			Prelaunchr for WordPress
  * Plugin URI:			http://wordpress.org/extend/plugins/wp-prelaunchr/
  * Description:			Useful plugin for pre launching sites. Based on https://github.com/harrystech/prelaunchr
- * Version:				1.0
+ * Version:				1.0.1
  * Author:				Raft Co
  * Author URI:			https://github.com/raftco/
  * License:				GPL3
@@ -54,7 +54,7 @@ if ( ! class_exists( 'Prelaunchr' ) ) :
 		/**
 		 * Plugin version
 		 */
-		public $version = '1.0.0';
+		public $version = '1.0.1';
 
 		/**
 		 * Plugin name / textdomain
