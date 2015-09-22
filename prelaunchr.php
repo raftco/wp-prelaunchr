@@ -371,12 +371,13 @@ if ( ! class_exists( 'Prelaunchr' ) ) :
 		}
 
 		public function record_submission() {
-
+			global $wpdb;
+			
 			check_ajax_referer( __FILE__, 'nonce' );
 
 			$data = array();
 			$format = array();
-			$email = mysql_real_escape_string( stripslashes( $_POST['email'] ) );
+			$email = $wpdb->_real_escape( stripslashes( $_POST['email'] ) );
 
 			/**
 			 * Allow devs to hook in
