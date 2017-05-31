@@ -451,7 +451,7 @@ if ( ! class_exists( 'Prelaunchr' ) ) :
 			/**
 			 * Allow devs to filter the data before storing
 			 */
-			apply_filters( 'prelaunchr_record_submission', $data, $format );
+			$data = apply_filters( 'prelaunchr_record_submission', $data, $format );
 
 			/**
 			 * Insert submission into database.
