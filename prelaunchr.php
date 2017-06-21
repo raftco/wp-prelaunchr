@@ -382,7 +382,7 @@ if ( ! class_exists( 'Prelaunchr' ) ) :
 			/**
 			 * Allow devs to hook in
 			 */
-			do_action( 'prelaunchr_record_submission', $email, $data, $format );
+			do_action( 'prelaunchr_record_on_submission', $email, $data, $format );
 
 			/**
 			 * Check if email is valid
